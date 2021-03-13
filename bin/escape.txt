@@ -1,0 +1,1303 @@
+
+
+
+ =mCgFi:$00001000
+ =mNrLt:$00002800
+ =mCrLt:$00002840
+ =mLlLt:$0000C000
+ =mCtLt:$00010000 =mCCNT:$00010040
+ =mMnFi:$00020000 =msoMF:$00010000
+ =mOtBy:$00040000 =msoBy:$00020000
+ =mOtB2:$00080000
+ =mOtTt:$00090000 =mOtT2:$00090002
+ =mTnLt:$000A0000
+
+
+ #ReadConfigFile
+ 
+ .PQ
+ .LERMD
+ /RCX:RIP:M
+ 'dCgFi:D
+ 
+ .PQ ,PM
+ .LERMD
+ /RDX:R13:D
+ .mCgFi:D
+ 
+ .CD
+ 'cRdFi:D
+ 
+
+ #GetCharacter
+ 
+ .MORIB ,CL
+ .$13
+ 
+ .PQ ,PR ,PM
+ .LERMD
+ /R10:R13:D
+ .mCgFi:D
+ 
+ .PQ ,PM
+ .LERMD
+ /RSI:R13:D
+ .mNrLt:D
+ 
+ .PQ
+ .MORMD
+ /RDI:RSI:R
+ 
+ .PW
+ .PM
+ .CAMID
+ /CMP:R10:M
+ .$FEFF:W
+ 
+ .JNEB
+ 'gc_0
+ 
+ .PQ ,PM
+ .CAMI8
+ /ADD:R10:R
+ .$02
+ 
+ *gc_0
+ 
+ .CAMIB
+ /CMP:CL:R
+ .$00
+ 
+ .JZB
+ 'gc_1
+ 
+ .PW
+ .PM
+ .MORMD
+ /AX:R10:M
+ 
+ .PW
+ .MOMRD
+ /AX:RDI:M
+ 
+ .PQ ,PM
+ .CAMI8
+ /ADD:R10:R
+ .$02
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDI:R
+ .$02
+ 
+ .EXCFE
+ /DEC:CL:R
+ 
+ .JB
+ 'gc_0
+ 
+ *gc_1
+ 
+ .PQ ,PR
+ .MORMD
+ /R14:RSI:R
+ 
+ .PQ
+ .CAMI8
+ /ADD:RSI:R
+ .$40
+ 
+ .PQ
+ .MORMD
+ /RDI:RSI:R
+ 
+ .XORMD
+ /EBX:EBX:R
+ 
+ *gc_2
+ 
+ .PW
+ .PM
+ .MORMD
+ /AX:R10:M
+ 
+ .PW
+ .CMAID
+ .$0000:W
+ 
+ .JEB
+ 'gc_11
+ 
+ .PW
+ .PM
+ .CMMRD
+ /AX:R14:B
+ .$20
+ 
+ .JEB
+ 'gc_4
+ 
+ .PW
+ .PM
+ .CMMRD
+ /AX:R14:B
+ .$22
+ 
+ .JEB
+ 'gc_9
+ 
+ .PW
+ .PM
+ .CMMRD
+ /AX:R14:B
+ .$24
+ 
+ .JEB
+ 'gc_10
+ 
+ .CAMIB
+ /CMP:BL:R
+ .$00
+ 
+ .JEB
+ 'gc_3
+ 
+ .PW
+ .PM
+ .MOMRD
+ /AX:R15:M
+ 
+ .PW
+ .PM
+ .MOMID
+ /EMP:R15:B
+ .$02
+ .$0000:W
+ 
+ .PQ ,PM
+ .CAMI8
+ /ADD:R15:R
+ .$02
+ 
+ *gc_3
+ 
+ .PQ ,PM
+ .CAMI8
+ /ADD:R10:R
+ .$02
+ 
+ .JB
+ 'gc_2
+ 
+
+ *gc_4
+ 
+ .EXCF6
+ /TEST:BL:R
+ .$01
+ 
+ .JZB
+ 'gc_7
+ 
+ .EXCF6
+ /TEST:BL:R
+ .$02
+ 
+ .JZB
+ 'gc_6
+ 
+ .MORIB ,BL
+ .$01
+ 
+ .PQ ,PM
+ .MORMD
+ /RAX:R14:B
+ .$30
+ 
+ .PQ
+ .MOMRD
+ /RAX:RDI:M
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDI:R
+ .$0A
+ 
+ .JB
+ 'gc_8
+ 
+ *gc_6
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:R14:B
+ .$30
+ 
+ .MORIB ,DL
+ .$10
+ 
+ .CD
+ 'cSI:D
+ 
+ .PW
+ .MOMRD
+ /AX:RDI:M
+ 
+ .PQ
+ .CMRMD
+ /RSI:RDI:R
+ 
+ .JEB
+ 'gc_6A
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDI:R
+ .$02
+ 
+ .JB
+ 'gc_8
+ 
+ *gc_6A
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDI:R
+ .$0A
+ 
+ .JB
+ 'gc_8
+ 
+ *gc_7
+ 
+ .MORIB ,BL
+ .$03
+ 
+ *gc_8
+ 
+ .PQ ,PR ,PM
+ .LERMD
+ /R15:R14:B
+ .$30
+ 
+ .JB
+ 'gc_3
+ 
+
+ *gc_9
+ 
+ .PQ
+ .CAMI8
+ /ADD:RSI:R
+ .$10
+ 
+ .PQ
+ .MORMD
+ /RDI:RSI:R
+ 
+ .MORIB ,BL
+ .$00
+ 
+ .JB
+ 'gc_3
+ 
+ *gc_10
+ 
+ .MORIB ,BL
+ .$01
+ 
+ .JB
+ 'gc_3
+ 
+ *gc_11
+ 
+ 
+ #ReadMainFiles
+ 
+ .PQ ,PR ,PM
+ .LERMD
+ /R12:R13:D
+ .mCdL2:D
+ 
+ .PQ ,PM
+ .LERMD
+ /RDX:R13:D
+ .mMnFi:D
+ 
+ *rdmn_0
+ 
+ .PQ ,PM
+ .MORMD
+ /RCX:R12:R
+ 
+ .PW
+ .CAMI8
+ /CMP:RCX:M
+ .$00
+ 
+ .JEB
+ 'rdmn_1
+ 
+ .CD
+ 'cRdFi:D
+ 
+ .PQ ,PM
+ .CAMID
+ /ADD:R12:R
+ .msoCL:D
+ 
+ .JB
+ 'rdmn_0
+ 
+ *rdmn_1
+ 
+ 
+ #SetCharacterTag
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:R13:D
+ .mMnFi:D
+ 
+ *ct_0
+ 
+ .PW
+ .MORMD
+ /BX:RCX:M
+ 
+ .PW
+ .CAMI8
+ /CMP:BX:R
+ .$00
+ 
+ .JEB
+ 'ct_6
+ 
+ .PQ ,PM
+ .LERMD
+ /RDX:R13:D
+ .mCrLt:D
+ 
+ *ct_1
+ 
+ .PW
+ .CAMI8
+ /CMP:RDX:M
+ .$00
+ 
+ .JEB
+ 'ct_5
+ 
+ .PW
+ .CMRMD
+ /BX:RDX:M
+ 
+ .JNEB
+ 'ct_2
+ 
+ .MORMB
+ /AL:RDX:B
+ .$0A
+ 
+ .CMAIB
+ .$1F
+ 
+ .JBEB
+ 'ct_3
+ 
+ .CMAIB
+ .$40
+ 
+ .JEB
+ 'ct_4
+ 
+ *ct_2
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDX:R
+ .$10
+ 
+ .JB
+ 'ct_1
+ 
+ *ct_3
+ 
+ .PQ
+ .LERMD
+ /RSI:RCX:D
+ .msoMF:D
+ 
+ .MOMRB
+ /AL:RSI:M
+ 
+ .MORMB
+ /AL:RDX:B
+ .$0C
+ 
+ .MOMRB
+ /AL:RSI:B
+ .$01
+ 
+ .JB
+ 'ct_2
+ 
+ *ct_4
+ 
+ .PW
+ .MORMD
+ /AX:RDX:B
+ .$0C
+ 
+ .PW
+ .MOMRD
+ /AX:RCX:M
+ 
+ .JB
+ 'ct_2
+ 
+ *ct_5
+ 
+ .PQ
+ .CAMI8
+ /ADD:RCX:R
+ .$02
+ 
+ .JB
+ 'ct_0
+ 
+ *ct_6
+ 
+ 
+ #SgtTn
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:R13:D
+ .mMnFi:D
+ 
+ .PQ ,PR ,PM
+ .LERMD
+ /R14:R13:D
+ .mTnLt:D
+ 
+ .PQ ,PM
+ .MORMD
+ /RSI:R14:R
+ 
+ .PQ
+ .MORMD
+ /RDI:RSI:R
+ 
+ .XORMD
+ /EBX:EBX:R
+ 
+ *stt_0
+ 
+ .PW
+ .CAMI8
+ /CMP:RCX:M
+ .$00
+ 
+ .JEB
+ 'stt_8
+ 
+ .MORIB ,BL
+ .$01
+ 
+ .MORMD
+ /EAX:RCX:D
+ .msoMF:D
+ 
+ .TEAIB
+ .$02
+ 
+ .JZB
+ 'stt_1
+ 
+ .XORMD
+ /EBX:EBX:R
+ 
+ *stt_1
+ 
+ .CAMIB
+ /CMP:BH:R
+ .$01
+ 
+ .JEB
+ 'stt_7
+ 
+ .TEAIB
+ .$10
+ 
+ .JZB
+ 'stt_2
+ 
+ .MOMRB
+ /AH:RSI:B
+ .$3F
+ 
+ *stt_2
+ 
+ .TEAIB
+ .$04
+ 
+ .JZB
+ 'stt_3
+ 
+ .MORIB ,BH
+ .$01
+ 
+ .MORIB ,BL
+ .$00
+ 
+ *stt_3
+ 
+ .TEAIB
+ .$01
+ 
+ .JZB
+ 'stt_4
+ 
+ .MORIB ,BL
+ .$00
+ 
+ .PQ ,PM
+ .CMRMD
+ /RSI:R14:R
+ 
+ .JEB
+ 'stt_4A
+ 
+ .PQ ,PM
+ .CAMID
+ /ADD:R14:R
+ .$00000100:D
+ 
+ .PQ ,PM
+ .MORMD
+ /RSI:R14:R
+ 
+ .JB
+ 'stt_5
+ 
+ *stt_4
+ 
+ .TEAIB
+ .$08
+ 
+ .JZB
+ 'stt_6
+ 
+ .MORIB ,BL
+ .$00
+ 
+ *stt_4A
+ 
+ .PQ
+ .CMRMD
+ /RDI:RSI:R
+ 
+ .JEB
+ 'stt_6
+ 
+ .PQ
+ .CAMI8
+ /ADD:RSI:R
+ .$40
+ 
+ *stt_5
+ 
+ .PQ
+ .MORMD
+ /RDI:RSI:R
+ 
+ *stt_6
+ 
+ .CAMIB
+ /CMP:BL:R
+ .$00
+ 
+ .JEB
+ 'stt_7
+ 
+ .PW
+ .MORMD
+ /AX:RCX:M
+ 
+ .PW
+ .MOMRD
+ /AX:RDI:M
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDI:R
+ .$02
+ 
+ *stt_7
+ 
+ .PQ
+ .CAMI8
+ /ADD:RCX:R
+ .$02
+ 
+ .JB
+ 'stt_0
+ 
+ *stt_8
+ 
+ 
+ 
+ 
+ #main
+ 
+ .PQ
+ .LERMD
+ /RCX:RIP:M
+ 'dPWC:D
+ 
+ .XORMD
+ /EDX:EDX:R
+ 
+ .CD
+ 'cStCt:D
+ 
+ .PQ
+ .LERMD
+ /RCX:RIP:M
+ 'dCNT:D
+ 
+ .XORMD
+ /EDX:EDX:R
+ 
+ .CD
+ 'cStCt:D
+ 
+ .PQ ,PM
+ .LERMD
+ /RBP:R13:D
+ .mLlLt:D
+ 
+ .PQ ,PR ,PM
+ .LERMD
+ /R11:R13:D
+ .mTnLt:D
+ 
+ .PQ ,PR ,PM
+ .LERMD
+ /R14:R13:D
+ .mOtBy:D
+ 
+ *main_0
+ 
+ .PW
+ .PM
+ .CAMI8
+ /CMP:R11:M
+ .$00
+ 
+ .JED:W
+ 'main_7:D
+ 
+ .PQ ,PM
+ .LERMD
+ /RSI:R13:D
+ .mCrLt:D
+ 
+ *main_1
+ 
+ .PW
+ .CAMI8
+ /CMP:RSI:M
+ .$00
+ 
+ .JNEB
+ 'main_8
+ 
+ .PQ ,PR ,PM
+ .MORMD
+ /R14:R11:R
+ 
+ .LERMD
+ /RDX:RIP:M
+ 'dEr2:D
+ 
+ .MORIB ,CL
+ .$10
+ 
+ .JD
+ 'error:D
+ 
+ *main_8
+ 
+ .EXCF6
+ /TEST:RSI:B
+ .$0A
+ .$20
+ 
+ .JZB
+ 'main_3
+ 
+ .PQ ,PM
+ .MORMD
+ /RBX:R11:R
+ 
+ .PQ
+ .MORMD
+ /RDI:RSI:R
+ 
+ *main_2
+ 
+ .PW
+ .MORMD
+ /AX:RBX:M
+ 
+ .PW
+ .CMRMD
+ /AX:RDI:M
+ 
+ .JNEB
+ 'main_3
+ 
+ .PW
+ .CMAID
+ .$00:W
+ 
+ .JEB
+ 'main_4
+ 
+ .PQ
+ .CAMI8
+ /ADD:RBX:R
+ .$02
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDI:R
+ .$02
+ 
+ .JB
+ 'main_2
+ 
+ *main_3
+ 
+ .PQ
+ .CAMI8
+ /ADD:RSI:R
+ .$10
+ 
+ .JB
+ 'main_1
+ 
+ *main_4
+ 
+ .MORMD
+ /ECX:RSI:B
+ .$0C
+ 
+ .MZRMB:W
+ /EAX:RSI:B
+ .$0A
+ 
+ .ANAIB
+ .$0F
+ 
+ .PQ
+ .LERMD
+ /RDX:RIP:M
+ 'dCdLt:D
+ 
+ .PQ
+ .LERMD
+ /RDX:SIB:M
+ +RDX:RAX:W
+ 
+ .PQ
+ .MZRMW:W
+ /EAX:RDX:M
+ 
+ .PQ
+ .LERMD
+ /RAX:SIB:B
+ +RAX:RDX:B
+ .$02
+ 
+ .EXCFF
+ /CALL:RAX:R
+ 
+ .EXCF6
+ /TEST:AH:R
+ .$40
+ 
+ .JZB
+ 'main_6
+ 
+ .MORMD
+ /EBX:EAX:R
+ 
+ .PQ ,PR
+ .LERMD
+ /R15:RIP:M
+ 'dPWC:D
+ 
+ .PQ ,PM
+ .MORMD
+ /RCX:R15:R
+ 
+ .CD
+ 'cGtCt:D
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:SIB:M
+ +R14:RAX:W
+ 
+ .MOMIB
+ /EMP:RCX:D
+ .msoBy:D
+ .$01
+ 
+ .EXCF6
+ /TEST:BH:R
+ .$80
+ 
+ .JZB
+ 'main_5
+ 
+ .CAMIB
+ /AND:BH:R
+ .$3F
+ 
+ .PW
+ .ORMRD
+ /BX:RCX:M
+ 
+ .JB
+ 'main_6
+ 
+ *main_5
+ 
+ .CAMIB
+ /AND:BH:R
+ .$3F
+ 
+ .PW
+ .MOMRD
+ /BX:RCX:M
+ 
+ .PQ ,PM
+ .MORMD
+ /RCX:R15:R
+ 
+ .PQ
+ .LERMD
+ /RDX:RAX:B
+ .$01
+ 
+ .CD
+ 'cStCt:D
+ 
+ *main_6
+ 
+ .PQ ,PM
+ .CAMID
+ /ADD:R11:R
+ .$00000100:D
+ 
+ .JD
+ 'main_0:D
+ 
+ *main_7
+ 
+ 
+ 
+ #SetLabelAdress
+ 
+ .PQ ,PM
+ .LERMD
+ /RSI:R13:D
+ .mLlLt:D
+ 
+ *StLl_0
+ 
+ .PW
+ .CAMI8
+ /CMP:RSI:M
+ .$00
+ 
+ .JEB
+ 'StLl_1
+ 
+ .PQ
+ .MORMD
+ /RCX:RSI:R
+ 
+ .MORMB
+ /DL:RCX:B
+ .$3F
+ 
+ .CD
+ 'cGtCt:D
+ 
+ .MORMD
+ /ECX:RSI:B
+ .$38
+ 
+ .PW
+ .ANAID
+ .$07FF:W
+ 
+ .PW
+ .PM
+ .ORMRD
+ /AX:SIB:M
+ +R14:RCX:W
+ 
+ .PQ
+ .CAMI8
+ /ADD:RSI:R
+ .$40
+ 
+ .JB
+ 'StLl_0
+ 
+ *StLl_1
+ 
+ 
+ #Binarytohex
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:R13:D
+ .mOtBy:D
+ 
+ .XORMD
+ /EDX:EDX:R
+ 
+ .PQ ,PM
+ .LERMD
+ /RSI:R13:D
+ .mOtB2:D
+ 
+ .PQ
+ .LERMD
+ /RDI:RSI:B
+ .$04
+ 
+ .XORMD
+ /EBX:EBX:R
+ 
+ .MORIB ,BL
+ .$FF
+ 
+ *bth_0
+ 
+ .CAMIB
+ /CMP:SIB:D
+ +RCX:RDX:B
+ .msoBy:D
+ .$00
+ 
+ .JEB
+ 'bth_2
+ 
+ .MORMD
+ /EBP:EDX:R
+ 
+ .SHMID
+ /SHR:EBP:R
+ .$10
+ 
+ .PE
+ .CMRMB
+ /BL:BPL:R
+ 
+ .JNEB
+ 'bth_2
+ 
+ .CAMIB
+ /CMP:BH:R
+ .$00
+ 
+ .JNEB
+ 'bth_1
+ 
+ .XCRMB
+ /DL:DH:R
+ 
+ .PW
+ .MOMRD
+ /DX:RSI:B
+ .$01
+ 
+ .XCRMB
+ /DL:DH:R
+ 
+ *bth_1
+ 
+ .PW
+ .MORMD
+ /AX:SIB:M
+ +RCX:RDX:B
+ 
+ .PW
+ .MOMRD
+ /AX:RDI:M
+ 
+ .PQ
+ .CAMI8
+ /ADD:RDI:R
+ .$02
+ 
+ .CAMIB
+ /ADD:BH:R
+ .$02
+ 
+ .CAMIB
+ /CMP:BH:R
+ .$10
+ 
+ .JNEB
+ 'bth_3
+ 
+ *bth_2
+ 
+ .CAMIB
+ /CMP:BH:R
+ .$00
+ 
+ .JEB
+ 'bth_3
+ 
+ .MOMRB
+ /BH:RSI:M
+ 
+ .MORIB ,BH
+ .$00
+ 
+ .PQ
+ .CAMI8
+ /ADD:RSI:R
+ .$28
+ 
+ .PQ
+ .LERMD
+ /RDI:RSI:B
+ .$04
+ 
+ *bth_3
+ 
+ .CAMI8
+ /ADD:EDX:R
+ .$02
+ 
+ .PE
+ .CMRMB
+ /BL:BPL:R
+ 
+ .JEB
+ 'bth_4
+ 
+ .PE
+ .MORMB
+ /BL:BPL:R
+ 
+ .CAMI8
+ /SUB:EDX:R
+ .$02
+ 
+ .MORID ,EAX
+ .$04000002:D
+ 
+ .MOMRD
+ /EAX:RSI:M
+ 
+ .MOMRB
+ /BL:RSI:B
+ .$05
+ 
+ .PQ
+ .CAMI8
+ /ADD:RSI:R
+ .$28
+ 
+ .PQ
+ .LERMD
+ /RDI:RSI:B
+ .$04
+ 
+ *bth_4
+ 
+ .CAMID
+ /CMP:EDX:R
+ .$00020000:D
+ 
+ .JNEB
+ 'bth_0
+ 
+ .MORID ,EAX
+ .$01000000:D
+ 
+ .MOMRD
+ /EAX:RSI:M
+ 
+ 
+ #HextoText
+ 
+ .PQ ,PM
+ .LERMD
+ /RBX:R13:D
+ .mOtB2:D
+ 
+ .PQ ,PM
+ .LERMD
+ /RDX:R13:D
+ .mOtTt:D
+ 
+ *htt_0
+ 
+ .PR
+ .MORMD
+ /R14D:RBX:M
+ 
+ .PM
+ .CAMI8
+ /CMP:R14D:R
+ .$00
+ 
+ .JEB
+ 'htt_1
+ 
+ .CD
+ 'cBS:D
+ 
+ .PQ
+ .CAMI8
+ /ADD:RBX:R
+ .$28
+ 
+ .JB
+ 'htt_0
+ 
+ *htt_1
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:R13:D
+ .mOtTt:D
+ 
+ .PQ
+ .SURMD
+ /RDX:RCX:R
+ 
+ .PQ ,PR
+ .LERMD
+ /R12D:EDX:B
+ .$FE
+ 
+ #GetOutFileName
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:R13:D
+ .mCdL2:D
+ 
+ *gofn_0
+ 
+ .PW
+ .CAMI8
+ /CMP:RCX:M
+ .$00
+ 
+ .JEB
+ 'gofn_1
+ 
+ .PQ
+ .CAMI8
+ /ADD:RCX:R
+ .$02
+ 
+ .JB
+ 'gofn_0
+ 
+ *gofn_1
+ 
+ .PQ
+ .MORID ,RAX
+ ".hex:W
+ 
+ .PQ
+ .MOMRD
+ /RAX:RCX:B
+ .$F8
+ 
+ 
+ 
+ .PQ
+ .MORMD
+ /RBP:RSP:R
+ 
+ .PQ ,PM
+ .LERMD
+ /RCX:R13:D
+ .mCdL2:D
+ 
+ .MORID ,EDX
+ .$40000000:D
+ 
+ .PR ,PM
+ .XORMD
+ /R8D:R8D:R
+ 
+ .PR ,PM
+ .MORMD
+ /R9D:R8D:R
+ 
+ .PQ ,PM
+ .LERMD
+ /EBX:R8D:B
+ .$02
+ 
+ .MOMRD
+ /EBX:RBP:B
+ .$20
+ 
+ .PR
+ .MOMRD
+ /R8D:RBP:B
+ .$28
+ 
+ .PR
+ .MOMRD
+ /R8D:RBP:B
+ .$30
+ 
+ .EXCFF
+ /CALL:RIP:M
+ 'CrFi:D
+ 
+ .MORMD
+ /EBX:EAX:R
+ 
+ .MORMD
+ /ECX:EAX:R
+ 
+ #
+ 
+ .PQ ,PM
+ .LERMD
+ /RDX:R13:D
+ .mOtT2:D
+ 
+ .PR ,PM
+ .MORMD
+ /R8D:R12D:R
+ 
+ #.PQ ,PM
+ #.MORMD
+ #/RDX:R13:R
+ 
+ #.PM
+ #.MORID ,R8D
+ #.$00100000:D
+ 
