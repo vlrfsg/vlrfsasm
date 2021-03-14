@@ -28,10 +28,42 @@
 ($ R15L (reg sizeB $F)) ($ R15W (reg sizeW $F)) ($ R15D (reg sizeD $F)) ($ R15 (reg sizeQ $F))
 ($ EIP (reg sizeD 1 5)) ($ RIP (reg sizeQ 1 5))
 
+#Size function
+($ opSize V
+  (/ 
+    (? (> V 64)
+      (? (| (= (> V 31) $200000000) (= (> V 31) $3FFFFFFFF))
+      )
+    )
+    2
+  )
+)
+
 #Value
-($ mem R (/ (| (< 1 7) R) 65))
-($ mem R D (/ (| (< (/ D 32) 32) (< 1 7) R) 65))
-($ mem R I D (/ (| (< (/ D 32) 32) (< 1 7) R) 65))
+($ mem S R
+  (? (= (opSize R) sizeQ)
+    (/ (| (< 1 7) (< S 5) (/ R 5)) 65)
+    (; "Incomprehensible Register Size")
+  )
+)
+($ mem S R D
+  (? (= (opSize R) sizeQ)
+    (/ (| (< (/ D 32) 32) (< 1 7) (< S 5) (/ R 5)) 65)
+    (; "Incomprehensible Register Size")
+  )
+)
+($ mem S R I D
+  (? (& (= (opSize R) sizeQ) (= (opSize I) sizeQ))
+    (/ (| (< (/ D 32) 32) (< 1 15) (< (/ I 5) 8) (< 1 7) (< S 5) (/ R 5)) 65)
+    (; "Incomprehensible Register Size")
+  )
+)
+($ mem S R Sc I D
+  (? (& (= (opSize R) sizeQ) (= (opSize I) sizeQ))
+    (/ (| (< (/ D 32) 32) (< 1 15) (< Sc 13) (< (/ I 5) 8) (< 1 7) (< S 5) (/ R 5)) 65)
+    (; "Incomprehensible Register Size")
+  )
+)
 ($ imm I (' (/ 1 1) (/ I 64)))
 
 #Prefixes
