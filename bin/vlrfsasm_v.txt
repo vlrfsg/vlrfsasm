@@ -1,7 +1,7 @@
 
 #General function
 ($ = A B (! (% (^ A B))))
-($ = A B (% (^ A B)))
+($ != A B (% (^ A B)))
 
 #Register define function
 ($ reg S R (/ (| (< S 5) R) 8))
@@ -40,7 +40,7 @@
       (? (| (= (/ (> V 15) 17) 0) (= (/ (> V 15) 17) $1FFFF))
         (? (| (= (/ (> V 7) 9) 0) (= (/ (> V 7) 9) $1FF))
           (? (= (/ V 8) 0)
-            7
+            4
             0
           )
           1
@@ -142,6 +142,10 @@
   )
 )
 
+(preM S M
+  (pre S 0 M)
+)
+
 #suffixes
 ($ rm R M
   ('
@@ -151,7 +155,17 @@
         (; "RIP should be used as a pointer.")
       )
       (? (/ (> M 7) 1)
-        (? (0))
+        (? (/ (> M 15) 1)
+          (?
+            (& 
+              (| (= (/ M 7) RBP) (= (/ M 7) R13))
+              (!= (/ M 13) 0)
+            )
+            (dispSize8 (> M 32))
+            (dispSize0 (> M 32))
+          )
+          (? ())
+        )
         (/ 3 2)
       )
     )
