@@ -27,7 +27,7 @@
 ($ R13L (reg sizeB $D)) ($ R13W (reg sizeW $D)) ($ R13D (reg sizeD $D)) ($ R13 (reg sizeQ $D))
 ($ R14L (reg sizeB $E)) ($ R14W (reg sizeW $E)) ($ R14D (reg sizeD $E)) ($ R14 (reg sizeQ $E))
 ($ R15L (reg sizeB $F)) ($ R15W (reg sizeW $F)) ($ R15D (reg sizeD $F)) ($ R15 (reg sizeQ $F))
-($ EIP (reg sizeD 1 5)) ($ RIP (reg sizeQ 1 5))
+($ RIP (reg sizeQ 1 5))
 
 #Type and Size function
 ($ opImm V
@@ -143,7 +143,23 @@
 )
 
 #suffixes
-($ rm R M)
+($ rm R M
+  ('
+    (? (= (/ M 7) RIP)
+      (? (/ (> M 7) 1)
+        (/ 0 2)
+        (; "RIP should be used as a pointer.")
+      )
+      (? (/ (> M 7) 1)
+        (? (0))
+        (/ 3 2)
+      )
+    )
+    (/ R 3)
+    
+    
+  )
+)
 
 #Instructions
 
