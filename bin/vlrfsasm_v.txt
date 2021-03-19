@@ -1,6 +1,7 @@
 
 #General function
 ($ = A B (! (% (^ A B))))
+($ = A B (% (^ A B)))
 
 #Register define function
 ($ reg S R (/ (| (< S 5) R) 8))
@@ -28,14 +29,55 @@
 ($ R15L (reg sizeB $F)) ($ R15W (reg sizeW $F)) ($ R15D (reg sizeD $F)) ($ R15 (reg sizeQ $F))
 ($ EIP (reg sizeD 1 5)) ($ RIP (reg sizeQ 1 5))
 
-#Size function
-($ opSize V
+#Type and Size function
+($ opImm V
+  (/ (> V 64) 1)
+)
+
+($ immSize V
   (/ 
-    (? (> V 64)
-      (? (| (= (> V 31) $200000000) (= (> V 31) $3FFFFFFFF))
+    (? (| (= (/ (> V 31) 33) 0) (= (/ (> V 31) 33) $1FFFFFFFF))
+      (? (| (= (/ (> V 15) 17) 0) (= (/ (> V 15) 17) $1FFFF))
+        (? (| (= (/ (> V 7) 9) 0) (= (/ (> V 7) 9) $1FF))
+          (? (= (/ V 8) 0)
+            7
+            0
+          )
+          1
+        )
+        2
       )
+      3
     )
-    2
+    3
+  )
+)
+
+($ opSize V
+  (/ (> V 5) 2)
+)
+
+#Extension function
+($ opExt V
+  (/ (> V 3) 1)
+)
+($ opExtI V
+  (? (/ (> V 15) 1)
+    (/ (> V 11) 1)
+    (/ 0 1)
+  )
+)
+($ regWithRexE V
+  (? (/ (> V 7) 1)
+    (/ 0 1)
+    (/ (> V 4) 1)
+  )
+)
+
+($ regWithoutRexE V
+  (=
+    (/ (> V 7) 5)
+    (/ %00001 5)
   )
 )
 
@@ -67,20 +109,47 @@
 ($ imm I (' (/ 1 1) (/ I 64)))
 
 #Prefixes
+($ preRex S R M
+  (|
+    (? (= (opSize S) sizeQ) (/ $48 8))
+    (? (opExt R) (/ $44 8))
+    (? (opExtI M) (/ $42 8))
+    (? (opExt M) (/ $41 8))
+    (? (| (regWithRexE R) (regWithRexE M)) (/ $40 8))
+  )
+)
+
 ($ pre S R M
   ('
     (? (= (opSize S) sizeW) (/ $66 8))
-    (|
-      (? (= (opSize S) sizeQ) (/ $48 8))
-      (? (opExt R) (/ $44 8))
-      (? (opExt M) (/ $41 8))
+    (?
+      (%
+        (&
+          (preRex S R M)
+          $40
+          (<
+            (|
+              (regWithoutRexE R)
+              (regWithoutRexE M)
+            )
+            6
+          )
+        )
+      )
+      (; "AH-BH and REX prefix are exclusive.")
+      (preRex S R M)
     )
   )
 )
 
+#suffixes
+($ rm R M)
+
 #Instructions
 
-
+($ ADD A B
+  
+)
 
 
 
