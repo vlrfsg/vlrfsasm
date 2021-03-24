@@ -57,9 +57,16 @@
   (/ (> V 5) 2)
 )
 
-#Extension function
 ($ opMem V
-  (/ (> V 7) 1)
+  (& (! (opImm V)) (/ (> V 7) 1))
+)
+
+($ opReg V
+  (! (| (opImm V) (/ (> V 7) 1)))
+)
+
+($ opAcc V
+  (& (opReg V) (= (/ M 5) 0))
 )
 
 ($ opExt V
@@ -268,7 +275,66 @@
 #Instructions
 
 ($ ADD A B
-  
+  (? (opImm A)
+    (; "Destination should not be an immediate value.")
+    (? (opImm B)
+      (? (= (/ B 64) 1)
+        (INC A)
+        (? (= (+ (/ B 64) 1) 0)
+          (DEC A)
+          (?
+            (&
+              (opAcc A)
+              (!
+                (&
+                  (opWDQ A)
+                  (= (/ (immSize B) 2) 0)
+                )
+              )
+            )
+            (? (opWDQ A)
+              ('
+                (pre A)
+                (/ $05 8)
+                (immResize B (opSize A))
+              )
+              ('
+                (/ $04 8)
+                (/ B 8)
+              )
+            )
+            (? (opWDQ A)
+              (? (= (/ (immSize B) 2) 0)
+                ('
+                  (pre A)
+                  (/ $83 8)
+                  (rm $0 A)
+                  (/ B 8)
+                )
+                ('
+                  (pre A)
+                  (/ $81 8)
+                  (rm $0 A)
+                  (immResize B (opSize A))
+                )
+              )
+              ('
+                (pre A)
+                (/ $80 8)
+                (rm $0 A)
+                ()
+                
+              )
+            )
+          )
+        )
+      )
+      (? (opAcc A))
+      (? (opImm B)
+        (; "Instructions with two memory operands are invalid.")
+      )
+    )
+  )
 )
 
 
