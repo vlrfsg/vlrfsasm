@@ -137,7 +137,59 @@
   )
 )
 
-($ imm I (' (/ 1 1) (/ I 64)))
+($ i I (' (/ 1 1) (/ I 64)))
+
+(immResize I S
+  (? (!= S 4)
+    (? (= S 3)
+      ('
+        (/ I 8)
+        (/ (> I 8) 8)
+        (/ (> I 16) 8)
+        (/ (> I 24) 8)
+        (/ (> I 32) 8)
+        (/ (> I 40) 8)
+        (/ (> I 48) 8)
+        (/ (> I 56) 8)
+      )
+      (? (= S 2)
+        ('
+          (/ I 8)
+          (/ (> I 8) 8)
+          (/ (> I 16) 8)
+          (/ (> I 24) 8)
+        )
+        (? (= S 1)
+          ('
+            (/ I 8)
+            (/ (> I 8) 8)
+          )
+          (/ I 8)
+        )
+      )
+    )
+  )
+)
+
+#Displacement
+
+($ dispSize0 I
+  (? (= (immSize I) 3)
+    (; "Displacement value should be a 32bit integer.")
+    )
+    (? (= (immSize I) 4)
+      (/ 0 2)
+      (? (= (immSize I) 2)
+        (/ 2 2)
+        (/ (+ (immSize I) 1) 2)
+      )
+    )
+  )
+)
+
+($ dispVal0 I
+  ()
+)
 
 #Prefixes
 ($ preRex S R M
@@ -173,8 +225,12 @@
   )
 )
 
-(preM S M
-  (pre S 0 M)
+(pre R M
+  (pre M R M)
+)
+
+(pre M
+  (pre M 0 M)
 )
 
 #suffixes
@@ -272,7 +328,31 @@
   )
 )
 
+#Relative immediate
+($ rib A
+  ('
+    (* A)
+    (, A)
+  )
+)
+
 #Instructions
+
+($ INC A
+  ('
+    (pre A)
+    (/ (| $FE (opWDQ A)) 8)
+    (rm $0 A)
+  )
+)
+
+($ DEC A
+  ('
+    (pre A)
+    (/ (| $FE (opWDQ A)) 8)
+    (rm $1 A)
+  )
+)
 
 ($ ADD A B
   (? (opImm A)
@@ -322,20 +402,35 @@
                 (pre A)
                 (/ $80 8)
                 (rm $0 A)
-                ()
-                
+                (/ B 8)
               )
             )
           )
         )
       )
-      (? (opAcc A))
-      (? (opImm B)
-        (; "Instructions with two memory operands are invalid.")
+      (? (= (opSize A) (opSize B))
+        (? (opReg A)
+          ('
+            (pre A B)
+            (/ (| $02 (opWDQ A)) 8)
+            (rm A B)
+          )
+          (? (opReg B)
+            ('
+              (pre B A)
+              (/ (| $00 (opWDQ B)) 8)
+              (rm B A)
+            )
+            (; "Instructions with two memory operands are invalid.")
+          )
+        )
+        (; "Incompatible operand size.")
       )
     )
   )
 )
+
+
 
 
 
