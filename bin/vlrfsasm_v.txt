@@ -187,6 +187,20 @@
   )
 )
 
+($ dispSize8 I
+  (? (= (immSize I) 3)
+    (; "Displacement value should be a 32bit integer.")
+    )
+    (? (= (immSize I) 4)
+      (/ 1 2)
+      (? (= (immSize I) 2)
+        (/ 2 2)
+        (/ (+ (immSize I) 1) 2)
+      )
+    )
+  )
+)
+
 ($ dispVal0 I
   (? (= (immSize I) 1)
     (immResize I 2)
@@ -196,12 +210,17 @@
 
 ($ dispVal8 I
   (? (= (immSize I) 4)
-    (immResize I 0)
-    (immResize I (immSize I))
+    (immResize I 1)
+    (? (= (immSize I) 1)
+      (immResize I 2)
+      (immResize I (immSize I))
+    )
   )
 )
 
-($)
+($ dispVal32 I
+  (immResize I 2)
+)
 
 #Prefixes
 ($ preRex S R M
