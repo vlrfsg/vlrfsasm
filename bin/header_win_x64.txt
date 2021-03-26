@@ -60,7 +60,34 @@
     (iw 0)                     #DllCharacteristics
     (iq (exeSizeOfStack))      #SizeofStackReserve
     (iq (exeSizeOfStack))      #SizeofStackCommit
-    (iq (exeSizeOfHeap))      #SizeofHeapReserve
-    (iq (exeSizeOfHeap))      #SizeofHeapCommit
+    (iq (exeSizeOfHeap))       #SizeofHeapReserve
+    (iq (exeSizeOfHeap))       #SizeofHeapCommit
+    (id 0)                     #LoaderFlags
+    (id 16)                    #NumberOfRvaandSizes
+  )
+)
+#IMAGE_DATA_DIRECTORY
+(. $00D0
+  ('
+    (id exeIDATASection))      #lpidatasection
+    (id exeSizeOfIDATASection) #sizeofidatasection
+  )
+)
+(. $00D8
+  ('
+    (id exeRSRCSection))       #lpresourcesection
+    (id exeSizeOfRSRCSection)  #sizeofresourcesection
+  )
+)
+(. $0128
+  ('
+    (id exeImportTable))       #lpimporttable
+    (id exeSizeOfImportTable)  #sizeofimporttable
+  )
+)
+(. $0148
+  ('
+    (/ (utf8 ".idata") 64)
+    
   )
 )
