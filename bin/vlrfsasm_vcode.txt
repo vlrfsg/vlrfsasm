@@ -1,5 +1,13 @@
 #vlrfsasm
 
+($ exeMajorImageVer 1)
+($ exeMinorImageVer 0)
 
+($ exeImportFuncTable
+  ('
+    (dllName "kernel32.dll")
+    (dllFuncName "ExitProcess")
+  )
+)
 
 

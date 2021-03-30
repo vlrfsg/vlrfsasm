@@ -1,0 +1,20 @@
+
+($ stringLength S
+  (? (% S)
+    0
+    (+ (stringLength (> S 16)) 1)
+  )
+)
+
+($ ascii A
+  (asciiRec A (- (stringLength A) 1))
+)
+
+($ asciiRec A B
+  (? (!= (+ B 2) 0)
+    ('
+      (/ (> A (< B 4)) 8)
+      (asciiRec A (- B 2))
+    )
+  )
+)

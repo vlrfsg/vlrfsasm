@@ -3,6 +3,6 @@
   (SUB (RSP) (i $38))
   
   (ADD (RSP) (i $38))
-  (CALL (- (t) (ExitProcess))) (rib t)
+  (CALL (- (t) (dllTable "ExitProcess"))) (rib t)
 )
 

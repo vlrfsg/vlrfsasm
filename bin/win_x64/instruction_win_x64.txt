@@ -171,6 +171,22 @@
   )
 )
 
+($ ib V
+  (/ V 8)
+)
+
+($ iw V
+  (immResize V 1)
+)
+
+($ id V
+  (immResize V 2)
+)
+
+($ iq V
+  (immResize V 3)
+)
+
 #Displacement
 
 ($ dispSize0 I

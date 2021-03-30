@@ -1,0 +1,280 @@
+($ exeMajorLinkerVer $01)
+($ exeMinorLinkerVer $00)
+($ exeMajorSystemVer $0005)    #Windows-XP
+($ exeMinorSystemVer $0002)    #64bit-Edition
+($ exeNumberOfSection 3)
+($ exeSizeOfImage
+  (+
+    $200
+    (exeSizeOfIDATASection)
+    (exeSizeOfTXTSection)
+    (exeSizeOfRSRCSection)
+  )
+)
+($ exeSizeOfHeader
+  (+
+    $148
+    (< (exeNumberOfSection) 5)
+    (< (exeNumberOfSection) 3)
+  )
+)
+($ exeAlignment $200)
+
+($ align V A
+  (? (% (& V (- A 1)))
+    (+ V A)
+    V
+  )
+)
+
+(. 0 (iw $5A4D))               #MZ Signature
+(. $3C (id $40))               #lpPE
+(. $40
+  ('
+    (id $00004550)             #PE Signature
+    (iw $8664)                 #Machine=IMAGE_FILE_MACHINE_AMD64
+    (iw (exeNumberOfSection))  #NumberofSections
+    (id 0)                     #TimeDateStamp
+    (id 0)                     #PointerToSymbolTable
+    (id 0)                     #NumberOfSymbols
+    (iw $F0)                   #SizeofOptionalHeader
+    (iw $2F)                   #Characteristics
+  )
+)
+(. $58
+  ('
+    (iw $020B)                 #Magic
+    (ib (exeMajorLinkerVer))   #MajorLinkerVersion
+    (ib (exeMinorLinkerVer))   #MinorLinkerVersion
+    (id (exeSizeOfTXTSection)) #SizeOfCode
+    (id (exeSizeOfInitialized))#SizeofInitializedData
+    (id 0)                     #SizeofUnInitializedData
+    (id (exeEntryPoint))       #AddressofEntryPoint
+    (id (exeTXTSection))       #BaseOfCode
+    (iq $400000)               #BaseOfImage
+    (id (exeAlignment))        #SectionAlignment
+    (id (exeAlignment))        #FileAlignment
+    (iw (exeMajorSystemVer))   #MajorOperatingSystemVersion
+    (iw (exeMinorSystemVer))   #MinorOperatingSystemVersion
+    (iw (exeMajorImageVer))    #MajorImageVersion
+    (iw (exeMinorImageVer))    #MinorImageVersion
+    (iw (exeMajorSystemVer))   #MajorSubSystemVersion
+    (iw (exeMinorSystemVer))   #MinorSubSystemVersion
+    (id 0)                     #Win32VersionValue
+    (id (exeSizeOfImage))      #SizeOfImage
+    (id (exeSizeOfHeader))     #SizeOfHeaders
+    (id 0)                     #Checksum
+    (iw 0)                     #SubSystem=IMAGE_SUBSYSTEM_WINDOWS_GUI
+    (iw 0)                     #DllCharacteristics
+    (iq (exeSizeOfStack))      #SizeofStackReserve
+    (iq (exeSizeOfStack))      #SizeofStackCommit
+    (iq (exeSizeOfHeap))       #SizeofHeapReserve
+    (iq (exeSizeOfHeap))       #SizeofHeapCommit
+    (id 0)                     #LoaderFlags
+    (id 16)                    #NumberOfRvaandSizes
+  )
+)
+#IMAGE_DATA_DIRECTORY
+(. $00D0
+  ('
+    (id (exeIDATASection))     #lpidatasection
+    (id (exeSizeOfIDATASection))#sizeofidatasection
+  )
+)
+(. $00D8
+  ('
+    (id (exeRSRCSection))      #lpresourcesection
+    (id (exeSizeOfRSRCSection))#sizeofresourcesection
+  )
+)
+(. $0128
+  ('
+    (id (exeImportTable))      #lpimporttable
+    (id (exeSizeOfImportTable))#sizeofimporttable
+  )
+)
+(. $0148
+  ('
+    (/ (utf8 ".idata") 64)
+    (id (exeSizeOfIDATASection))#VirtualSize
+    (id (exeIDATASection))     #VirtualAddress
+    (id (exeSizeOfIDATASection))#SizeofRawData
+    (id (exeIDATASection))     #PointerToRawData
+    (id 0)                     #PointerToRelocations
+    (id 0)                     #PointerToLinenumbers
+    (iw 0)                     #NumberOfRelocations
+    (iw 0)                     #NumberOfLinenumbers
+    (id $40000040)             #Characteristics
+  )
+)
+(. $0170
+  ('
+    (/ (utf8 ".text") 64)
+    (id (exeSizeOfTXTSection)) #VirtualSize
+    (id (exeTXTSection))       #VirtualAddress
+    (id (exeSizeOfTXTSection)) #SizeofRawData
+    (id (exeTXTSection))       #PointerToRawData
+    (id 0)                     #PointerToRelocations
+    (id 0)                     #PointerToLinenumbers
+    (iw 0)                     #NumberOfRelocations
+    (iw 0)                     #NumberOfLinenumbers
+    (id $60000060)             #Characteristics
+  )
+)
+(. $0198
+  ('
+    (/ (utf8 ".rsrc") 64)
+    (id (exeSizeOfRSRCSection))#VirtualSize
+    (id (exeRSRCSection))      #VirtualAddress
+    (id (exeSizeOfRSRCSection))#SizeofRawData
+    (id (exeRSRCSection))      #PointerToRawData
+    (id 0)                     #PointerToRelocations
+    (id 0)                     #PointerToLinenumbers
+    (iw 0)                     #NumberOfRelocations
+    (iw 0)                     #NumberOfLinenumbers
+    (id $40000040)             #Characteristics
+  )
+)
+
+($ exeIDATASection $200)
+($ exeSizeOfIDATASection
+  (align
+    (- (exeIDATAend) (exeIDATASection))
+    (exeAlignment)
+  )
+)
+
+($ dllName S
+  ('
+    (/ %10 16)
+    (/ (ascii S) 240)
+  )
+)
+
+($ dllFuncName S
+  ('
+    (/ %11 16)
+    (/ (ascii S) 240)
+  )
+)
+
+($ exeTableLength T
+  (? (/ (> T 241) 1)
+    (+ (dllTableLength (> T 256)) 1)
+    0
+  )
+)
+
+($ numberOfImportFunc A B
+  (? (& (!= (+ B 256) 0) (/ (> A (+ B 240)) 1))
+    (+ (numberOfImportFunc A (- B 256)) 1)
+    1
+  )
+)
+
+($ lengthOfDllName A B
+  (? (% (/ (> A B) 8))
+    (+ (lengthOfDllName A (- B 8)) 1)
+    (+ 1 (/ B 1))
+  )
+)
+
+($ alignedDllName A B
+  (/
+    (> A (- B (> (lengthOfDllName A B) 3)))
+    (> (lengthOfDllName A B) 3)
+  )
+)
+
+($ importDesc A
+  (importDescRec
+    A
+    (< (- (exeTableLength A) 1) 8)
+    0
+    0
+  )
+)
+
+($ importDescRec A B C D
+  (? (!= (+ B 256) 0)
+    ('
+      (id (+ (exeLookUpTable) C))
+      (id 0)
+      (id 0)
+      (id (+ (exeDllNameTable) D))
+      (id (+ (exeImportAddressTable) C))
+      (importDescRec
+        A
+        (- B (< (numberOfImportFunc A (- B 256)) 8))
+        (+ C (< (numberOfImportFunc A (- B 256)) 2))
+        (+ D (lengthOfDllName A (+ B 232)))
+      )
+    )
+    (/ 0 160)
+  )
+)
+
+($ dllNameTable A
+  (dllNameTableRec A (< (exeTableLength A) 8))
+)
+
+($ dllNameTableRec A B
+  (? (!= (+ B 256) 0)
+    ('
+      (? (! (/ (> A (+ B 240)) 1))
+        (alignedDllName A (+ B 232))
+      )
+      (dllNameTableRec A (- B 256))
+    )
+  )
+)
+
+($ funcAddressTable A
+  (funcAddressTableRec
+    A
+    (exeTableLength A)
+    0
+  )
+)
+
+($ funcAddressTableRec A B C
+  (? (!= (+ B 256))
+    (? (/ (> A (+ B 240)) 1)
+      ('
+        (id (+ (exeFuncNameTable) C))
+        (funcAddressTableRec A (- B 256) (+ C 4))
+      )
+      ('
+        (id 0)
+        (funcAddressTableRec A (- B 256) C)
+      )
+    )
+    (id 0)
+  )
+)
+
+($ funcNameTable A B
+  (? (!= (+ B 256) 0)
+    ('
+      (? (! (/ (> A (+ B 240)) 1))
+        (alignedDllName A (+ B 232))
+      )
+      (dllNameTable A (- B 256))
+    )
+  )
+)
+
+(. exeIDATASection
+  (importDesc (exeImportFuncTable))
+  (* exeLookUpTable)
+  (funcAddressTable (exeImportFuncTable))
+  (* exeImportAddressTable)
+  (funcAddressTable (exeImportFuncTable))
+  (* exeDllNameTable)
+  (dllNameTable (exeImportFuncTable))
+  (* exeFuncNameTable)
+  (funcNameTable (exeImportFuncTable))
+)
+
+
+
