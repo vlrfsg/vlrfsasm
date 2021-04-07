@@ -27,7 +27,7 @@
 ($ R13L (reg sizeB $D)) ($ R13W (reg sizeW $D)) ($ R13D (reg sizeD $D)) ($ R13 (reg sizeQ $D))
 ($ R14L (reg sizeB $E)) ($ R14W (reg sizeW $E)) ($ R14D (reg sizeD $E)) ($ R14 (reg sizeQ $E))
 ($ R15L (reg sizeB $F)) ($ R15W (reg sizeW $F)) ($ R15D (reg sizeD $F)) ($ R15 (reg sizeQ $F))
-($ RIP (reg sizeQ 1 5))
+($ RIP (reg sizeD 1 5))
 
 #Type and Size function
 ($ opImm V
@@ -375,14 +375,6 @@
   )
 )
 
-#Relative immediate
-($ rib A
-  ('
-    (* A)
-    (, A)
-  )
-)
-
 #Instructions
 
 ($ INC A
@@ -477,6 +469,13 @@
   )
 )
 
+($ CALdll F
+  ('
+    (CAL (mem (sizeD) (RIP) (- (dllFuncRel F) (tempLabel))))
+    (* tempLabel)
+    (, tempLable)
+  )
+)
 
 
 

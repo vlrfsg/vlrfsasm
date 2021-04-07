@@ -95,7 +95,7 @@
 )
 (. $0148
   ('
-    (/ (utf8 ".idata") 64)
+    (/ (ascii ".idata") 64)
     (id (exeSizeOfIDATASection))#VirtualSize
     (id (exeIDATASection))     #VirtualAddress
     (id (exeSizeOfIDATASection))#SizeofRawData
@@ -109,7 +109,7 @@
 )
 (. $0170
   ('
-    (/ (utf8 ".text") 64)
+    (/ (ascii ".text") 64)
     (id (exeSizeOfTXTSection)) #VirtualSize
     (id (exeTXTSection))       #VirtualAddress
     (id (exeSizeOfTXTSection)) #SizeofRawData
@@ -123,7 +123,7 @@
 )
 (. $0198
   ('
-    (/ (utf8 ".rsrc") 64)
+    (/ (ascii ".rsrc") 64)
     (id (exeSizeOfRSRCSection))#VirtualSize
     (id (exeRSRCSection))      #VirtualAddress
     (id (exeSizeOfRSRCSection))#SizeofRawData
@@ -157,6 +157,27 @@
     (/ (ascii S) 240)
   )
 )
+
+($ dllFuncRel N A
+  (-
+    (+
+      (dllFuncRelRec N (exeImportFuncTable) (< (exeTableLength (exeImportFuncTable)) 8) 0)
+      (dllImportAddressTable)
+    )
+    A
+  )
+)
+
+($ dllFuncRelRec N T I D
+  (? (% (+ I 256))
+    (? (& (/ (> T (+ I 240)) 1) (asciiCmp N (ascii T) (+ I 232)))
+      (- D 4)
+      (dllFuncRelRec N T (- I 256) (+ D 4))
+    )
+    (; "Function not found")
+  )
+)
+
 
 ($ exeTableLength T
   (? (/ (> T 241) 1)

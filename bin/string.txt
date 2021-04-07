@@ -11,10 +11,20 @@
 )
 
 ($ asciiRec A B
-  (? (!= (+ B 2) 0)
+  (? (!= (+ B 1) 0)
     ('
       (/ (> A (< B 4)) 8)
-      (asciiRec A (- B 2))
+      (asciiRec A (- B 1))
     )
+  )
+)
+
+($ asciiCmp A B I
+  (? (= (/ (> B I) 8) (/ (> B I) 8))
+    (? (% (/ (> B I) 8))
+      (asciiCmp A B (- I 8))
+      (/ 1 1)
+    )
+    (/ 0 1)
   )
 )
