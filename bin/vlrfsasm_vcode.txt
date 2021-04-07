@@ -89,7 +89,7 @@
 ($ memInputText $00020000)
 ($ memOutputFile $00080000)
 ($ memTokenIndex $00090000)
-($ memSizeOfTokenIndex $00000010) #[NameAddress:4], [DefListIndex:4], [Count:2], [type:1]
+($ memSizeOfTokenIndex $00000010) #[NameAddress:4], [DefListIndex:4], [Count:2], [type:1]{0:number,1:arg,2+:func+numberOfArg}
 ($ memTokenDefList $000B0000)
 ($ memSizeOfTokenDefList $00000008) #[Definition:4], [Next:4]
 ($ memTokenName $000C0000)
@@ -214,7 +214,8 @@
     (LEA (RDI) (mem 0 (R13) (memTempString)))
     (MOV (R15) (RDI))
     (MOV (R12) (i 0))
-    (LEA (R14) (mem 0 (R13) (memDef)))
+    (LEA (R14) (mem 0 (R13) (memStack)))
+    (MOV (mem ()))
     
     (* pST_0)
     (MOV (AX) (mem (sizeW) (RSI)))
