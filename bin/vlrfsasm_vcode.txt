@@ -75,7 +75,7 @@
 
 ($ memHeapHandle $00000000)
 ($ memEmpty $00000004)
-($ memTokenAddress $00000010)
+($ memTokenNameAddress $00000010)
 ($ memTempTime $000000F0)
 ($ memMesTitle $00000100)
 ($ memDefStack $00000200)
@@ -88,10 +88,8 @@
 ($ memInputText $00020000)
 ($ memOutputFile $00080000)
 ($ memTokenIndex $00090000)
-($ memSizeOfTokenIndex $00000010) #[NameAddress:4], [DefListIndex:4], [Count:2], [type:1]{0:number,1:arg,2+:func+numberOfArg}
-($ memTokenDefList $000B0000)
-($ memSizeOfTokenDefList $00000008) #[Definition:4], [Next:4]
-($ memTokenName $000C0000)
+($ memSizeOfTokenIndex $00000010) #[NameAddress:4], [Definition:4], [Count:2], [type:1]{0:number,1:arg,2+:func+numberOfArg}
+($ memTokenName $000B0000)
 ($ memDef $00100000)
 ($ memSizeOfDef $00000010) #[Token:4], [Id:2], [Column:2], [File:2]
 
@@ -345,7 +343,24 @@
     (CMP (RCX) (RDI))
     (JE (fCT_2))
     (* fCT_1)
-    
+    (MOV (CL) (i 0))
+    (CALf (fCvIS))
+    (LEA (RCX) (mem 0 (R13) (memTokenIndex)))
+    (MOV (RDX) (i 0))
+    (* fCT_2)
+    (CMP (mem (sizeW) (RCX) (RDX) 8) (i 0)) #Count
+    (JE (fCT_3))
+    (MOV (R8D) (mem (sizeD) (RCX) (RDX) 0))
+    (CMP (RAX) (mem (sizeQ) (R13) (R8D) (memTokenName)))
+    (JE (fCT_4))
+    (ADD (EDX) (i 2))
+    (JMP (fCT_2))
+    (* fCT_3)
+    (MOV (R8D) (i 8))
+    (XADD (mem (sizeD) (R13) (memTokenNameAddress)) (R8D))
+    (MOV (mem (sizeQ) (R13) (R8) (memTokenName)) (RAX))
+    (MOV (mem (sizeD) (RCX) (RDX) 0) (R8D))
+    ()
 
 
     #funcCopyString [RCX]<-[RDX], RCX+
@@ -467,14 +482,15 @@
     (RET)
 
 
-    #funcConvertStringToInteger RAX<-[R13+memTempString]{RCX}
+    #funcConvertStringToInteger RAX<-[R13+memTempString]{CL}
     (* fCvSI)
     (LEA (R8) (mem 0 (R13) (memTempString)))
     (MOZ (EAX) (mem (sizeW) (R8)))
     (MOV (R9) (i 0))
-    (CMP (RCX) (i 0))
-    (JNE (fCvSI_2))
-    (MOV (RCX) (i $0A))
+    (AND (RCX) (i 1F))
+    (CMP (CL) (i 1))
+    (JA (fCvSI_2))
+    (MOV (CL) (i $0A))
     (CMP (AX) (i "$"))
     (JNE (fCvSI_0))
     (MOV (CL) (i $10))

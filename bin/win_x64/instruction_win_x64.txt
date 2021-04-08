@@ -5,7 +5,7 @@
 
 #Register define function
 ($ reg S R (/ (| (< S 5) R) 8))
-($ reg S E R (/ (| (< S 5) (< E 4) R) 8))
+($ regE S R (/ (| (< S 5) (< 1 4) R) 8))
 
 #Register size
 ($ sizeQ 3) ($ sizeD 2) ($ sizeW 1) ($ sizeB 0)
@@ -15,10 +15,10 @@
 ($ CL (reg sizeB 1)) ($ CH (reg sizeB 5)) ($ CX (reg sizeW 1)) ($ ECX (reg sizeD 1)) ($ RCX (reg sizeQ 1))
 ($ DL (reg sizeB 2)) ($ DH (reg sizeB 6)) ($ DX (reg sizeW 2)) ($ EDX (reg sizeD 2)) ($ RDX (reg sizeQ 2))
 ($ BL (reg sizeB 3)) ($ BH (reg sizeB 7)) ($ BX (reg sizeW 3)) ($ EBX (reg sizeD 3)) ($ RBX (reg sizeQ 3))
-($ SPL (reg sizeB 1 4)) ($ SP (reg sizeW 4)) ($ ESP (reg sizeD 4)) ($ RSP (reg sizeQ 4))
-($ BPL (reg sizeB 1 5)) ($ BP (reg sizeW 5)) ($ EBP (reg sizeD 5)) ($ RBP (reg sizeQ 5))
-($ SIL (reg sizeB 1 6)) ($ SI (reg sizeW 6)) ($ ESI (reg sizeD 6)) ($ RSI (reg sizeQ 6))
-($ DIL (reg sizeB 1 7)) ($ DI (reg sizeW 7)) ($ EDI (reg sizeD 7)) ($ RDI (reg sizeQ 7))
+($ SPL (regE sizeB 4)) ($ SP (reg sizeW 4)) ($ ESP (reg sizeD 4)) ($ RSP (reg sizeQ 4))
+($ BPL (regE sizeB 5)) ($ BP (reg sizeW 5)) ($ EBP (reg sizeD 5)) ($ RBP (reg sizeQ 5))
+($ SIL (regE sizeB 6)) ($ SI (reg sizeW 6)) ($ ESI (reg sizeD 6)) ($ RSI (reg sizeQ 6))
+($ DIL (regE sizeB 7)) ($ DI (reg sizeW 7)) ($ EDI (reg sizeD 7)) ($ RDI (reg sizeQ 7))
 ($ R8L (reg sizeB 8)) ($ R8W (reg sizeW 8)) ($ R8D (reg sizeD 8)) ($ R8 (reg sizeQ 8))
 ($ R9L (reg sizeB 9)) ($ R9W (reg sizeW 9)) ($ R9D (reg sizeD 9)) ($ R9 (reg sizeQ 9))
 ($ R10L (reg sizeB $A)) ($ R10W (reg sizeW $A)) ($ R10D (reg sizeD $A)) ($ R10 (reg sizeQ $A))
@@ -27,7 +27,7 @@
 ($ R13L (reg sizeB $D)) ($ R13W (reg sizeW $D)) ($ R13D (reg sizeD $D)) ($ R13 (reg sizeQ $D))
 ($ R14L (reg sizeB $E)) ($ R14W (reg sizeW $E)) ($ R14D (reg sizeD $E)) ($ R14 (reg sizeQ $E))
 ($ R15L (reg sizeB $F)) ($ R15W (reg sizeW $F)) ($ R15D (reg sizeD $F)) ($ R15 (reg sizeQ $F))
-($ RIP (reg sizeD 1 5))
+($ RIP (regE sizeD 5))
 
 #Type and Size function
 ($ opImm V
