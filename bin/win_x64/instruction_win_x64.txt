@@ -107,10 +107,7 @@
 
 #Value
 ($ m S R
-  (? (= (opSize R) (sizeQ))
-    (/ (| (< 1 7) (< S 5) (/ R 5)) 65)
-    (; "Incomprehensible Register Size")
-  )
+  (md S R 0)
 )
 ($ md S R D
   (? (= (opSize R) (sizeQ))
@@ -118,11 +115,17 @@
     (; "Incomprehensible Register Size")
   )
 )
+($ mi S R I
+  (mid S R I 0)
+)
 ($ mid S R I D
   (? (& (= (opSize R) (sizeQ)) (= (opSize I) (sizeQ)))
     (/ (| (< (/ D 32) 32) (< 1 15) (< (/ I 5) 8) (< 1 7) (< S 5) (/ R 5)) 65)
     (; "Incomprehensible Register Size")
   )
+)
+($ msi S R Sc I
+  (msid S R Sc I 0)
 )
 ($ msid S R Sc I D
   (? (& (= (opSize R) (sizeQ)) (= (opSize I) (sizeQ)))
@@ -130,7 +133,13 @@
     (; "Incomprehensible Register Size")
   )
 )
-($ ld R D)
+($ ld R D
+  (md 0 R D)
+)
+($ li R I
+  (mi 0 R I)
+)
+($ lid )
 ($ lsid S Sc I D
   (?  (= (opSize I) (sizeQ))
     (/ (| (< (/ D 32) 32) (< 1 15) (< Sc 13) (< (/ I 5) 8) (< 1 7) (< S 5) (/ $10 5)) 65)
