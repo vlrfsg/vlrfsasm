@@ -139,8 +139,16 @@
 ($ li R I
   (mi 0 R I)
 )
-($ lid )
-($ lsid S Sc I D
+($ lid R I D
+  (mid 0 R I D)
+)
+($ lsi R Sc I
+  (msi 0 R Sc I)
+)
+($ lsid R Sc I D
+  (msid 0 R Sc I D)
+)
+($ lesid S Sc I D
   (?  (= (opSize I) (sizeQ))
     (/ (| (< (/ D 32) 32) (< 1 15) (< Sc 13) (< (/ I 5) 8) (< 1 7) (< S 5) (/ $10 5)) 65)
     (; "Incomprehensible Register Size")
@@ -481,7 +489,7 @@
 
 ($ CALdll F
   ('
-    (CAL (mem (sizeD) (RIP) (- (dllFuncRel F) (tempLabel))))
+    (CAL (ld (sizeD) (RIP) (- (dllFuncRel F) (tempLabel))))
     (* tempLabel)
     (, tempLable)
   )
