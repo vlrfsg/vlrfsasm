@@ -491,7 +491,7 @@
   ('
     (CAL (ld (sizeD) (RIP) (- (dllFuncRel F) (tempLabel))))
     (* tempLabel)
-    (, tempLable)
+    (, tempLabel)
   )
 )
 

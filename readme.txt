@@ -8,15 +8,13 @@ About vlrfsasm
 2. Installation and Uninstallation
   You can locate this software anywhere.
   This software does not leave anything except the destination file.
-  If you would like to uninstall vlrfsasm, delete everything from the directory where this "readme.txt" was.
+  If you would like to uninstall vlrfsasm, delete everything from the directory where this "readme.txt" is.
 
 3. How to use vlrfsasm
   Create either a shortcut or batch file.
   Then edit them to execute vlrfsasm.exe with the path of source and destination files.
-  If you use a batch file, its content would be like:
-    start "[1]/vlrfsasm/bin/vlrfsasm.exe" "[2]/helloworld.txt" "[3]/helloworld.exe" [4]
-  With each of [1],[2] and [3] replaced with the directory, such as C:/Users/vlrfsg/Desktop.
-  [4] is an optional parameter to put an '8' to indicate that the source file is in utf-8.
+  "vlrfsasm <destination file> <source files>"
+  
 
 4. Example
   A Hello world example is in hello world folder.
