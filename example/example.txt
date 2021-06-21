@@ -1,0 +1,31 @@
+[
+Here is comment
+  example.txt
+  Copyright 2021 vlrfsg
+]
+
+(_ (> (+ (# (contentA) (contentB))) 3)) [file size in bytes = content size in bits / 8]
+(. 0 (contentA))
+(. (> 3 (contentA)) (contentB))
+
+{contentA; ; (testFunc "world")}
+
+{testfunc Name; ;
+  (_utf8
+    ('
+      "Hello, "
+      Name
+      "!"
+    )
+  )
+}
+
+{contentB; ;
+  (_utf8
+    ('
+      "1 + 2 = "
+      (_dec (+ 1 2))
+    )
+  )
+}
+

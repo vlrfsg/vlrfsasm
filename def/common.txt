@@ -1,0 +1,3 @@
+[def/common.txt
+ Copyright 2021 vlrfsg]
+

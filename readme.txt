@@ -2,7 +2,7 @@
 About vlrfsasm
 
 1. Purpose
-  This software, vlrfsasm, is for writing the machine language x86_64.
+  This software, vlrfsasm, converts text files to a binary file.
   Expected environment is Windows 10 on x64.
 
 2. Installation and Uninstallation
@@ -13,14 +13,83 @@ About vlrfsasm
 3. How to use vlrfsasm
   Create either a shortcut or batch file.
   Then edit them to execute vlrfsasm.exe with the path of source and destination files.
-  "vlrfsasm <destination file> <source files>"
+  Source file encoding must be Utf-8.
+  
+  >  vlrfsasm <destination file> <source files>
   
 
 4. Example
-  A Hello world example is in hello world folder.
-  I recommend you check those files before you start on your own.
+  An example is in folder "example".
+  I recommend you check it before you start on your own.
 
 5. Grammar
+  Vlrfsasm uses s-expression.
+  >  (function argument0 argument1 ...)
+  Each argument is function, parameter, local name, literal or global name.
+  Defining functions is an exception in syntax.
+  >  {function parameter0 parameter1 ...; localName0 localName1 ...; (content)}
+  Literal is either 64-bit unsigned number or utf-16BE string.
+  Number with prefix % is binary and with $ is hexdecimal number.
+  Number can contains symbols to distinguish each digits clearly.
+  String is characters between two double-quotes.
+  Escape pairs of characters are \", \\, \n and \r.
+  Length of string varies on its content and is always multiple of 16.
+  >  214 %11010110 $D6
+  >  $0022-0061-005C-0022 "\"a\\\""
+  Global name must be with prefix @.
+  >  @baseAddress
+  Comment can be single line or multiple lines.
+  >  [comment]
+
+6. Built-in functions
+  Function name: size of result
+  Arguments shorter than result are extended automatically with 0 on left.
+  Address and size are in byte and not bit.
+  Concatenate: sum of arguments
+  >  (' A B ...)
+  Add: max of arguments
+  >  (+ A B ...)
+  Not: same with argument
+  >  (! A)
+  And: max of arguments
+  >  (& A B ...)
+  Inclusive or: max of arguments
+  >  (| A B ...)
+  Exclusive or: max of arguments
+  >  (^ A B ...)
+  Shift left: (size of argument A) + argument B
+  >  (< A B)
+  Shift right: max of 0 and ((size of argument A) - argument B)
+  >  (< A B)
+  Multiply: same with argument A
+  B must be within 64 bits or an error occurs.
+  >  (* A B)
+  Divide: same with argument A
+  B must be within 64 bits or an error occurs.
+  If B is 0, another error occurs.
+  >  (/ A B)
+  If: same with chosen argument
+  If every bit of A is 0, C is chosen.
+  Otherwise B is chosen.
+  >  (? A B C)
+  Resize: argument B
+  >  (: A B)
+  Get size: 64 bits
+  >  (# A)
+  Label: No result
+  >  (@ @A)
+  Address: 64 bits
+  >  (` @A)
+  Message: No result
+  If this function is executed, utf-16 encoded argument A is printed out on log. 
+  >  (; A)
+  Write: No result
+  Write A at address B.
+  >  (. A B)
+  File size: No result
+  >  (_ A)
+
+/*5. Grammar
   Vlrfsasm has 14 commands.
   Every expression begins a command character, takes 1 to 3 parameters, and ends with a space.
   Parameters are separated by one colon(:).
@@ -42,8 +111,9 @@ About vlrfsasm
     =[Name]:[Value] #Define a constant.
     "[Str]:[Size]:[Null] #Write string [Str] as utf-16 in [Size], shifting current position. Add a null if [null] is null.
     >[Size]         #Shift current position till it matches alignment of [Size].
+*/
 
-6. License
+7. License
   Copyright 2021 vlrfsg
 
   Licensed under the Apache License, Version 2.0 (the "License");
