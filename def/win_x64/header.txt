@@ -1,3 +1,4 @@
 [def/win_x64/header.txt
  Copyright 2021 vlrfsg]
 
+{h.majorLinkerVersion}

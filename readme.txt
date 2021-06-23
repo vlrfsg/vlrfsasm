@@ -44,7 +44,7 @@ About vlrfsasm
 6. Built-in functions
   Function name: size of result
   Arguments shorter than result are extended automatically with 0 on left.
-  Address and size are in byte and not bit.
+  Address and file size are in byte.
   Concatenate: sum of arguments
   >  (' A B ...)
   Add: size of argument A
@@ -81,7 +81,7 @@ About vlrfsasm
   Address: 64 bits
   >  (` @A)
   Message: No result
-  If this function is executed, utf-16 encoded argument A is printed out on log. 
+  If this function is executed, utf-16 encoded argument A is printed out and vlrfsasm stops.
   >  (; A)
   Write: No result
   Write A at address B.

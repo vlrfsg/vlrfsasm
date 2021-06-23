@@ -54,13 +54,14 @@
 {c.cnvIC A; ;
   (? (<! A 10) (+ "0" A) (+ "A" (- A 10)))
 }
-{c.cnvIS A B; ;
+{c.cnvISR A B; ;
   (?
     A
-    (' (c.cnvIS (/ A B) B) (c.cnvIC (% A B)))
+    (' (c.cnvISR (/ A B) B) (c.cnvIC (% A B)))
     (c.emp)
   )
 }
+{c.cnvIS A B; ; (? A (c.cnvISR A B) "0")}
 {c.cnvIS- A B; ;
   (?
     (c.getSgn A)
@@ -126,4 +127,19 @@
     )
   )
 }
+
+
+[about vlrfsasm]
+{c.verI; ; $000200}
+{c.verS; ;
+  ('
+    (c.cnvIS (c.getRan (c.verI) 16 8))
+    "."
+    (c.cnvIS (c.getRan (c.verI) 8 8))
+    "."
+    (c.cnvIS (c.getRan (c.verI) 0 8))
+  )
+}
+{c.nam; ; (' "Vlrfsasm v" (c.verS))}
+
 
