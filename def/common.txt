@@ -1,3 +1,112 @@
 [def/common.txt
  Copyright 2021 vlrfsg]
 
+[empty]
+{c.emp; ; (: 0 0)}
+
+[negate]
+{c.neg A; ; (+ (! A) 1)}
+
+[unsigned sub]
+{- A B; ; (+ A (c.neg (: B (# A))))}
+
+[get]
+{c.getRan A B C; ; (: (> A (- B 1)) C)}
+{c.getBit A B; ; (c.getRan A B 1)}
+{c.getSgn A; ; (c.getBit A (- (# A) 1))}
+
+[sign extend]
+{:- A B; ;
+  (?
+    (|
+      (! (c.getSgn A))
+      (>= (# A) (: B 64))
+    )
+    (: A B)
+    (' (! (: 0 (- (: B 64) (# A))) A)
+  )
+}
+
+[signed add, sub]
+{+- A B; ; (+ A (:- B (# A)))}
+{-- A B; ; (- A (:- B (# A)))}
+
+[unsigned compare]
+{== A B; ; (: (? (^ A (: B (# A))) 1 0) 1)}
+{!= A B; ; (^ (== A B) 1)}
+{<! A B; ; (c.getSgn (- A B))}
+{<= A B; ; (| (<! A B) (== A B))}
+{>! A B; ; (! (<= A B))}
+{>= A B; ; (! (<! A B))}
+
+[signed compare]
+{==- A B; ; (: (? (^ A (:- B (# A))) 1 0) 1)}
+{!=- A B; ; (^ (==- A B) 1)}
+{<!- A B; ; (c.getSgn (-- A B))}
+{<=- A B; ; (| (<!- A B) (==- A B))}
+{>!- A B; ; (! (<=- A B))}
+{>=- A B; ; (! (<!- A B))}
+
+[convert integer to string]
+{c.cnvIC A; ;
+  (? (<! A 10) (+ "0" A) (+ "A" (- A 10)))
+}
+{c.cnvIS A B; ;
+  (?
+    A
+    (' (c.cnvIS (/ A B) B) (c.cnvIC (% A B)))
+    (c.emp)
+  )
+}
+{c.cnvIS- A B; ;
+  (?
+    (c.getSgn A)
+    (' "-" (c.cnvIS (c.neg A) B))
+    (c.cnvIS A B)
+  )
+}
+
+[Convert utf-16 to utf-8]
+{c.cnvCcS8 A; ;
+  (?
+    (>= $7F A)
+    (: A 8)
+    (?
+      (>= $07FF A)
+      ('
+        (: %110 3) (c.getRan A 6 5)
+        (: %10 2) (c.getRan A 0 6)
+      )
+      (?
+        (>= $FFFF A)
+        ('
+          (: %1110 4) (c.getRan A 12 4)
+          (: %10 2) (c.getRan A 6 6)
+          (: %10 2) (c.getRan A 0 6)
+        )
+        ('
+          (: %11110 5) (c.getRan A 18 3)
+          (: %10 2) (c.getRan A 12 6)
+          (: %10 2) (c.getRan A 6 6)
+          (: %10 2) (c.getRan A 0 6)
+        )
+      )
+    )
+  )
+}
+{c.cnvSxS8 A; ;
+  (?
+    (== (# A) 16)
+    (c.CnvCcS8 A)
+    (?
+      (?
+        (& (== (# A) 32) ())
+      )
+      (== (c.getRan A (- (# A) 10) 6) %110110)
+      ('
+        ()
+      )
+    )
+    (c.emp)
+  )
+}

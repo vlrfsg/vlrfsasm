@@ -47,15 +47,15 @@ About vlrfsasm
   Address and size are in byte and not bit.
   Concatenate: sum of arguments
   >  (' A B ...)
-  Add: max of arguments
+  Add: size of argument A
   >  (+ A B ...)
   Not: same with argument
   >  (! A)
-  And: max of arguments
+  And: size of argument A
   >  (& A B ...)
-  Inclusive or: max of arguments
+  Inclusive or: size of argument A
   >  (| A B ...)
-  Exclusive or: max of arguments
+  Exclusive or: size of argument A
   >  (^ A B ...)
   Shift left: (size of argument A) + argument B
   >  (< A B)
