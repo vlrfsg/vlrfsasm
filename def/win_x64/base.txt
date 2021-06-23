@@ -1,3 +1,9 @@
 [def/win_x64/base.txt
  Copyright 2021 vlrfsg]
 
+[00:imm, 01:reg, 02:mem
+ 00:b, 01:w, 10:d/f, 11:q/v
+ 0:I, 1:F]
+
+{b.defReg A B C}
+

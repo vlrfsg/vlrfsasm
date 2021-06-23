@@ -47,6 +47,9 @@
 {>!- A B; ; (! (<=- A B))}
 {>=- A B; ; (! (<!- A B))}
 
+[align]
+{c.align A B; ; (? (& A (- B 1)) (+ (^ A (& A (- B 1))) B) A)}
+
 [convert integer to string]
 {c.cnvIC A; ;
   (? (<! A 10) (+ "0" A) (+ "A" (- A 10)))
@@ -97,16 +100,30 @@
 {c.cnvSxS8 A; ;
   (?
     (== (# A) 16)
-    (c.CnvCcS8 A)
+    (c.cnvCcS8 A)
     (?
+      (== (# A) 32)
       (?
-        (& (== (# A) 32) ())
+        (== (c.getRan A 26 6) %110110)
+        (c.cnvCcS8 A)
+        (' (c.cnvCcS8 (> A 16)) (c.cnvCcS8 (: A 16)))
       )
-      (== (c.getRan A (- (# A) 10) 6) %110110)
-      ('
-        ()
+      (?
+        (& (# A) $F)
+        (; "Length of string in utf-16 must be multiple of 16.")
+        (?
+          (== (c.getRan A (+ (c.align (> (# A) 1) 16) 10) 6) %110110)
+          ('
+            (c.cnvSxS8 (> A (- (c.align (> (# A) 1) 16) 16)))
+            (c.cnvSxS8 (: A (- (c.align (> (# A) 1) 16) 16)))
+          )
+          ('
+            (c.cnvSxS8 (> A (c.align (> (# A) 1) 16)))
+            (c.cnvSxS8 (: A (c.align (> (# A) 1) 16)))
+          )
+        )
       )
     )
-    (c.emp)
   )
 }
+
