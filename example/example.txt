@@ -4,14 +4,12 @@ Here is comment
   Copyright 2021 vlrfsg
 ]
 
-(_ (> (+ (# (contentA) (contentB))) 3)) [file size in bytes = content size in bits / 8]
-(. 0 (contentA))
-(. (> 3 (contentA)) (contentB))
+{.; ; (' (contentA) (contentB))} [The result; You must define this function]
 
-{contentA; ; (testFunc "world")}
+{contentA; ; (testFunc "world")} [Calling another function with a string literal parameter]
 
-{testfunc Name; ;
-  (_utf8
+{testfunc Name; ; [If you call this function with "vlrfsg" as parameter, the result is "Hello, vlrfsg!"]
+  (c.cnvSxS8 [This function converts utf-16 to utf-8]
     ('
       "Hello, "
       Name
@@ -21,10 +19,10 @@ Here is comment
 }
 
 {contentB; ;
-  (_utf8
+  (c.cnvSxS8
     ('
       "1 + 2 = "
-      (_dec (+ 1 2))
+      (c.cnvIS (+ 1 2) 10) [10 is the base; result in decimal]
     )
   )
 }

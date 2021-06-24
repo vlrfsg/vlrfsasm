@@ -1,3 +1,6 @@
 [def/win_x64/instruction.txt
  Copyright 2021 vlrfsg]
 
+{INC A; ; (b.om $FE 0 A)}
+{DEC A; ; (b.om $FE 1 A)}
+

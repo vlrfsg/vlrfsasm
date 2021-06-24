@@ -44,7 +44,6 @@ About vlrfsasm
 6. Built-in functions
   Function name: size of result
   Arguments shorter than result are extended automatically with 0 on left.
-  Address and file size are in byte.
   Concatenate: sum of arguments
   >  (' A B ...)
   Add: size of argument A
@@ -83,11 +82,15 @@ About vlrfsasm
   Message: No result
   If this function is executed, utf-16 encoded argument A is printed out and vlrfsasm stops.
   >  (; A)
-  Write: No result
-  Write A at address B.
-  >  (. A B)
-  File size: No result
-  >  (_ A)
+
+7. Label
+  Labels embedded in (.) are evaluated after each step.
+  Vlfsasm repeats converting with value of labels from previous step.
+  If no value have changed, it stops.
+
+8. Result
+  Finally, vlrfsasm creates destination file and writes (.) from the last step in it.
+  
 
 /*5. Grammar
   Vlrfsasm has 14 commands.
@@ -113,7 +116,7 @@ About vlrfsasm
     >[Size]         #Shift current position till it matches alignment of [Size].
 */
 
-7. License
+8. License
   Copyright 2021 vlrfsg
 
   Licensed under the Apache License, Version 2.0 (the "License");

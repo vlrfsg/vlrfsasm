@@ -6,6 +6,12 @@
  0:I, 1:F
  (reg) 0:s, 1:v]
 
+[frequently used immediate size]
+{ib A; ; (: A 8)}
+{iw A; ; (: A 16)}
+{id A; ; (: A 32)}
+{iq A; ; (: A 64)}
+
 [immediate]
 {i A; ; (< (: A 64) 5)}
 

@@ -1,4 +1,139 @@
 [def/win_x64/header.txt
  Copyright 2021 vlrfsg]
 
-{h.majorLinkerVersion}
+[Linker version]
+{h.majorLinkerVersion; ; (c.getRan (c.verI) 16 8)}
+{h.minorLinkerVersion; ; (c.getRan (c.verI) 8 8)}
+
+[Windows version
+ Windows XP 64bit edition]
+{h.majorSystemVersion; ; $0005}
+{h.minorSystemVersion; ; $0002}
+
+[Size]
+{h.numberOfSection; ; (+ 2 (rs.exist))}
+{h.alignBase; ; $0200}
+{h.sizeOfImage; ; (+ $200 (is.size) (ts.size) (? (rs.exist) (rs.size) 0))}
+{h.sizeOfHeader; ; (+ $148 (* (h.numberOfSection) $28))}
+
+[Header]
+{h.content; ;
+  ('
+    (iw $5A4D)                 [MZ Signature]
+    (: 0 $1D0)                 [(empty)]
+    (id $40)                   [lpPE]
+    (id $00004550)             [PE Signature]
+    (iw $8664)                 [Machine=IMAGE_FILE_MACHINE_AMD64]
+    (iw (h.numberOfSection))   [NumberofSections]
+    (id 0)                     [TimeDateStamp]
+    (id 0)                     [PointerToSymbolTable]
+    (id 0)                     [NumberOfSymbols]
+    (iw $F0)                   [SizeofOptionalHeader]
+    (iw $2F)                   [Characteristics]
+    (iw $020B)                 [Magic]
+    (ib (h.majorLinkerVer))    [MajorLinkerVersion]
+    (ib (h.minorLinkerVer))    [MinorLinkerVersion]
+    (id (ts.size))             [SizeOfCode]
+    (id (is.size))             [SizeofInitializedData]
+    (id 0)                     [SizeofUnInitializedData]
+    (id (ts.entryPoint))       [AddressofEntryPoint]
+    (id (ts.size))             [BaseOfCode]
+    (iq $400000)               [BaseOfImage]
+    (id (h.alignBase))         [SectionAlignment]
+    (id (h.alignBase))         [FileAlignment]
+    (iw (h.majorSystemVersion))[MajorOperatingSystemVersion]
+    (iw (h.minorSystemVersion))[MinorOperatingSystemVersion]
+    (iw (h.majorImageVersion)) [MajorImageVersion]
+    (iw (h.minorImageVersion)) [MinorImageVersion]
+    (iw (h.majorSystemVersion))[MajorSubSystemVersion]
+    (iw (h.minorSystemVersion))[MinorSubSystemVersion]
+    (id 0)                     [Win32VersionValue]
+    (id (h.sizeOfimage))       [SizeOfImage]
+    (id (h.sizeOFHeader))      [SizeOfHeaders]
+    (id 0)                     [Checksum]
+    (iw 0)                     [SubSystem=IMAGE_SUBSYSTEM_WINDOWS_GUI]
+    (iw 0)                     [DllCharacteristics]
+    (iq (h.sizeOfStack))       [SizeofStackReserve]
+    (iq (h.sizeOfStack))       [SizeofStackCommit]
+    (iq (h.sizeOfHeap))        [SizeofHeapReserve]
+    (iq (h.sizeOfHeap))        [SizeofHeapCommit]
+    (id 0)                     [LoaderFlags]
+    (id 16)                    [NumberOfRvaandSizes]
+    (: 0 $40)                  [From here IMAGE_DATA_DIRECTORY]
+    (id (is.address))          [lpidatasection]
+    (id (is.size))             [sizeofidatasection]
+    (?
+      (rs.exist)
+      ('
+        (id (rs.address))      [lpresourcesection]
+        (id (rs.size))         [sizeofresourcesection]
+      )
+      (: 0 64)
+    )
+    (: 0 $240)
+    (id (is.addressOfImportAddressTable))[lpimporttable]
+    (id (is.sizeOfImportAddressTable))[sizeofimporttable]
+    (: 0 $C0)
+    (: (c.cnvSxS8 ".idata") 64)
+    (id (is.size))             [VirtualSize]
+    (id (is.address))          [VirtualAddress]
+    (id (is.size))             [SizeofRawData]
+    (id (is.address))          [PointerToRawData]
+    (id 0)                     [PointerToRelocations]
+    (id 0)                     [PointerToLinenumbers]
+    (iw 0)                     [NumberOfRelocations]
+    (iw 0)                     [NumberOfLinenumbers]
+    (id $40000040)             [Characteristics]
+    (: (c.cnvSxS8 ".text") 64)
+    (id (ts.size))             [VirtualSize]
+    (id (ts.address))          [VirtualAddress]
+    (id (ts.size))             [SizeofRawData]
+    (id (ts.address))          [PointerToRawData]
+    (id 0)                     [PointerToRelocations]
+    (id 0)                     [PointerToLinenumbers]
+    (iw 0)                     [NumberOfRelocations]
+    (iw 0)                     [NumberOfLinenumbers]
+    (id $60000060)             [Characteristics]
+    (?
+      (rs.exist)
+      ('
+        (: (c.cnvSxS8 ".rsrc") 64)
+        (id (rs.size))           [VirtualSize]
+        (id (rs.address))        [VirtualAddress]
+        (id (rs.size))           [SizeofRawData]
+        (id (rs.address))        [PointerToRawData]
+        (id 0)                   [PointerToRelocations]
+        (id 0)                   [PointerToLinenumbers]
+        (iw 0)                   [NumberOfRelocations]
+        (iw 0)                   [NumberOfLinenumbers]
+        (id $40000040)           [Characteristics]
+      )
+    )
+  )
+}
+
+(. $0200 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -49,6 +49,7 @@
 
 [align]
 {c.align A B; ; (? (& A (- B 1)) (+ (^ A (& A (- B 1))) B) A)}
+{c.alignS A B; ; (< A (- (c.align (# A) B) ($ A)))}
 
 [convert integer to string]
 {c.cnvIC A; ;
