@@ -1,6 +1,12 @@
 [def/win_x64/header.txt
  Copyright 2021 vlrfsg]
 
+[input
+ h.majorImageVersion
+ h.minorImageVersion
+ h.sizeOfStack
+ h.sizeOFHeap]
+
 [Linker version]
 {h.majorLinkerVersion; ; (c.getRan (c.verI) 16 8)}
 {h.minorLinkerVersion; ; (c.getRan (c.verI) 8 8)}
@@ -33,7 +39,7 @@
     (iw $020B)                 [Magic]
     (ib (h.majorLinkerVer))    [MajorLinkerVersion]
     (ib (h.minorLinkerVer))    [MinorLinkerVersion]
-    (id (ts.size))             [SizeOfCode]
+    (id (ts.sizeOfText))       [SizeOfCode]
     (id (is.size))             [SizeofInitializedData]
     (id 0)                     [SizeofUnInitializedData]
     (id (` @ts.entryPoint))    [AddressofEntryPoint]

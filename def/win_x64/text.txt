@@ -1,0 +1,11 @@
+[def/win_x64/text.txt
+ Copyright 2021 vlrfsg]
+
+[input
+ ts.contentOfText
+ @ts.entryPoint]
+
+[output]
+{ts.sizeOFText; ; (> (# (ts.contentOfText)) 3)}
+{ts.content; ; (' (@ts.address) (ts.contentOfText))}
+{ts.size; ; (c.align (ts.sizeOfText) (h.alignBase))}

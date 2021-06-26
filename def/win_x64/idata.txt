@@ -6,8 +6,9 @@
 {is.sizeOfElement; ; (< 1 (is.logOfSizeOfElement))}
 {is.topOfElement A; ; (- (# (is.funcList)) (< A (is.logOfSizeOfElement)))}
 
-[input]
-[is.funcList]
+[input
+ is.stringResource
+ is.funcList]
 {is.dll A; ;
   ('
     (: (| (< 1 15) (> (# (c.cnvSxS8 A)) 3)) 16)
@@ -34,10 +35,11 @@
     (is.contentOfDllNameTable)
     (@ @is.addressOfFuncNameTable)
     (is.contentOfFuncNameTable)
+    (is.stringResource)
   )
 }
-{is.size; ; (c.align (# (is.content)) (h.alignBase))}
-{is.sizeOfImportAddressTable; ; (> (# (is.funcList)) (- (is.logOfSizeOfElement) 2))}
+{is.size; ; (c.align (> (# (is.content)) 3) (h.alignBase))}
+{is.sizeOfImportAddressTable; ; (> (# (is.funcList)) (+ (is.logOfSizeOfElement) 1))}
 {is.searchFunc A; ; ()}
 
 [importDesc]

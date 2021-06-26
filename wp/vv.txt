@@ -1,3 +1,26 @@
 [wp/vv.txt
  Copyright 2021 vlrfsg]
 
+[Version]
+{h.majorImageVersion; ; 0}
+{h.minorImageVersion; ; 2}
+
+[Stack]
+{h.sizeOfStack; ; $10000}
+
+[Heap]
+{hm.addressOfCommandLine; ; $200}
+{hm.sizeOfCommandLine; ; $FE00}
+{hm.sizeOfElementOfCommandLine; ; $200}
+{hm.addressOfDestFileName; ; (+ (hm.addressOfCommandLine) (hm.sizeOfElementOfCommandLine))}
+{hm.addressOfSourceFileName; ; (+ (hm.addressOfDestFileName) (hm.sizeOfElementOfCommandLine))}
+{hm.addressOfInputFile; ; (+ (hm.addressOfCommandLine) (hm.sizeOfCommandLine))}
+{hm.sizeOfInputFile; ; $10000}
+{hm.addressOfDestFile; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
+{hm.sizeOfDestFile; ; $10000}
+{hm.addressOfLiteral; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
+{hm.sizeOfLiteral; ; $50000}
+{hm.addressOfToken; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
+{hm.sizeOfToken; ; $80000}
+{hm.sizeOfElementOfToken; ; $} [2:Length, 4:Str]
+{h.sizeOfHeap; ; ()}
