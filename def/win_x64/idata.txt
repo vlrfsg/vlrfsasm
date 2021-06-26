@@ -1,3 +1,142 @@
 [def/win_x64/idata.txt
  Copyright 2021 vlrfsg]
 
+[List element]
+{is.logOfSizeOfElement; ; 8}
+{is.sizeOfElement; ; (< 1 (is.logOfSizeOfElement))}
+{is.topOfElement A; ; (- (# (is.funcList)) (< A (is.logOfSizeOfElement)))}
+
+[input]
+[is.funcList]
+{is.dll A; ;
+  ('
+    (: (| (< 1 15) (> (# (c.cnvSxS8 A)) 3)) 16)
+    (: (c.cnvSxS8 A) (- (is.sizeOfElement) 16))
+  )
+}
+{is.func A; ;
+  ('
+    (: (> (# (c.cnvSxS8 A)) 3) 16)
+    (: (c.cnvSxS8 A) (- (is.sizeOfElement) 16))
+  )
+}
+
+[output]
+{is.content; ;
+  ('
+    (@ @is.address)
+    (is.contentOfImportDesc)
+    (@ @is.addressOfLookUpTable)
+    (is.contentOfFuncAddressTable)
+    (@ @is.addressOfImportAddressTable)
+    (is.contentOfFuncAddressTable)
+    (@ @is.addressOfDllNameTable)
+    (is.contentOfDllNameTable)
+    (@ @is.addressOfFuncNameTable)
+    (is.contentOfFuncNameTable)
+  )
+}
+{is.size; ; (c.align (# (is.content)) (h.alignBase))}
+{is.sizeOfImportAddressTable; ; (> (# (is.funcList)) (- (is.logOfSizeOfElement) 2))}
+{is.searchFunc A; ; ()}
+
+[importDesc]
+{is.contentOfImportDesc; ; (is.contentOfImportDescR 0 0)}
+{is.contentOfImportDescR A B; ;
+  (?
+    (== (> (# (is.funcList)) (is.logOfSizeOfElement)) A)
+    (: 0 160)
+    (?
+      (c.getBit (is.funcList) (- (is.topOfElement A) 1))
+      (is.contentOfImportDescR (+ A 1) B)
+      ('
+        (id (+ (` @is.addressOfLookUpTable) (< A 2)))
+        (id 0)
+        (id 0)
+        (id (+ (` @is.addressOfDllNameTable) B))
+        (id (+ (` @is.addressOfImportAddressTable) (< A 2)))
+        (is.contentOfImportDescR
+          (+ A 1)
+          (+ B (c.align (+ (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
+        )
+      )
+    )
+  )
+}
+
+[lookUpTable, importAddressTable]
+{is.contentOfFuncAddressTable; ; (is.contentOfFuncAddressTableR 0 0)}
+{is.contentOfFuncAddressTableR A B; ;
+  (?
+    (== (> (# (is.funcList)) (is.logOfSizeOfElement)) A)
+    (id 0)
+    (?
+      (c.getBit (is.funcList) (- (is.topOfElement A) 1))
+      ('
+        (id (+ (` @is.addressOfFuncNameTable) B))
+        (is.contentOfFuncAddressTableR
+          (+ A 1)
+          (+ B (c.align (+ (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
+        )
+      )
+      ('
+        (? A (id 0) (c.empty))
+        (is.contentOfFuncAddressTableR (+ A 1) B)
+      )
+    )
+  )
+}
+
+[dllNameTable]
+{is.contentOfDllNameTable; ; (is.contentOfDllNameR 0)}
+{is.contentOfDllNameTableR A; ;
+  (?
+    (== (> (# (is.funcList)) (is.logOfSizeOfElement)) A)
+    (c.empty)
+    (?
+      (c.getBit (is.funcList) (- (is.topOfElement A) 1))
+      ('
+        (c.alignS
+          ('
+            (c.getRan
+              (is.funcList)
+              (- (is.topOfElement) (is.sizeOfElement))
+              (< (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 3)
+            )
+            (ib 0)
+          )
+          $2
+        )
+        (c.contentOfDllNameR (+ A 1))
+      )
+      (c.contentOfDllNameR (+ A 1))
+    )
+  )
+}
+
+[funcNameTable]
+{is.contentOfFuncNameTable; ; (is.contentOfFuncNameR 0)}
+{is.contentOfFuncNameTableR A; ;
+  (?
+    (== (> (# (is.funcList)) (is.logOfSizeOfElement)) A)
+    (c.empty)
+    (?
+      (c.getBit (is.funcList) (- (is.topOfElement A) 1))
+      (c.contentOfFuncNameR (+ A 1))
+      ('
+        (c.alignS
+          ('
+            (c.getRan
+              (is.funcList)
+              (- (is.topOfElement) (is.sizeOfElement))
+              (< (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 3)
+            )
+            (ib 0)
+          )
+          $2
+        )
+        (c.contentOfFuncNameR (+ A 1))
+      )
+    )
+  )
+}

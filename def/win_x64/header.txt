@@ -36,7 +36,7 @@
     (id (ts.size))             [SizeOfCode]
     (id (is.size))             [SizeofInitializedData]
     (id 0)                     [SizeofUnInitializedData]
-    (id (ts.entryPoint))       [AddressofEntryPoint]
+    (id (` @ts.entryPoint))    [AddressofEntryPoint]
     (id (ts.size))             [BaseOfCode]
     (iq $400000)               [BaseOfImage]
     (id (h.alignBase))         [SectionAlignment]
@@ -60,25 +60,25 @@
     (id 0)                     [LoaderFlags]
     (id 16)                    [NumberOfRvaandSizes]
     (: 0 $40)                  [From here IMAGE_DATA_DIRECTORY]
-    (id (is.address))          [lpidatasection]
+    (id (` @is.address))       [lpidatasection]
     (id (is.size))             [sizeofidatasection]
     (?
       (rs.exist)
       ('
-        (id (rs.address))      [lpresourcesection]
+        (id (` @rs.address))   [lpresourcesection]
         (id (rs.size))         [sizeofresourcesection]
       )
       (: 0 64)
     )
     (: 0 $240)
-    (id (is.addressOfImportAddressTable))[lpimporttable]
+    (id (` @is.addressOfImportAddressTable))[lpimporttable]
     (id (is.sizeOfImportAddressTable))[sizeofimporttable]
     (: 0 $C0)
     (: (c.cnvSxS8 ".idata") 64)
     (id (is.size))             [VirtualSize]
-    (id (is.address))          [VirtualAddress]
+    (id (` @is.address))       [VirtualAddress]
     (id (is.size))             [SizeofRawData]
-    (id (is.address))          [PointerToRawData]
+    (id (` @is.address))       [PointerToRawData]
     (id 0)                     [PointerToRelocations]
     (id 0)                     [PointerToLinenumbers]
     (iw 0)                     [NumberOfRelocations]
@@ -86,9 +86,9 @@
     (id $40000040)             [Characteristics]
     (: (c.cnvSxS8 ".text") 64)
     (id (ts.size))             [VirtualSize]
-    (id (ts.address))          [VirtualAddress]
+    (id (` @ts.address))       [VirtualAddress]
     (id (ts.size))             [SizeofRawData]
-    (id (ts.address))          [PointerToRawData]
+    (id (` @ts.address))       [PointerToRawData]
     (id 0)                     [PointerToRelocations]
     (id 0)                     [PointerToLinenumbers]
     (iw 0)                     [NumberOfRelocations]
@@ -99,41 +99,26 @@
       ('
         (: (c.cnvSxS8 ".rsrc") 64)
         (id (rs.size))           [VirtualSize]
-        (id (rs.address))        [VirtualAddress]
+        (id (` @rs.address))     [VirtualAddress]
         (id (rs.size))           [SizeofRawData]
-        (id (rs.address))        [PointerToRawData]
+        (id (` @rs.address))     [PointerToRawData]
         (id 0)                   [PointerToRelocations]
         (id 0)                   [PointerToLinenumbers]
         (iw 0)                   [NumberOfRelocations]
         (iw 0)                   [NumberOfLinenumbers]
         (id $40000040)           [Characteristics]
       )
+      (: 0 $20)
     )
   )
 }
 
-(. $0200 )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{.; ;
+  ('
+    (c.alignS (h.content) (h.alignBase))
+    (c.alignS (is.content) (h.alignBase))
+    (c.alignS (ts.content) (h.alignBase))
+    (? (rs.exist) (c.alignS (is.content) (h.alignBase)) (c.empty))
+  )
+}
 
