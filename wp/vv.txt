@@ -22,5 +22,15 @@
 {hm.sizeOfLiteral; ; $50000}
 {hm.addressOfToken; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
 {hm.sizeOfToken; ; $80000}
-{hm.sizeOfElementOfToken; ; $} [2:Length, 4:Str]
+{hm.sizeOfElementOfToken; ; $C} [2:Type, 2:Definition 2:Length, 2:Hash, 4:Str]
+{hm.addressOfInputText; ; (+ (hm.addressOfToken) (hm.sizeOfToken))}
+{hm.sizeOfInputText; ; $100000}
+{hm.addressOfDef; ; (+ (hm.addressOfInputText) (hm.sizeOfInputText))}
+{hm.sizeOfDef; ; $100000}
+{hm.sizeOfElementOfDef; ; $2}
+{hm.addressOfLabel; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
+{hm.sizeOfToken; ; $10000}
+{hm.sizeOfElementOfLabel; ; $4} [2:Value, 2:Step]
+
+
 {h.sizeOfHeap; ; ()}
