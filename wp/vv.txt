@@ -10,11 +10,17 @@
 
 [Heap]
 {hm.addressOfCommandLine; ; $200}
-{hm.sizeOfCommandLine; ; $FE00}
+{hm.sizeOfCommandLine; ; $7E00}
 {hm.sizeOfElementOfCommandLine; ; $200}
 {hm.addressOfDestFileName; ; (+ (hm.addressOfCommandLine) (hm.sizeOfElementOfCommandLine))}
 {hm.addressOfSourceFileName; ; (+ (hm.addressOfDestFileName) (hm.sizeOfElementOfCommandLine))}
-{hm.addressOfInputFile; ; (+ (hm.addressOfCommandLine) (hm.sizeOfCommandLine))}
+{hm.addressOfLabelValue; ; (+ (hm.addressOfCommandLine) (hm.sizeOfCommandLine))}
+{hm.sizeOfLabelValue; ; $4000}
+{hm.sizeOfElementOfLabelValue; ; $4} [2:Value, 2:Step]
+{hm.addressOfStack; ; (+ (hm.addressOfLabelValue) (hm.sizeOfLabelValue))}
+{hm.sizeOfStack; ; $4000}
+{hm.sizeOfElementOfStack; ; $2}
+{hm.addressOfInputFile; ; (+ (hm.addressOfStack) (hm.sizeOfStack))}
 {hm.sizeOfInputFile; ; $10000}
 {hm.addressOfDestFile; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
 {hm.sizeOfDestFile; ; $10000}
@@ -28,9 +34,16 @@
 {hm.addressOfDef; ; (+ (hm.addressOfInputText) (hm.sizeOfInputText))}
 {hm.sizeOfDef; ; $100000}
 {hm.sizeOfElementOfDef; ; $2}
-{hm.addressOfLabel; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
-{hm.sizeOfToken; ; $10000}
-{hm.sizeOfElementOfLabel; ; $4} [2:Value, 2:Step]
-
+{hm.addressOfValueIndex; ; (+ (hm.addressOfDef) (hm.sizeOfDef))}
+{hm.sizeOfValueIndex; ; $80000}
+{hm.sizeOfElementOfValueIndex; ; $8} [4:Size. 2:LabelListId]
+{hm.addressOfValue; ; (+ (hm.addressOfValueIndex) (hm.sizeOfValueIndex))}
+{hm.sizeOfValue; ; $380000}
+{hm.addressOfValueStack; ; (+ (hm.addressOfValue) (hm.sizeOfValue))}
+{hm.sizeOfValueStack; ; $20000}
+{hm.sizeOfElementOfValueStack; ; $2}
+{hm.addressOfLabelList; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
+{hm.sizeOfLabelList; ; $20000}
+{hm.sizeOfElementOfLabelList; ; $8} [2:Next, 4:Position]
 
 {h.sizeOfHeap; ; ()}
