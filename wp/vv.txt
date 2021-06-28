@@ -7,7 +7,50 @@
 
 [idata]
 {is.funcList; ;
-  ()
+  ('
+    (is.dll "kernel32.dll")
+    (is.func "ExitProcess")
+    (is.func "GetProcessHeap")
+    (is.func "HeapAlloc")
+    (is.func "HeapFree")
+    (is.func "CreateFileW")
+    (is.func "ReadFile")
+    (is.func "WriteFile")
+    (is.func "CloseHandle")
+    (is.func "GetFileSize")
+    (is.func "GetCommandLineW")
+    (is.func "GetLocalTime")
+    (is.dll "user32.dll")
+    (is.func "MessageBoxW")
+  )
+}
+{is.stringResource; ;
+  ('
+    (sr.contentOfCommandList)
+    (sr.contentOfErrorList)
+  )
+}
+{sr.contentOfCommandList; ;
+  (`
+    (@ @sr.addressOFCommandList)
+    (sr.elementOfCommandList "'" (` @tf.cct))
+    (sr.elementOfCommandList "+" (` @tf.add))
+    (sr.elementOfCommandList "&" (` @tf.and))
+    (sr.elementOfCommandList "|" (` @tf.ior))
+    (sr.elementOfCommandList "^" (` @tf.xor))
+    (sr.elementOfCommandList "?" (` @tf.if))
+    (sr.elementOfCommandList "!" (` @tf.not))
+    (sr.elementOfCommandList "<" (` @tf.shl))
+    (sr.elementOfCommandList ">" (` @tf.shr))
+    (sr.elementOfCommandList "*" (` @tf.mul))
+    (sr.elementOfCommandList "/" (` @tf.div))
+    (sr.elementOfCommandList "%" (` @tf.mod))
+    (sr.elementOfCommandList ":" (` @tf.res))
+    (sr.elementOfCommandList "#" (` @tf.gts))
+    (sr.elementOfCommandList "@" (` @tf.lbl))
+    (sr.elementOfCommandList "`" (` @tf.adr))
+    (sr.elementOfCommandList ";" (` @tf.err))
+  )
 }
 
 [Stack]

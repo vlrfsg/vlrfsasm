@@ -59,7 +59,7 @@ About vlrfsasm
   Shift left: (size of argument A) + argument B
   >  (< A B)
   Shift right: max of 0 and ((size of argument A) - argument B)
-  >  (< A B)
+  >  (> A B)
   Multiply: same with argument A
   B must be within 64 bits or an error occurs.
   >  (* A B)
@@ -67,6 +67,10 @@ About vlrfsasm
   B must be within 64 bits or an error occurs.
   If B is 0, another error occurs.
   >  (/ A B)
+  Modulo: same with argument A
+  B must be within 64 bits or an error occurs.
+  If B is 0, another error occurs.
+  >  (% A B)
   If: same with chosen argument
   If every bit of A is 0, C is chosen.
   Otherwise B is chosen.
@@ -79,7 +83,7 @@ About vlrfsasm
   >  (@ @A)
   Address: 64 bits
   >  (` @A)
-  Message: No result
+  Error: No result
   If this function is executed, utf-16 encoded argument A is printed out and vlrfsasm stops.
   >  (; A)
 
