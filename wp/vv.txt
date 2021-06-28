@@ -5,6 +5,11 @@
 {h.majorImageVersion; ; 0}
 {h.minorImageVersion; ; 2}
 
+[idata]
+{is.funcList; ;
+  ()
+}
+
 [Stack]
 {h.sizeOfStack; ; $10000}
 
@@ -45,5 +50,6 @@
 {hm.addressOfLabelList; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
 {hm.sizeOfLabelList; ; $20000}
 {hm.sizeOfElementOfLabelList; ; $8} [2:Next, 4:Position]
+{h.sizeOfHeap; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
 
-{h.sizeOfHeap; ; ()}
+[]
