@@ -1,0 +1,14 @@
+bin/error.txt
+Copyright 2021 vlrfsg
+
+{0 Source file not found or unopenable}
+{1 Function not defined}
+{2 Label address not assigned}
+{3 Function defined twice}
+{4 Label address assigned twice}
+{5 Result function(.) not defined}
+{6 Wrong number of argument}
+{7 Unpaired bracket}
+{8 Too much step}
+{9 Too long value}
+{A Destination file unwritable}

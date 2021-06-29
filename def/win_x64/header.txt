@@ -57,7 +57,7 @@
     (id (h.sizeOfimage))       [SizeOfImage]
     (id (h.sizeOFHeader))      [SizeOfHeaders]
     (id 0)                     [Checksum]
-    (iw 0)                     [SubSystem=IMAGE_SUBSYSTEM_WINDOWS_GUI]
+    (iw h.subsystem)           [SubSystem]
     (iw 0)                     [DllCharacteristics]
     (iq (h.sizeOfStack))       [SizeofStackReserve]
     (iq (h.sizeOfStack))       [SizeofStackCommit]

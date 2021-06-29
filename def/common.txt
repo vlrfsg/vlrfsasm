@@ -129,6 +129,9 @@
   )
 }
 
+[String with null]
+{c.cctSxN A; ; (' A (: 0 16))}
+
 
 [about vlrfsasm]
 {c.verI; ; $000200}

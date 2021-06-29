@@ -5,6 +5,9 @@
 {h.majorImageVersion; ; 0}
 {h.minorImageVersion; ; 2}
 
+[Subsystem]
+{h.subsystem; ; 3} [IMAGE_SUBSYSTEM_WINDOWS_CUI]
+
 [idata]
 {is.funcList; ;
   ('
@@ -20,14 +23,14 @@
     (is.func "GetFileSize")
     (is.func "GetCommandLineW")
     (is.func "GetLocalTime")
-    (is.dll "user32.dll")
-    (is.func "MessageBoxW")
+    (is.func "GetStdHandle")
+    (is.func "WriteConsoleW")
   )
 }
 {is.stringResource; ;
   ('
     (sr.contentOfCommandList)
-    (sr.contentOfErrorList)
+    (sr.contentOfErrorFileName)
   )
 }
 {sr.elementOfCommandList A B; ;
@@ -39,41 +42,27 @@
 {sr.contentOfCommandList; ;
   (`
     (@ @sr.addressOFCommandList)
-    (sr.elementOfCommandList "'" (` @tf.cct))
-    (sr.elementOfCommandList "+" (` @tf.add))
-    (sr.elementOfCommandList "&" (` @tf.and))
-    (sr.elementOfCommandList "|" (` @tf.ior))
-    (sr.elementOfCommandList "^" (` @tf.xor))
-    (sr.elementOfCommandList "?" (` @tf.if))
-    (sr.elementOfCommandList "!" (` @tf.not))
-    (sr.elementOfCommandList "<" (` @tf.shl))
-    (sr.elementOfCommandList ">" (` @tf.shr))
-    (sr.elementOfCommandList "*" (` @tf.mul))
-    (sr.elementOfCommandList "/" (` @tf.div))
-    (sr.elementOfCommandList "%" (` @tf.mod))
-    (sr.elementOfCommandList ":" (` @tf.res))
-    (sr.elementOfCommandList "#" (` @tf.gts))
-    (sr.elementOfCommandList "@" (` @tf.lbl))
-    (sr.elementOfCommandList "`" (` @tf.adr))
-    (sr.elementOfCommandList ";" (` @tf.err))
+    (sr.elementOfCommandList "'" (` @tf.addressOfCmdCct))
+    (sr.elementOfCommandList "+" (` @tf.addressOfCmdAdd))
+    (sr.elementOfCommandList "&" (` @tf.addressOfCmdSub))
+    (sr.elementOfCommandList "|" (` @tf.addressOfCmdIor))
+    (sr.elementOfCommandList "^" (` @tf.addressOfCmdXor))
+    (sr.elementOfCommandList "?" (` @tf.addressOfCmdIf))
+    (sr.elementOfCommandList "!" (` @tf.addressOfCmdNot))
+    (sr.elementOfCommandList "<" (` @tf.addressOfCmdShl))
+    (sr.elementOfCommandList ">" (` @tf.addressOfCmdShr))
+    (sr.elementOfCommandList "*" (` @tf.addressOfCmdMul))
+    (sr.elementOfCommandList "/" (` @tf.addressOfCmdDiv))
+    (sr.elementOfCommandList "%" (` @tf.addressOfCmdMod))
+    (sr.elementOfCommandList ":" (` @tf.addressOfCmdRes))
+    (sr.elementOfCommandList "#" (` @tf.addressOfCmdGts))
+    (sr.elementOfCommandList "@" (` @tf.addressOfCmdLbl))
+    (sr.elementOfCommandList "`" (` @tf.addressOfCmdAdr))
+    (sr.elementOfCommandList ";" (` @tf.addressOfCmdErr))
     (iw 0)
   )
 }
-{sr.contentOfErrorList; ;
-  ('
-    (@ @er.sourceFileError)
-    (@ @er.funcNotDefined)
-    (@ @er.labelNotAssigned)
-    (@ @er.funcDefinedTwice)
-    (@ @er.labelAssignedTwice)
-    (@ @er.resultNotDefined)
-    (@ @er.wrongNumberOfArgument)
-    (@ @er.unpairedBracket)
-    (@ @er.exceededStepLimit)
-    (@ @er.exceededLengthLimit)
-    (@ @er.destFileError)
-  )
-}
+{sr.contentOfErrorFileName; ; "error.txt"}
 
 [Stack]
 {h.sizeOfStack; ; $10000}
@@ -117,4 +106,40 @@
 {hm.sizeOfElementOfLabelList; ; $8} [2:Next, 4:Position]
 {h.sizeOfHeap; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
 
-[]
+[Text]
+
+{ts.contentOfText; ;
+  ('
+    (@ @ts.entryPoint)
+    (tf.contentOfMain)
+    (tf.contentOfReadFile)
+    (tf.contentOfConvertIS)
+    (tf.contentOfConvertSI)
+    (tf.contentOfCmdCct)
+    (tf.contentOfCmdAdd)
+    (tf.contentOfCmdAnd)
+    (tf.contentOfCmdIor)
+    (tf.contentOfCmdXor)
+    (tf.contentOfCmdIf)
+    (tf.contentOfCmdNot)
+    (tf.contentOfCmdShl)
+    (tf.contentOfCmdShr)
+    (tf.contentOfCmdMul)
+    (tf.contentOfCmdDiv)
+    (tf.contentOfCmdMod)
+    (tf.contentOfCmdRes)
+    (tf.contentOfCmdGts)
+    (tf.contentOfCmdLbl)
+    (tf.contentOfCmdAdr)
+    (tf.contentOfCmdErr)
+  )
+}
+
+{tf.contentOfMain; ;
+  ('
+    ()
+  )
+}
+
+
+
