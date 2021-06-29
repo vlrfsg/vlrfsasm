@@ -30,6 +30,12 @@
     (sr.contentOfErrorList)
   )
 }
+{sr.elementOfCommandList A B; ;
+  ('
+    (iw A)
+    (- B (` @sr.addressOFCommandList))
+  )
+}
 {sr.contentOfCommandList; ;
   (`
     (@ @sr.addressOFCommandList)
@@ -50,6 +56,22 @@
     (sr.elementOfCommandList "@" (` @tf.lbl))
     (sr.elementOfCommandList "`" (` @tf.adr))
     (sr.elementOfCommandList ";" (` @tf.err))
+    (iw 0)
+  )
+}
+{sr.contentOfErrorList; ;
+  ('
+    (@ @er.sourceFileError)
+    (@ @er.funcNotDefined)
+    (@ @er.labelNotAssigned)
+    (@ @er.funcDefinedTwice)
+    (@ @er.labelAssignedTwice)
+    (@ @er.resultNotDefined)
+    (@ @er.wrongNumberOfArgument)
+    (@ @er.unpairedBracket)
+    (@ @er.exceededStepLimit)
+    (@ @er.exceededLengthLimit)
+    (@ @er.destFileError)
   )
 }
 
@@ -57,8 +79,8 @@
 {h.sizeOfStack; ; $10000}
 
 [Heap]
-{hm.addressOfCommandLine; ; $200}
-{hm.sizeOfCommandLine; ; $7E00}
+{hm.addressOfCommandLine; ; $1000}
+{hm.sizeOfCommandLine; ; $7000}
 {hm.sizeOfElementOfCommandLine; ; $200}
 {hm.addressOfDestFileName; ; (+ (hm.addressOfCommandLine) (hm.sizeOfElementOfCommandLine))}
 {hm.addressOfSourceFileName; ; (+ (hm.addressOfDestFileName) (hm.sizeOfElementOfCommandLine))}
