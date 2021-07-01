@@ -4,7 +4,6 @@
 {tf.contentOfInitMemory; ;
   ('
     (SUB (RSP) (i $28))
-    (MOV (RBP) (RSP))
     
     (CALdll "GetProcessHeap")
     (MOV (EBX) (EAX))
@@ -25,13 +24,50 @@
 }
 
 {tf.contentOfReadFile; ;
+  [RCX: Name, DL:Error; ]
   ('
     (@ @tf.addressOfReadFile)
+    (SUB (RSP) (i $38))
+    (MOV (RBP) (RSP))
+    (MOV (R15) (RCX))
+    (MOV (R12B) (DL))
+    (MOV (EDX) (i $80000000))
+    (MOV (R9D) (i 0))
+    (LEAd (R8) (R9) 1)
+    (MOV (md (RBP) $20) (i $00000003))
+    (MOV (md (RBP) $28) (R9D))
+    (MOV (md (RBP) $30) (R9D))
+    (CALf "CreateFileW")
+    (CMP (EAX) (i $FFFFFFFF))
+    (JNE @tl.readFile_1)
+    (CMP (R12B) (i 1))
+    (JEB @)
+    (ADD (RSP) (i $40))
+    (MOV (CL) (i $00))
+    (MOV (RDX) (R15))
+    (JMP @tf.addressOfError)
+    (@tl.readFile_1)
+    (MOV (R12D) (EAX))
+    (MOV (ECX) (EAX))
+    (LEAmd (RDX) (hm.addressOfTempInteger))
+    (CALf "GetFileSize")
+    (CMP (mmdd (hm.addressOfTempInteger)) (i 0))
+    (JNE @tl.readFile_2)
+    (CMP (EAX) (i $00010000))
+    (JB @tl.readFile_3)
+    (@ @tl.readFile_2)
+    (ADD (RSP) (i $40))
+    (MOV (CL) (i $01))
+    (MOV (RDX) (R15))
+    (JMP @tf.addressOfError)
+    (@tl.readFile_3)
     
+    
+    
+    (ADD (RSP) (i $38))
+    (RET)
   )
 }
-
-
 
 {tf.contentOfConvertIS; ; [Decimal]
   [RCX:address, RDX:Value; RAX=0, R8=10]
