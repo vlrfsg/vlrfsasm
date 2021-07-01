@@ -68,7 +68,10 @@
 {h.sizeOfStack; ; $10000}
 
 [Heap]
-{hm.addressOfCommandLine; ; $1000}
+{hm.addressOfErrorMessage; ;  $1000}
+{hm.sizeOfErrorMessage; ; $2000}
+{hm.sizeOfElementOfErrorMessage; ; $80}
+{hm.addressOfCommandLine; ; (+ (hm.addressOfErrorMessage) (hm.sizeOfErrorMessage))}
 {hm.sizeOfCommandLine; ; $7000}
 {hm.sizeOfElementOfCommandLine; ; $200}
 {hm.addressOfDestFileName; ; (+ (hm.addressOfCommandLine) (hm.sizeOfElementOfCommandLine))}
@@ -120,6 +123,8 @@
     (tf.contentOfConvertIS)
     (tf.contentOfConvertSI)
     (tf.contentOfConvert8X)
+    {tf.contentOFCopyX}
+    {tf.contentOFSearchX}
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)
