@@ -31,6 +31,7 @@
   ('
     (sr.contentOfCommandList)
     (sr.contentOfErrorFileName)
+    (sr.contentOfNumberList)
   )
 }
 {sr.elementOfCommandList A B; ;
@@ -63,6 +64,34 @@
   )
 }
 {sr.contentOfErrorFileName; ; "error.txt"}
+{sr.elementOfNumberList A B; (' (ib A) (ib B))}
+{sr.sizeOfElementOfNumberList; ; $2}
+{sr.contentOfNumberList; ;
+  (@ @sr.addressOfNumberList)
+  (sr.elementOfNumberList "0" 0)
+  (sr.elementOfNumberList "1" 1)
+  (sr.elementOfNumberList "2" 2)
+  (sr.elementOfNumberList "3" 3)
+  (sr.elementOfNumberList "4" 4)
+  (sr.elementOfNumberList "5" 5)
+  (sr.elementOfNumberList "6" 6)
+  (sr.elementOfNumberList "7" 7)
+  (sr.elementOfNumberList "8" 8)
+  (sr.elementOfNumberList "9" 9)
+  (sr.elementOfNumberList "A" 10)
+  (sr.elementOfNumberList "B" 11)
+  (sr.elementOfNumberList "C" 12)
+  (sr.elementOfNumberList "D" 13)
+  (sr.elementOfNumberList "E" 14)
+  (sr.elementOfNumberList "F" 15)
+  (sr.elementOfNumberList "a" 10)
+  (sr.elementOfNumberList "b" 11)
+  (sr.elementOfNumberList "c" 12)
+  (sr.elementOfNumberList "d" 13)
+  (sr.elementOfNumberList "e" 14)
+  (sr.elementOfNumberList "f" 15)
+  (iw 0)
+}
 
 [Stack]
 {h.sizeOfStack; ; $10000}

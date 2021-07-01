@@ -27,11 +27,93 @@
 {tf.contentOfReadFile; ;
   ('
     (@ @tf.addressOfReadFile)
-    ()
+    
   )
 }
- 
- 
- 
- 
- 
+
+
+
+{tf.contentOfConvertIS; ; [Decimal]
+  [RCX:address, RDX:Value; RAX=0, R8=10]
+  ('
+    (@ @tf.addressOfConvertIS)
+    (MOV (RAX) (RDX))
+    (MOV (R8D) (i $0A))
+    (@ @tl.convertIS_0)
+    (MOV (RDX) (i 0))
+    (DIV (R8))
+    (ADD (DX) (i "0"))
+    (MOV (mw (RCX)) (DX))
+    (ADD (RCX) (i 2))
+    (CMP (RAX) (i 0))
+    (JNE @tl.convertIS_0)
+    (RET)
+  )
+}
+
+{tf.contentOfConvertSI; ;
+  [RCX:Source; RAX=result, RDX=?, R8=Base, R9=?]
+  ('
+    (@ @tf.addressOfConvertSI)
+    (MOV (AL) (i $0A))
+    (CMP (mw (RCX)) (i "%"))
+    (JNE @tl.convertSI_0)
+    (MOV (AL) (i $02))
+    (JMP @tl.convertSI_1)
+    (@ @tl.convertSI_0)
+    (CMP (mw (RCX)) (i "$"))
+    (JNE @tl.convertSI_2)
+    (MOV (AL) (i $10))
+    (@ @tl.convertSI_1)
+    (ADD (RCX) (i 2))
+    (@ @tl.convertSI_2)
+    (MOZ (R8) (AL))
+    (MOV (RAX) (i 0))
+    (MOV (R9) (i 0))
+    (@ @tl.convertSI_3)
+    (CMP (mbd (RCX) 1) (i 0))
+    (JNE @tl.convertSI_6)
+    (MOV (R9B) (mb (RCX)))
+    (CMP (R9B) (i 0))
+    (JE @tl.convertSI_7)
+    (LEAi (RDX) @sr.addressOfNumberList)
+    (@ @tl.convertSI_4)
+    (CMP (mb (RDX)) (i 0))
+    (JE @tl.convertSI_6)
+    (CMP (mb (RDX)) (R9B))
+    (JE @tl.convertSI_5)
+    (ADD (RDX) (i (sr.sizeOfElementOfNumberList)))
+    (JMP @tl.convertSI_3)
+    (@ @tl.convertSI_5)
+    (MOV (R9B) (mbd (RDX) 1))
+    (MUL (R8))
+    (ADD (RAX) (R9))
+    (@ @tl.convertSI_6)
+    (ADD (RCX) (i 2))
+    (JMP @tl.convertSI_3)
+    (@ @tl.convertSI_7)
+    (RET)
+  )
+}
+
+{tf.contentOfCopyX; ;
+  [RCX:Dest, RDX:Source; AX=0]
+  ('
+    (@ @tf.addressOfCopyX)
+    (@ @tl.copyX_0)
+    (MOV (AX) (mw (RDX)))
+    (CMP (AX) (i 0))
+    (JE @tl.copyX_1)
+    (MOV (mw (RCX)) (AX))
+    (ADD (RCX) (i 2))
+    (ADD (RDX) (i 2))
+    (JMP @tl.copyX_0)
+    (@ @tl.coptX_1)
+    (RET)
+  )
+}
+
+
+
+
+
