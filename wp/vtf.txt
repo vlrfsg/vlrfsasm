@@ -1,0 +1,37 @@
+[wp/vtf.txt
+ Copyright 2021 vlrfsg]
+ 
+{tf.contentOfInitMemory; ;
+  ('
+    (SUB (RSP) (i $28))
+    (MOV (RBP) (RSP))
+    
+    (CALdll "GetProcessHeap")
+    (MOV (EBX) (EAX))
+    (MOV (ECX) (EAX))
+    (MOV (EDX) (i $08)) [HEAP_ZERO_MEMORY]
+    (MOV (R8D) (i (h.sizeOfHeap)))
+    (CALdll "HeapAlloc")
+    
+    (MOV (m (RAX)) (EBX))
+    (MOV (R13) (RAX))
+  )
+}
+
+{tf.contentOfLoadErrorFile; ;
+  ('
+    ()
+  )
+}
+
+{tf.contentOfReadFile; ;
+  ('
+    (@ @tf.addressOfReadFile)
+    ()
+  )
+}
+ 
+ 
+ 
+ 
+ 

@@ -111,10 +111,15 @@
 {ts.contentOfText; ;
   ('
     (@ @ts.entryPoint)
-    (tf.contentOfMain)
+    (tf.contentOfInitMemory)
+    (tf.contentOfLoadErrorFile)
+    (tf.contentOfParseErrorFile)
+    (tf.contentOfParseCommandLine)
+    (tf.contentOfLoadSourceFile)
     (tf.contentOfReadFile)
     (tf.contentOfConvertIS)
     (tf.contentOfConvertSI)
+    (tf.contentOfConvert8X)
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)
@@ -134,12 +139,5 @@
     (tf.contentOfCmdErr)
   )
 }
-
-{tf.contentOfMain; ;
-  ('
-    ()
-  )
-}
-
 
 
