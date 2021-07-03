@@ -99,39 +99,33 @@
     )
   )
 }
-{c.cnvSxS8 A; ;
+{c.cnvSxS8L 16 A B; ;
   (?
-    (== (# A) 16)
+    (== (c.getRan A 11 5) %11011)
     (c.cnvCcS8 A)
     (?
-      (== (# A) 32)
-      (?
-        (== (c.getRan A 26 6) %110110)
-        (c.cnvCcS8 A)
-        (' (c.cnvCcS8 (> A 16)) (c.cnvCcS8 (: A 16)))
-      )
-      (?
-        (& (# A) $F)
-        (; "Length of string in utf-16 must be multiple of 16.")
-        (?
-          (== (c.getRan A (+ (c.align (> (# A) 1) 16) 10) 6) %110110)
-          ('
-            (c.cnvSxS8 (> A (- (c.align (> (# A) 1) 16) 16)))
-            (c.cnvSxS8 (: A (- (c.align (> (# A) 1) 16) 16)))
-          )
-          ('
-            (c.cnvSxS8 (> A (c.align (> (# A) 1) 16)))
-            (c.cnvSxS8 (: A (c.align (> (# A) 1) 16)))
-          )
-        )
-      )
+      (getBit A 10)
+      (c.cnvCcS8 (- (' (: B 10) (: A 10)) $00010000))
+      (c.empty)
     )
+  );
+  (?
+    (== (c.getRan A 10 6) %110110)
+    A
+    0
   )
 }
+{c.cnvSxS8 A; ; (c.cnvSxS8L A 0)}
 
 [String with null]
 {c.cctSxN A; ; (' A (: 0 16))}
+{c.cctS8N A; ; (' A (: 0 8))}
 
+[Utf-16 change endian]
+{c.chgEdnSxL 16 A; ;
+  (' (c.getRan A 0 8) (c.getRan A 8 8))
+}
+{c.chgEdnSx A; ; (c.chgEdnSxL A)}
 
 [about vlrfsasm]
 {c.verI; ; $000200}

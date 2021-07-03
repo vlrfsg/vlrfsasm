@@ -19,7 +19,22 @@
 
 {tf.contentOfLoadErrorFile; ;
   ('
+    (LEAi (RCX) (sr.addressOfErrorFileName))
+    (MOV (DL) (i 1))
+    (CALf @tf.addressOfReadFile)
+    (LEAmd (RCX) (hm.addressOfTempString))
+    (LEAmd (RDX) (hm.addressOfInputFile))
+    (CALf @tf.addressOfConvert8X)
+  )
+}
+
+{tf.contentOfParseErrorFile; ;
+  ('
+    (LEAmd (RCX) (hm.addressOfErrorMessage))
+    (LEAmd (RDX) (hm.addressOfTempString))
+    (@ @tl.parseErrorFile_0)
     ()
+    (@ @tl.parseErrorFile_1)
   )
 }
 
@@ -128,6 +143,63 @@
     (ADD (RCX) (i 2))
     (JMP @tl.convertSI_3)
     (@ @tl.convertSI_7)
+    (RET)
+  )
+}
+
+{tf.contentOfConvert8X; ;
+  [RCX: Dest, RDX: Source]
+  ('
+    (@ @tf.addressOfConvert8X)
+    (@ @tl.convert8X_0)
+    (MOV (AL) (RDX))
+    (TEST (AL) (i $80))
+    (JNZ @tl.convert8X_1)
+    (CMP (AL) (i 0))
+    (JE @tl.convert8X_8)
+    (MOZ (R8D) (AL))
+    (JMP @tl.convert8X_4)
+    (@ @tl.convert8X_1)
+    (MOV (AH) (i 1))
+    (TEST (AL) (i $20))
+    (JZ @tl.convert8X_2)
+    (INC (AH))
+    (TEST (AL) (i $10))
+    (JZ @tl.convert8X_2)
+    (INC (AH))
+    (AND (AL) (i $1F))
+    (@ @tl.convert8X_2)
+    (AND (AL) (i $3F))
+    (MOZ (R8D) (AL))
+    (@ @tl.convert8X_3)
+    (INC (RDX))
+    (MOV (AL) (mb (RDX)))
+    (AND (AL) (i $3F))
+    (SHL (R8D) (i 6))
+    (OR (R9B) (AL))
+    (DEC (AH))
+    (JNZ @tl.convert8X_3)
+    (@ @tl.convert8X_4)
+    (CMP (R8D) (i $0000FEFF))
+    (JE @tl.convert8X_7)
+    (CMP (R8D) (i $00010000))
+    (JB @tl.convert8X_5)
+    (MOV (EAX) (R8D))
+    (SHR (EAX) (i 10))
+    (CMP (AX) (i $0440))
+    (JAE @tl.convert8X_7)
+    (ADD (AX) (i $D7C0))
+    (MOV (mw (RCX)) (AX))
+    (ADD (RCX) (i 2))
+    (AND (R8W) (i $03FF))
+    (ADD (R8W) (i $DC00))
+    (@ @tl.convert8X_6)
+    (MOV (mw (RCX)) (R8W))
+    (ADD (RCX) (i 2))
+    (@ @tl.convert8X_7)
+    (INC (RDX))
+    (JMP @tl.convert8X_0)
+    (@ @tl.convert8X_8)
     (RET)
   )
 }

@@ -6,11 +6,34 @@
  0:I, 1:F
  (reg) 0:s, 1:v]
 
-[frequently used immediate size]
+[frequently used immediate size, little endian]
 {ib A; ; (: A 8)}
-{iw A; ; (: A 16)}
-{id A; ; (: A 32)}
-{iq A; ; (: A 64)}
+{iw A; ;
+  ('
+    (c.getRan A 0 8)
+    (c.getRan A 8 8)
+  )
+}
+{id A; ;
+  ('
+    (c.getRan A 0 8)
+    (c.getRan A 8 8)
+    (c.getRan A 16 8)
+    (c.getRan A 24 8)
+  )
+}
+{iq A; ;
+  ('
+    (c.getRan A 0 8)
+    (c.getRan A 8 8)
+    (c.getRan A 16 8)
+    (c.getRan A 24 8)
+    (c.getRan A 32 8)
+    (c.getRan A 40 8)
+    (c.getRan A 48 8)
+    (c.getRan A 56 8)
+  )
+}
 
 [immediate]
 {i A; ; (< (: A 64) 5)}

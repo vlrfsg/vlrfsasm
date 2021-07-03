@@ -28,7 +28,7 @@ About vlrfsasm
   Each argument is function, parameter, local name, literal or global name.
   Defining functions is an exception in syntax.
   >  {function parameter0 parameter1 ...; localName0 localName1 ...; (content)}
-  Literal is either 64-bit unsigned number or utf-16BE string.
+  Literal is either 64-bit unsigned number or utf-16BE string without Null.
   Number with prefix % is binary and with $ is hexdecimal number.
   Number can contains symbols to distinguish each digits clearly.
   String is characters between two double-quotes.
