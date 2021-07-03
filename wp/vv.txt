@@ -101,7 +101,8 @@
 {hm.addressOfTempStruct; ; $0400}
 {hm.addressOfErrorMessage; ; $2000}
 {hm.sizeOfErrorMessage; ; $2000}
-{hm.sizeOfElementOfErrorMessage; ; $80}
+{hm.logOfElementOfErrorMessage; ; 7}
+{hm.sizeOfElementOfErrorMessage; ; (< 1 hm.logOfElementOfErrorMessage)}
 {hm.addressOfCommandLine; ; (+ (hm.addressOfErrorMessage) (hm.sizeOfErrorMessage))}
 {hm.sizeOfCommandLine; ; $4000}
 {hm.sizeOfElementOfCommandLine; ; $200}
