@@ -158,6 +158,8 @@
     (tf.contentOfParseCommandLine)
     (tf.contentOfLoadSourceFile)
     (tf.contentOfParseSourceFile)
+    (tf.contentOfPrintError)
+    (tf.contentOfExit)
     (tf.contentOfReadFile)
     (tf.contentOfConvertIS)
     (tf.contentOfConvertSI)

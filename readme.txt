@@ -13,9 +13,10 @@ About vlrfsasm
 3. How to use vlrfsasm
   Create either a shortcut or batch file.
   Then edit them to execute vlrfsasm.exe with the path of source and destination files.
-  Source file encoding must be Utf-8.
+  Text source file must be encoded in Utf-8.
+  Binary source file must have filename extension "bin".
   
-  >  vlrfsasm <destination file> <source files>
+  >  vlrfsasm <destination file> <source file>
   
 
 4. Example
