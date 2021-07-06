@@ -37,12 +37,13 @@
 {sr.elementOfCommandList A B; ;
   ('
     (iw A)
-    (- B (` @sr.addressOFCommandList))
+    (iw (- B (` @sr.addressOFCommandList)))
   )
 }
+{sr.sizeOfElementOfCommandList; ; $4}
 {sr.contentOfCommandList; ;
   (`
-    (@ @sr.addressOFCommandList)
+    (@ @sr.addressOfCommandList)
     (sr.elementOfCommandList "'" (` @tf.addressOfCmdCct))
     (sr.elementOfCommandList "+" (` @tf.addressOfCmdAdd))
     (sr.elementOfCommandList "&" (` @tf.addressOfCmdSub))
@@ -98,6 +99,8 @@
 
 [Heap]
 {hm.addressOfTempInteger; ; $0008}
+{hm.addressOfEndOfLiteral; ; $0010}
+{hm.addressOfEndOfToken; ; $0018}
 {hm.addressOfTempStruct; ; $0400}
 {hm.addressOfErrorMessage; ; $2000}
 {hm.sizeOfErrorMessage; ; $2000}
@@ -122,7 +125,7 @@
 {hm.sizeOfLiteral; ; $50000}
 {hm.addressOfToken; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
 {hm.sizeOfToken; ; $80000}
-{hm.sizeOfElementOfToken; ; $C} [2:Type, 2:Definition 2:Length, 2:Hash, 4:Str]
+{hm.sizeOfElementOfToken; ; $C} [2:Type{0:Number, 1:String, 2:Function, 3:BuiltinFunction, 4:Argument, 5:Label}, 2:Definition, 2:Length, 2:Hash, 4:Str]
 {hm.addressOfInputText; ; (+ (hm.addressOfToken) (hm.sizeOfToken))}
 {hm.sizeOfInputText; ; $100000}
 {hm.addressOfDef; ; (+ (hm.addressOfInputText) (hm.sizeOfInputText))}
@@ -151,8 +154,10 @@
     (tf.contentOfInitMemory)
     (tf.contentOfLoadErrorFile)
     (tf.contentOfParseErrorFile)
+    (tf.contentOfCopyBuiltinFunc)
     (tf.contentOfParseCommandLine)
     (tf.contentOfLoadSourceFile)
+    (tf.contentOfParseSourceFile)
     (tf.contentOfReadFile)
     (tf.contentOfConvertIS)
     (tf.contentOfConvertSI)

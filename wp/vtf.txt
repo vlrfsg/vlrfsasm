@@ -68,6 +68,32 @@
   )
 }
 
+{tf.contentOfCopyBuiltinFunc; ;
+  ('
+    (@ @addressOfCopyBuiltinFunc)
+    (LEAi (RDX) @sr.addressOfCommandList)
+    (MOV (ECX) (i 0))
+    (LEAmd (RSI) (hm.addressOfToken))
+    (LEAmd (RDI) (hm.addressOfLiteral))
+    (@ @tl.copyBuiltinFunc_0)
+    (MOV (AL) (mib (RDX) (RCX))
+    (MOV (mib (RDI) (RCX)) (AL))
+    (MOV (mb (RSI)) (i 3))
+    (MOV (mdb (RSI) 4) (i 1))
+    (MOV (mdb (RSI) 6) (AL))
+    (MOV (mdd (RSI) 8) (EDI))
+    (ADD (RCX) (sr.sizeOfElementOfCommandList))
+    (ADD (RSI) (hm.sizeOfToken))
+    (CMP (AL) (i 0))
+    (JNE @tl.copyBuiltinFunc_0)
+    (MOV (mmdq (hm.addressOfEndOfToken)) (RSI))
+    (ADD (RDI) (RCX))
+    (MOV (mmdq (hm.addressOfEndOfLiteral)) (RDI))
+    (RET)
+  )
+}
+
+
 {tf.contentOfReadFile; ;
   [RCX: Name, DL:Error; ]
   ('
