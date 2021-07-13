@@ -4,16 +4,16 @@ Copyright 2021 vlrfsg
 {$00 Not found or unopenable source file}
 {$01 Too big source file}
 {$02 Unwritable destination file}
+{$03 Undefined function}
+{$04 Unassigned label address}
+{$05 Twice-defined function}
+{$06 Twice-assigned label address}
+{$07 Wrong number of argument}
+{$08 Unpaired bracket}
+{$0A Too long value}
+{$0B Overflowed stack}
 
-{$04 Undefined function}
-{$05 Unassigned label address}
-{$06 Undefined Result function(.)}
+{$10 Unspecified source file path}
+{$11 Undefined result function(.)}
+{$12 Too much step}
 
-{$08 Twice-defined function}
-{$09 Twice-assigned label address}
-
-{$0C Wrong number of argument}
-{$0D Unpaired bracket}
-
-{$10 Too much step}
-{$11 Too long value}

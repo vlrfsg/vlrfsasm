@@ -13,8 +13,8 @@ About vlrfsasm
 3. How to use vlrfsasm
   Create either a shortcut or batch file.
   Then edit them to execute vlrfsasm.exe with the path of source and destination files.
-  Text source file must be encoded in Utf-8.
-  Binary source file must have filename extension "bin".
+  Text source file must be encoded in Utf-8 and suffixed with ".txt".
+  Other file extensions indicate binary source files.
   
   >  vlrfsasm <destination file> <source file>
   
@@ -29,6 +29,9 @@ About vlrfsasm
   Each argument is function, parameter, local name, literal or global name.
   Defining functions is an exception in syntax.
   >  {function parameter0 parameter1 ...; localName0 localName1 ...; (content)}
+  Repeating function is defined with splitting width and condition for next iteration.
+  Results of all iterations are concatenated.
+  >  {loopFunction splitWidth parameter0 ...; ; (content); (condition)}
   Literal is either 64-bit unsigned number or utf-16BE string without Null.
   Number with prefix % is binary and with $ is hexdecimal number.
   Number can contains symbols to distinguish each digits clearly.

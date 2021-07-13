@@ -32,6 +32,7 @@
     (sr.contentOfCommandList)
     (sr.contentOfErrorFileName)
     (sr.contentOfNumberList)
+    (sr.contentOfAppName)
   )
 }
 {sr.elementOfCommandList A B; ;
@@ -64,7 +65,7 @@
     (iw 0)
   )
 }
-{sr.contentOfErrorFileName; ; "error.txt"}
+{sr.contentOfErrorFileName; ; (c.chgEdnSxL "error.txt")}
 {sr.elementOfNumberList A B; (' (ib A) (ib B))}
 {sr.sizeOfElementOfNumberList; ; $2}
 {sr.contentOfNumberList; ;
@@ -93,6 +94,20 @@
   (sr.elementOfNumberList "f" 15)
   (iw 0)
 }
+{sr.contentOfAppName; ;
+  ('
+    (@ @sr.addressOfAppName)
+    (c.chgEdnSxL
+      ('
+        "Vlrfsasm v"
+        (c.cnvIS (h.majorImageVersion))
+        "."
+        (c.cnvIS (h.minorImageVersion))
+        " "
+      )
+    )
+  )
+}
 
 [Stack]
 {h.sizeOfStack; ; $10000}
@@ -101,6 +116,8 @@
 {hm.addressOfTempInteger; ; $0008}
 {hm.addressOfEndOfLiteral; ; $0010}
 {hm.addressOfEndOfToken; ; $0018}
+{hm.addressOfListOfTextFile; ; $0300}
+{hm.sizeOfElementOfListOfTextFile; ; $8}
 {hm.addressOfTempStruct; ; $0400}
 {hm.addressOfErrorMessage; ; $2000}
 {hm.sizeOfErrorMessage; ; $2000}
@@ -125,7 +142,7 @@
 {hm.sizeOfLiteral; ; $50000}
 {hm.addressOfToken; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
 {hm.sizeOfToken; ; $80000}
-{hm.sizeOfElementOfToken; ; $C} [2:Type{0:Number, 1:String, 2:Function, 3:BuiltinFunction, 4:Argument, 5:Label}, 2:Definition, 2:Length, 2:Hash, 4:Str]
+{hm.sizeOfElementOfToken; ; $10} [2:Type{0:Number, 1:String, 2:Function, 3:BuiltinFunction, 4:Argument, 5:Label, 6:RawBinary}, 2:LengthOfDefinition, 4:Definition, 2:Length, 2:Hash, 4:Str]
 {hm.addressOfInputText; ; (+ (hm.addressOfToken) (hm.sizeOfToken))}
 {hm.sizeOfInputText; ; $100000}
 {hm.addressOfDef; ; (+ (hm.addressOfInputText) (hm.sizeOfInputText))}
