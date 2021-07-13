@@ -161,6 +161,7 @@
 {hm.sizeOfElementOfLabelList; ; $8} [2:Next, 4:Position]
 {hm.addressOfTempString; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
 {hm.sizeOfTempString; ; $20000}
+{hm.sizeOfElementOfTempString; ; $10000}
 {h.sizeOfHeap; ; (+ (hm.addressOfTempString) (hm.sizeOfTempString))}
 
 [Text]

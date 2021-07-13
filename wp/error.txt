@@ -12,6 +12,7 @@ Copyright 2021 vlrfsg
 {$08 Unpaired bracket}
 {$0A Too long value}
 {$0B Overflowed stack}
+{$0F Complete}
 
 {$10 Unspecified source file path}
 {$11 Undefined result function(.)}

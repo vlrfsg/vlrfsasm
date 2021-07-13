@@ -167,7 +167,7 @@
     (ADD (RDX) (i 2))
     (JMP @tl.loadSourceFile_1)
     (@ @tl.loadSourceFile_4)
-    (MOV (RAX) (i (c.chgEdnSx ".txt")))
+    (MOV (RAX) (i $007400780074002E)) [.txt]
     (CMP (RAX) (mdq (RDX) (c.neg 8)))
     (JNE @tl.loadSourceFile_5)
     (MOV (mib (RBX) (R11)) (i 0))
@@ -227,6 +227,78 @@
   )
 }
 
+
+{tf.contentOfPrintError; ;
+  ('
+    (@ @addressOfPrintError)
+    (MOV (RBP) (RSP))
+    
+    (MOZ (EBX) (CL))
+    (MOV (RSI) (RDX))
+    (LEAmd (RCX) (hm.addressOfTempStruct))
+    (MOV (RDI) (RCX))
+    (CALdll "GetLocalTime")
+    (LEAmd (RCX) (hm.addressOfTempString))
+    (LEAs (RDX) @sr.addressOfAppName)
+    (CALf @tf.addressOfCopyX)
+    (MOZ (EDX) (mdw (RDI) 2))
+    (CALf @addressOfConvertIS)
+    (MOV (mw (RCX)) (i "/"))
+    (ADD (RCX) (i 2))
+    (MOZ (EDX) (mdw (RDI) 6))
+    (CALf @addressOfConvertIS)
+    (MOV (mw (RCX)) (i " "))
+    (ADD (RCX) (i 2))
+    (MOZ (EDX) (mdw (RDI) 8))
+    (CALf @addressOfConvertIS)
+    (MOV (mw (RCX)) (i ":"))
+    (ADD (RCX) (i 2))
+    (MOZ (EDX) (mdw (RDI) 10))
+    (CALf @addressOfConvertIS)
+    (CALf @tf.addressOfNewLine)
+
+    (MOV (EDX) (EBX))
+    (CALf @addressOfConvertIS)
+    (MOV (mw (RCX)) (i ":"))
+    (ADD (RCX) (i 2))
+    (SHL (EBX) (hm.logOfElementOfErrorMessage))
+    (LEAmid (RDX) (RBX) (hm.addressOfErrorMessage))
+    (CALf @tf.addressOfCopyX)
+    (CALf @tf.addressOfNewLine)
+    
+    (MOV (RDX) (RSI))
+    (CALf @tf.addressOfCopyX)
+    (CALf @tf.addressOfNewLine)
+    
+    (MOV (R12) (RCX))
+    (MOV (ECX) (i (c.neg 11)))
+    (CALdll "GetStdHandle")
+    (MOV (ECX) (EAX))
+    (MOV (EBX) (EAX))
+    (LEAmd (RDX) (hm.addressOfTempString))
+    (MOV (R8) (R12))
+    (SUB (R8) (RDX))
+    (SHR (R8D) (i 1)) [Not confirmed; surrogate pairs?]
+    (LEAmd (R9) (hm.addressOfTempInteger))
+    (MOV (RAX) (i 0))
+    (MOV (mdq (RBP) $20) (RAX))
+    (CALdll "WriteConsoleW")
+    (MOV (ECX) (EBX))
+    (CALdll "CloseHandle")
+  )
+}
+
+{tf.contentOfExit; ;
+  ('
+    (MOV (R8) (R13))
+    (MOV (ECX) (md (R8)))
+    (MOV (EDX) (i 0))
+    (CALdll "HeapFree")
+    (ADD (RSP) (i $28))
+    (MOV (EAX) (i 0))
+    (CALdll "ExitProcess")
+  )
+}
 
 {tf.contentOfReadFile; ;
   [RCX: Name, DL:DisableError; ]
@@ -290,7 +362,6 @@
     (MOV (EAX) (mmdd (hm.addressOfTempInteger)))
     (ADD (RSP) (i $38))
     (RET)
-    
   )
 }
 
@@ -431,7 +502,14 @@
   )
 }
 
-
+{tf.contentOfNewLine; ;
+  ('
+    (@ @tf.addressOfNewLine)
+    (MOV (md (RCX)) (i $000A000D))
+    (ADD (RCX) (i 4))
+    (RET)
+  )
+}
 
 
 
