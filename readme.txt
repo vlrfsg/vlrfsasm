@@ -36,7 +36,7 @@ About vlrfsasm
   Number with prefix % is binary and with $ is hexdecimal number.
   Number can contains symbols to distinguish each digits clearly.
   String is characters between two double-quotes.
-  Escape pairs of characters are \", \\, \n and \r.
+  Escape pairs of characters are \", \\, \r and \n.
   Length of string varies on its content and is always multiple of 16.
   >  214 %11010110 $D6
   >  $0022-0061-005C-0022 "\"a\\\""
