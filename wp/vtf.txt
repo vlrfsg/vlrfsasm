@@ -174,7 +174,7 @@
     (MOV (RCX) (RSI))
     (LEAmd (RDX) (hm.addressOfInputFile))
     (CALf @tf.addressOfConvert8X)
-    (MOV (mw (RCX)) (i $000C))
+    (MOV (mw (RCX)) (i $001C))
     (LEAd (RSI) (RCX) 2)
     (MOV (mq (RDI)) (RBX))
     (ADD (RDI) (i (hm.sizeOfElementOfListOfTextFile)))
@@ -224,6 +224,19 @@
     (ADD (RBX) (hm.sizeOfElementOfCommandLine))
     (JMP @tl.loadSourceFile_0)
     (@ @loadSourceFile_12)
+  )
+}
+
+{tf.contentOfParseSourceFile; ;
+  ('
+    (LEAmd (R14) (hm.addressOfInputText))
+    (MOV (R12D) (i 0))
+    (MOV (BL) (i 0))
+    
+    (@ @tl.parseSourceFile_0)
+    
+    
+    
   )
 }
 

@@ -183,6 +183,7 @@
     (tf.contentOfConvertSI)
     (tf.contentOfConvert8X)
     {tf.contentOFCopyX}
+    {tf.contentOfNewLine}
     {tf.contentOFSearchX}
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
