@@ -199,6 +199,7 @@
     {tf.contentOfSearchX}
     {tf.contentOfGetTokenId}
     {tf.contentOfAddDef}
+    (tf.contentOfCheckIf)
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)
