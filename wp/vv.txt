@@ -37,31 +37,35 @@
 }
 {sr.elementOfCommandList A B; ;
   ('
-    (iw A)
-    (iw (- B (` @sr.addressOFCommandList)))
+    (ib B)
+    (ib A)
+    (iw (- C (` @sr.addressOfCommandList)))
   )
 }
 {sr.sizeOfElementOfCommandList; ; $4}
 {sr.contentOfCommandList; ;
   (`
     (@ @sr.addressOfCommandList)
-    (sr.elementOfCommandList "'" (` @tf.addressOfCmdCct))
-    (sr.elementOfCommandList "+" (` @tf.addressOfCmdAdd))
-    (sr.elementOfCommandList "&" (` @tf.addressOfCmdSub))
-    (sr.elementOfCommandList "|" (` @tf.addressOfCmdIor))
-    (sr.elementOfCommandList "^" (` @tf.addressOfCmdXor))
-    (sr.elementOfCommandList "?" (` @tf.addressOfCmdIf))
-    (sr.elementOfCommandList "!" (` @tf.addressOfCmdNot))
-    (sr.elementOfCommandList "<" (` @tf.addressOfCmdShl))
-    (sr.elementOfCommandList ">" (` @tf.addressOfCmdShr))
-    (sr.elementOfCommandList "*" (` @tf.addressOfCmdMul))
-    (sr.elementOfCommandList "/" (` @tf.addressOfCmdDiv))
-    (sr.elementOfCommandList "%" (` @tf.addressOfCmdMod))
-    (sr.elementOfCommandList ":" (` @tf.addressOfCmdRes))
-    (sr.elementOfCommandList "#" (` @tf.addressOfCmdGts))
-    (sr.elementOfCommandList "@" (` @tf.addressOfCmdLbl))
-    (sr.elementOfCommandList "`" (` @tf.addressOfCmdAdr))
-    (sr.elementOfCommandList ";" (` @tf.addressOfCmdErr))
+    (sr.elementOfCommandList 0 5 (` @tf.addressOfCmdRet))
+    (sr.elementOfCommandList 0 5 (` @tf.addressOfCmdThn))
+    (sr.elementOfCommandList 0 5 (` @tf.addressOfCmdEls))
+    (sr.elementOfCommandList "?" 2 (` @tf.addressOfCmdIf))
+    (sr.elementOfCommandList "'" 2 (` @tf.addressOfCmdCct))
+    (sr.elementOfCommandList "+" 2 (` @tf.addressOfCmdAdd))
+    (sr.elementOfCommandList "&" 2 (` @tf.addressOfCmdSub))
+    (sr.elementOfCommandList "|" 2 (` @tf.addressOfCmdIor))
+    (sr.elementOfCommandList "^" 2 (` @tf.addressOfCmdXor))
+    (sr.elementOfCommandList "!" 2 (` @tf.addressOfCmdNot))
+    (sr.elementOfCommandList "<" 2 (` @tf.addressOfCmdShl))
+    (sr.elementOfCommandList ">" 2 (` @tf.addressOfCmdShr))
+    (sr.elementOfCommandList "*" 2 (` @tf.addressOfCmdMul))
+    (sr.elementOfCommandList "/" 2 (` @tf.addressOfCmdDiv))
+    (sr.elementOfCommandList "%" 2 (` @tf.addressOfCmdMod))
+    (sr.elementOfCommandList ":" 2 (` @tf.addressOfCmdRes))
+    (sr.elementOfCommandList "#" 2 (` @tf.addressOfCmdGts))
+    (sr.elementOfCommandList "@" 2 (` @tf.addressOfCmdLbl))
+    (sr.elementOfCommandList "`" 2 (` @tf.addressOfCmdAdr))
+    (sr.elementOfCommandList ";" 2 (` @tf.addressOfCmdErr))
     (iw 0)
   )
 }
@@ -116,6 +120,10 @@
 {hm.addressOfTempInteger; ; $0008}
 {hm.addressOfEndOfLiteral; ; $0010}
 {hm.addressOfEndOfToken; ; $0018}
+{hm.addressOfEndOfDef; ; $0020}
+{hm.addressOfFuncData; ; $0200} [4:Address, 2:NumberOfArgument, 2:NumberOfLocalLabel]
+{hm.addressOfArgumentList; ; $0210} [2:Token, 2:Size]
+{hm.addressOfLocalLabelList; ; $02C0}
 {hm.addressOfListOfTextFile; ; $0300}
 {hm.sizeOfElementOfListOfTextFile; ; $8}
 {hm.addressOfTempStruct; ; $0400}
@@ -133,7 +141,7 @@
 {hm.sizeOfElementOfLabelValue; ; $4} [2:Value, 2:Step]
 {hm.addressOfStack; ; (+ (hm.addressOfLabelValue) (hm.sizeOfLabelValue))}
 {hm.sizeOfStack; ; $4000}
-{hm.sizeOfElementOfStack; ; $2}
+{hm.sizeOfElementOfStack; ; $8} [2:Line, 2:Func, 2:NumberOfArgument]
 {hm.addressOfInputFile; ; (+ (hm.addressOfStack) (hm.sizeOfStack))}
 {hm.sizeOfInputFile; ; $10000}
 {hm.addressOfDestFile; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
@@ -142,12 +150,14 @@
 {hm.sizeOfLiteral; ; $50000}
 {hm.addressOfToken; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
 {hm.sizeOfToken; ; $80000}
-{hm.sizeOfElementOfToken; ; $10} [2:Type{0:Number, 1:String, 2:Function, 3:BuiltinFunction, 4:Argument, 5:Label, 6:RawBinary}, 2:LengthOfDefinition, 4:Definition, 2:Length, 2:Hash, 4:Str]
+{hm.logOfElementOfToken; ; 4}
+{hm.sizeOfElementOfToken; ; (< 1 (hm.logOfElementOfToken))} [1:Type{0:Number, 1:String, 2:Function/LoopFunction/BuiltinFunction/RawBinary, 3:Argument&LocalLabel, 4:GlobalLabel, 5:InternalFunction}, 1:TypeExtension, 2:LengthOfDefinition, 4:Definition, 2:Length, 2:Hash, 4:Str]
 {hm.addressOfInputText; ; (+ (hm.addressOfToken) (hm.sizeOfToken))}
 {hm.sizeOfInputText; ; $100000}
 {hm.addressOfDef; ; (+ (hm.addressOfInputText) (hm.sizeOfInputText))}
 {hm.sizeOfDef; ; $100000}
-{hm.sizeOfElementOfDef; ; $2}
+{hm.sizeOfFuncHeader; ; $6} [2:File, 2:NumberOfArgument, 2:NumberOfLocalLabel]
+{hm.sizeOfElementOfDef; ; $6} [2:Token, 2:NumberOfArgument, 2:Line]
 {hm.addressOfValueIndex; ; (+ (hm.addressOfDef) (hm.sizeOfDef))}
 {hm.sizeOfValueIndex; ; $80000}
 {hm.sizeOfElementOfValueIndex; ; $8} [4:Size. 2:LabelListId]
@@ -182,9 +192,13 @@
     (tf.contentOfConvertIS)
     (tf.contentOfConvertSI)
     (tf.contentOfConvert8X)
-    {tf.contentOFCopyX}
+    {tf.contentOfCopyX}
     {tf.contentOfNewLine}
-    {tf.contentOFSearchX}
+    {tf.contentOfGetNextCondition}
+    {tf.contentOfSearchI}
+    {tf.contentOfSearchX}
+    {tf.contentOfGetTokenId}
+    {tf.contentOfAddDef}
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)

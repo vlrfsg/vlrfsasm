@@ -39,7 +39,7 @@ Here is comment
   )
 }
 
-{listOfFirst 128 A B; ;
+{listOfFirst A 128 B; ;
   ('
     (? (== B 0) (c.empty) ", ")
     (c.cnvIS (B))
@@ -49,7 +49,7 @@ Here is comment
   (+ B 1) [count]
 }
 
-{listOfSecond 128 A B; ;
+{listOfSecond A 128 B; ;
   ('
     (? (== B 0) (c.empty) ", ")
     (c.cnvIS (B))

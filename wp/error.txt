@@ -13,6 +13,8 @@ Copyright 2021 vlrfsg
 {$0A Too long value}
 {$0B Overflowed stack}
 {$0C Wrong type argument}
+{$0D Error in script}
+{$0E Undefined argument}
 {$0F Complete}
 
 {$10 Unspecified source file path}

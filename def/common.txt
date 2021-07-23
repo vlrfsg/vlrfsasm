@@ -99,7 +99,7 @@
     )
   )
 }
-{c.cnvSxS8L 16 A B; ;
+{c.cnvSxS8L A 16 B; ;
   (?
     (== (c.getRan A 11 5) %11011)
     (c.cnvCcS8 A)
@@ -122,7 +122,7 @@
 {c.cctS8N A; ; (' A (: 0 8))}
 
 [Utf-16 change endian]
-{c.chgEdnSxL 16 A; ;
+{c.chgEdnSxL A 16; ;
   (' (c.getRan A 0 8) (c.getRan A 8 8))
 }
 {c.chgEdnSx A; ; (c.chgEdnSxL A)}

@@ -31,7 +31,7 @@ About vlrfsasm
   >  {function parameter0 parameter1 ...; localName0 localName1 ...; (content)}
   Repeating function is defined with splitting width and condition for next iteration.
   Results of all iterations are concatenated.
-  >  {loopFunction splitWidth parameter0 ...; ; (content); (condition)}
+  >  {loopFunction parameter0 splitWidth0 ...; ; (content); (condition)}
   Literal is either 64-bit unsigned number or utf-16BE string without Null.
   Number with prefix % is binary and with $ is hexdecimal number.
   Number can contains symbols to distinguish each digits clearly.
@@ -88,8 +88,8 @@ About vlrfsasm
   Address: 64 bits
   >  (` @A)
   Error: No result
-  If this function is executed, utf-16 encoded argument A is printed out and vlrfsasm stops.
-  >  (; A)
+  If this function gets executed, utf-16 encoded argument A is printed out and vlrfsasm stops.
+  >  (~ A)
 
 7. Label
   Labels embedded in (.) are evaluated after each step.

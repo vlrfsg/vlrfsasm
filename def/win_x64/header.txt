@@ -5,7 +5,7 @@
  h.majorImageVersion
  h.minorImageVersion
  h.sizeOfStack
- h.sizeOFHeap]
+ h.sizeOfHeap]
 
 [Linker version]
 {h.majorLinkerVersion; ; (c.getRan (c.verI) 16 8)}
@@ -55,7 +55,7 @@
     (iw (h.minorSystemVersion))[MinorSubSystemVersion]
     (id 0)                     [Win32VersionValue]
     (id (h.sizeOfimage))       [SizeOfImage]
-    (id (h.sizeOFHeader))      [SizeOfHeaders]
+    (id (h.sizeOfHeader))      [SizeOfHeaders]
     (id 0)                     [Checksum]
     (iw h.subsystem)           [SubSystem]
     (iw 0)                     [DllCharacteristics]
