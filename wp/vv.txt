@@ -186,23 +186,25 @@
     (tf.contentOfParseCommandLine)
     (tf.contentOfLoadSourceFile)
     (tf.contentOfParseSourceFile)
+    (tf.contentOfRun)
+    (tf.contentOfWriteDestFile)
     (tf.contentOfPrintError)
     (tf.contentOfExit)
     (tf.contentOfReadFile)
     (tf.contentOfConvertIS)
     (tf.contentOfConvertSI)
     (tf.contentOfConvert8X)
-    {tf.contentOfCopyX}
-    {tf.contentOfNewLine}
-    {tf.contentOfGetNextCondition}
-    {tf.contentOfSearchI}
-    {tf.contentOfSearchX}
-    {tf.contentOfGetTokenId}
-    {tf.contentOfAddDef}
+    (tf.contentOfCopyX)
+    (tf.contentOfNewLine)
+    (tf.contentOfGetNextCondition)
+    (tf.contentOfSearchI)
+    (tf.contentOfSearchX)
+    (tf.contentOfGetTokenId)
+    (tf.contentOfAddDef)
     (tf.contentOfCheckIf)
-    {tf.contentOfGetTokenAddress}
-    {tf.contentOfConvertLS}
-    {tf.contentOfGetTokenName}
+    (tf.contentOfGetTokenAddress)
+    (tf.contentOfConvertLS)
+    (tf.contentOfGetTokenName)
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)

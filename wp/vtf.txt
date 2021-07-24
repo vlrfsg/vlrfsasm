@@ -590,6 +590,48 @@
   )
 }
 
+{tf.contentOfWriteDestFile; ;
+  ('
+    [R12D:Size]
+    
+    (MOV (RBP) (RSP))
+    (LEAmd (RSI) (hm.addressOfDestFileName))
+    
+    (MOV (RCX) (RSI))
+    (MOV (EDX) (i $40000000))
+    (MOV (R8D) (i 0))
+    (MOV (R9D) (i 0))
+    (MOV (EBX) (i 0))
+    (MOV (mdd (RBP) $28) (EBX))
+    (MOV (mdd (RBP) $30) (EBX))
+    (MOV (BL) (i $02))
+    (MOV (mdd (RBP) $20) (EBX))
+    (CALdll "CreateFileW")
+    (CMP (EAX) (i (c.neg 1)))
+    (JE @tl.writeDestFile_0)
+    (MOV (EBX) (EAX))
+    (MOV (ECX) (EAX))
+    (LEAmd (RDX) (hm.addressOfDestFile))
+    (MOV (R8D) (R12D))
+    (LEAmd (R9) (hm.addressOfTempInteger))
+    (MOV (RAX) (i 0))
+    (MOV (mdq (RBP) $20) (RAX))
+    (CALdll "WriteFile")
+    (MOV (ECX) (EBX))
+    (CMP (EAX) (i 0))
+    (SNE (BL))
+    (CALdll "CloseHandle")
+    (CMP (BL) (i 0))
+    (JNE @tl.writeDestFile_1)
+    (@ @tl.writeDestFile_0)
+    (MOV (BL) (i $02))
+    (MOV (RDX) (RSI))
+    (JMP @tf.addressOfPrintError)
+    (@ @tl.writeDestFile_1)
+    (MOV (RDX) (RSI))
+    (MOV (BL) (i 0))
+  )
+}
 
 {tf.contentOfPrintError; ;
   ('
@@ -680,7 +722,7 @@
     (MOV (md (RBP) $28) (R9D))
     (MOV (md (RBP) $30) (R9D))
     (CALdll "CreateFileW")
-    (CMP (EAX) (i $FFFFFFFF))
+    (CMP (EAX) (i (c.neg 1)))
     (JNE @tl.readFile_1)
     (MOV (CL) (i $00))
     (JMP @tl.readFile_4)
