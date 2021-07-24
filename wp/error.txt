@@ -12,7 +12,7 @@ Copyright 2021 vlrfsg
 {$08 Unpaired bracket}
 {$0A Too long value}
 {$0B Overflowed stack}
-{$0C Wrong type argument}
+{$0C Wrong type of argument}
 {$0D Error in script}
 {$0E Undefined argument}
 {$0F Complete}

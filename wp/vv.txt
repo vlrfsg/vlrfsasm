@@ -121,11 +121,11 @@
 {hm.addressOfEndOfLiteral; ; $0010}
 {hm.addressOfEndOfToken; ; $0018}
 {hm.addressOfEndOfDef; ; $0020}
-{hm.addressOfFuncData; ; $0200} [4:Address, 2:NumberOfArgument, 2:NumberOfLocalLabel, 8:AddressOfFuncToken]
-{hm.addressOfArgumentList; ; $0210} [2:Token, 2:Size]
+{hm.addressOfFuncData; ; $0200} [4:Address, 2:NumberOfArgument, 2:NumberOfLocalLabel, 8:AddressOfFuncToken, 2:Line, 2:File]
+{hm.addressOfArgumentList; ; $0220} [2:Token, 2:Size]
 {hm.addressOfLocalLabelList; ; $02C0}
-{hm.addressOfListOfTextFile; ; $0300}
-{hm.sizeOfElementOfListOfTextFile; ; $8}
+{hm.addressOfTextFileList; ; $0300}
+{hm.sizeOfElementOfTextFileList; ; $8}
 {hm.addressOfTempStruct; ; $0400}
 {hm.addressOfErrorMessage; ; $2000}
 {hm.sizeOfErrorMessage; ; $2000}
@@ -201,6 +201,8 @@
     {tf.contentOfAddDef}
     (tf.contentOfCheckIf)
     {tf.contentOfGetTokenAddress}
+    {tf.contentOfConvertLS}
+    {tf.contentOfGetTokenName}
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)
