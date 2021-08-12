@@ -69,11 +69,11 @@ About vlrfsasm
   >  (* A B)
   Divide: same with argument A
   B must be within 64 bits or an error occurs.
-  If B is 0, another error occurs.
+  If B is 0, this function returns A.
   >  (/ A B)
   Modulo: same with argument A
   B must be within 64 bits or an error occurs.
-  If B is 0, another error occurs.
+  If B is 0, this function returns A.
   >  (% A B)
   If: same with chosen argument
   If every bit of A is 0, C is chosen.

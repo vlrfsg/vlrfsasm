@@ -119,10 +119,14 @@
 [Heap]
 {hm.addressOfTempInteger; ; $0008}
 {hm.addressOfEndOfLiteral; ; $0010}
-{hm.addressOfEndOfToken; ; $0018}
-{hm.addressOfEndOfDef; ; $0020}
+{hm.addressOfEndOfDef; ; $0018}
+{hm.addressOfEndOfToken; ; $0020}
+{hm.addressOfCountOfLabelValue; ; $0028} [4:Current, 4:Previous]
+{hm.addressOfStartOfResultFunc; ; $0038}
+{hm.addressOfEndOfEmptyValueList; ; $0040} [2*14]
+{hm.addressOfStepCount; ; $0060}
 {hm.addressOfFuncData; ; $0200} [4:Address, 2:NumberOfArgument, 2:NumberOfLocalLabel, 8:AddressOfFuncToken, 2:Line, 2:File]
-{hm.addressOfArgumentList; ; $0220} [2:Token, 2:Size]
+{hm.addressOfArgumentList; ; $0220} [2:Token]
 {hm.addressOfLocalLabelList; ; $02C0}
 {hm.addressOfTextFileList; ; $0300}
 {hm.sizeOfElementOfTextFileList; ; $8}
@@ -138,16 +142,15 @@
 {hm.addressOfSourceFileName; ; (+ (hm.addressOfDestFileName) (hm.sizeOfElementOfCommandLine))}
 {hm.addressOfLabelValue; ; (+ (hm.addressOfCommandLine) (hm.sizeOfCommandLine))}
 {hm.sizeOfLabelValue; ; $4000}
-{hm.sizeOfElementOfLabelValue; ; $4} [2:Value, 2:Step]
+{hm.sizeOfElementOfLabelValue; ; $4} [2:PrevValue, 2:NextValue]
 {hm.addressOfStack; ; (+ (hm.addressOfLabelValue) (hm.sizeOfLabelValue))}
 {hm.sizeOfStack; ; $4000}
 {hm.sizeOfElementOfStack; ; $8} [2:Line, 2:Func, 2:NumberOfArgument]
+{hm.sizeOfElementOfStackRun; ; $80} [4:Address, 2:Blank, 2:File, 4:AddressToReturnAt, 2:Condition, 2:Blank, 4{2:Value, 2:Remain}*16:Argument, 2*16:LocalLabel]
 {hm.addressOfInputFile; ; (+ (hm.addressOfStack) (hm.sizeOfStack))}
 {hm.sizeOfInputFile; ; $10000}
-{hm.addressOfDestFile; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
-{hm.sizeOfDestFile; ; $10000}
-{hm.addressOfLiteral; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
-{hm.sizeOfLiteral; ; $50000}
+{hm.addressOfLiteral; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
+{hm.sizeOfLiteral; ; $60000}
 {hm.addressOfToken; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
 {hm.sizeOfToken; ; $80000}
 {hm.logOfElementOfToken; ; 4}
@@ -156,19 +159,23 @@
 {hm.sizeOfInputText; ; $100000}
 {hm.addressOfDef; ; (+ (hm.addressOfInputText) (hm.sizeOfInputText))}
 {hm.sizeOfDef; ; $100000}
-{hm.sizeOfFuncHeader; ; $6} [2:File, 2:NumberOfArgument, 2:NumberOfLocalLabel]
+{hm.sizeOfFuncHeader; ; $48} [2:File, 2:NumberOfArgument, 2:NumberOfLocalLabel, 2:Blank, 4*16:Size]
 {hm.sizeOfElementOfDef; ; $6} [2:Token, 2:NumberOfArgument, 2:Line]
 {hm.addressOfValueIndex; ; (+ (hm.addressOfDef) (hm.sizeOfDef))}
 {hm.sizeOfValueIndex; ; $80000}
-{hm.sizeOfElementOfValueIndex; ; $8} [4:Size. 2:LabelListId]
+{hm.sizeOfElementOfValueIndex; ; $8} [4:Size{-1:LocalLabel, -2:GlobalLabel}, 2:Count, 2:LabelList{FFFF:None}]
 {hm.addressOfValue; ; (+ (hm.addressOfValueIndex) (hm.sizeOfValueIndex))}
-{hm.sizeOfValue; ; $380000}
-{hm.addressOfValueStack; ; (+ (hm.addressOfValue) (hm.sizeOfValue))}
-{hm.sizeOfValueStack; ; $20000}
+{hm.logOfElementOfValue; ; 18}
+{hm.sizeOfValue; ; (< 14 (hm.logOfElementOfValue))}
+{hm.addressOfEmptyValueList; ; (+ (hm.addressOfValue) (hm.sizeOfValue))}
+{hm.sizeOfEmptyValueList; ; $20000}
+{hm.sizeOfElementOfEmptyValueList; ; $2}
+{hm.addressOfValueStack; ; (+ (hm.addressOfEmptyValueList) (hm.sizeOfEmptyValueList))}
+{hm.sizeOfValueStack; ; $10000}
 {hm.sizeOfElementOfValueStack; ; $2}
 {hm.addressOfLabelList; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
-{hm.sizeOfLabelList; ; $20000}
-{hm.sizeOfElementOfLabelList; ; $8} [2:Next, 4:Position]
+{hm.sizeOfLabelList; ; $80000}
+{hm.sizeOfElementOfLabelList; ; $8} [2:Next{FFFE:Empty, FFFF:End}, 2:Token, 4:Position{31:Position, 1:Global/Local}]
 {hm.addressOfTempString; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
 {hm.sizeOfTempString; ; $20000}
 {hm.sizeOfElementOfTempString; ; $10000}
@@ -205,6 +212,13 @@
     (tf.contentOfGetTokenAddress)
     (tf.contentOfConvertLS)
     (tf.contentOfGetTokenName)
+    (tf.contentOfAllocValue)
+    (tf.contentOfFreeValue)
+    (tf.contentOfGetLogOfValue)
+    (tf.contentOfGetValueAddress)
+    (tf.contentOfConvertKS)
+    (tf.contentOfPushValue)
+    (tf.contentOfPopValue)
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)
