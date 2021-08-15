@@ -64,17 +64,6 @@ About vlrfsasm
   >  (< A B)
   Shift right: max of 0 and ((size of argument A) - argument B)
   >  (> A B)
-  Multiply: same with argument A
-  B must be within 64 bits or an error occurs.
-  >  (* A B)
-  Divide: same with argument A
-  B must be within 64 bits or an error occurs.
-  If B is 0, this function returns A.
-  >  (/ A B)
-  Modulo: same with argument A
-  B must be within 64 bits or an error occurs.
-  If B is 0, this function returns A.
-  >  (% A B)
   If: same with chosen argument
   If every bit of A is 0, C is chosen.
   Otherwise B is chosen.

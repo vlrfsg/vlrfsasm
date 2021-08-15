@@ -58,7 +58,7 @@
     (sr.elementOfCommandList 0 (` @tf.addressOfCmdRet) 0)
     (sr.elementOfCommandList 0 (` @tf.addressOfCmdThn) 0)
     (sr.elementOfCommandList 0 (` @tf.addressOfCmdEls) 0)
-    (sr.elementOfCommandList "?" (` @tf.addressOfCmdIf) 0)
+    (sr.elementOfCommandList "?" (` @tf.addressOfCmdIf) 3)
     (sr.elementOfCommandList "'" (` @tf.addressOfCmdCct) 0)
     (sr.elementOfExCommandList "+" (` @tf.addressOfCmdAdd) (` @tf.addressOfCmdBase) 0)
     (sr.elementOfExCommandList "&" (` @tf.addressOfCmdAnd) (` @tf.addressOfCmdBase) 0)

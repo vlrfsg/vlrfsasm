@@ -1,10 +1,9 @@
 [wp/vtf.txt
  Copyright 2021 vlrfsg]
- 
+
 {tf.contentOfInitMemory; ;
   ('
     (SUB (RSP) (i $28))
-    (MOV (mmdq (hm.addressOfBaseOfStack)) (RSP))
     
     (CALdll "GetProcessHeap")
     (MOV (EBX) (EAX))
@@ -14,6 +13,7 @@
     (CALdll "HeapAlloc")
     
     (MOV (md (RAX)) (EBX))
+    (MOV (mdq (RAX) (hm.addressOfBaseOfStack)) (RSP))
     (MOV (R13) (RAX))
   )
 }
@@ -34,7 +34,7 @@
     (LEAmd (RSI) (hm.addressOfTempString))
     (MOV (BL) (i 0))
     (@ @tl.parseErrorFile_0)
-    (MOV (AX) (mw (RSI) ))
+    (MOV (AX) (mw (RSI)))
     (CMP (AX) (i 0))
     (JE @tl.parseErrorFile_4)
     (CMP (BL) (i 0))
@@ -53,7 +53,7 @@
     (AND (EAX) ($3F))
     (SHL (EAX) (i (hm.logOfElementOfErrorMessage)))
     (LEAmid (RCX) (RAX) (hm.addressOfErrorMessage))
-    (LEA (RDX) (ld (RSI) 2))
+    (LEAd (RDX) (RSI) 2)
     (INC (BL))
     (JMP @tl.parseErrorFile_3)
     (@ @tl.parseErrorFile_2)
