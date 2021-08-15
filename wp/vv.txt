@@ -35,37 +35,43 @@
     (sr.contentOfAppName)
   )
 }
-{sr.elementOfCommandList A B; ;
+{sr.elementOfCommandList A B C; ;
   ('
-    (ib B)
     (ib A)
+    (ib 0)
+    (ib C)
+    (iw (- B (` @sr.addressOfCommandList)))
+  )
+}
+{sr.elementOfExCommandList A B C D; ;
+  ('
+    (ib A)
+    (ib (- B C))
+    (ib D)
     (iw (- C (` @sr.addressOfCommandList)))
   )
 }
-{sr.sizeOfElementOfCommandList; ; $4}
+{sr.sizeOfElementOfCommandList; ; $5}
 {sr.contentOfCommandList; ;
   (`
     (@ @sr.addressOfCommandList)
-    (sr.elementOfCommandList 0 5 (` @tf.addressOfCmdRet))
-    (sr.elementOfCommandList 0 5 (` @tf.addressOfCmdThn))
-    (sr.elementOfCommandList 0 5 (` @tf.addressOfCmdEls))
-    (sr.elementOfCommandList "?" 2 (` @tf.addressOfCmdIf))
-    (sr.elementOfCommandList "'" 2 (` @tf.addressOfCmdCct))
-    (sr.elementOfCommandList "+" 2 (` @tf.addressOfCmdAdd))
-    (sr.elementOfCommandList "&" 2 (` @tf.addressOfCmdSub))
-    (sr.elementOfCommandList "|" 2 (` @tf.addressOfCmdIor))
-    (sr.elementOfCommandList "^" 2 (` @tf.addressOfCmdXor))
-    (sr.elementOfCommandList "!" 2 (` @tf.addressOfCmdNot))
-    (sr.elementOfCommandList "<" 2 (` @tf.addressOfCmdShl))
-    (sr.elementOfCommandList ">" 2 (` @tf.addressOfCmdShr))
-    (sr.elementOfCommandList "*" 2 (` @tf.addressOfCmdMul))
-    (sr.elementOfCommandList "/" 2 (` @tf.addressOfCmdDiv))
-    (sr.elementOfCommandList "%" 2 (` @tf.addressOfCmdMod))
-    (sr.elementOfCommandList ":" 2 (` @tf.addressOfCmdRes))
-    (sr.elementOfCommandList "#" 2 (` @tf.addressOfCmdGts))
-    (sr.elementOfCommandList "@" 2 (` @tf.addressOfCmdLbl))
-    (sr.elementOfCommandList "`" 2 (` @tf.addressOfCmdAdr))
-    (sr.elementOfCommandList ";" 2 (` @tf.addressOfCmdErr))
+    (sr.elementOfCommandList 0 (` @tf.addressOfCmdRet) 0)
+    (sr.elementOfCommandList 0 (` @tf.addressOfCmdThn) 0)
+    (sr.elementOfCommandList 0 (` @tf.addressOfCmdEls) 0)
+    (sr.elementOfCommandList "?" (` @tf.addressOfCmdIf) 0)
+    (sr.elementOfCommandList "'" (` @tf.addressOfCmdCct) 0)
+    (sr.elementOfExCommandList "+" (` @tf.addressOfCmdAdd) (` @tf.addressOfCmdBase) 0)
+    (sr.elementOfExCommandList "&" (` @tf.addressOfCmdAnd) (` @tf.addressOfCmdBase) 0)
+    (sr.elementOfExCommandList "|" (` @tf.addressOfCmdIor) (` @tf.addressOfCmdBase) 0)
+    (sr.elementOfExCommandList "^" (` @tf.addressOfCmdXor) (` @tf.addressOfCmdBase) 0)
+    (sr.elementOfExCommandList ":" (` @tf.addressOfCmdRes) (` @tf.addressOfCmdBase) 2)
+    (sr.elementOfCommandList "!" (` @tf.addressOfCmdNot) 1)
+    (sr.elementOfCommandList "<" (` @tf.addressOfCmdShl) 2)
+    (sr.elementOfCommandList ">" (` @tf.addressOfCmdShr) 2)
+    (sr.elementOfCommandList "#" (` @tf.addressOfCmdGts) 1)
+    (sr.elementOfCommandList "@" (` @tf.addressOfCmdLbl) 1)
+    (sr.elementOfCommandList "`" (` @tf.addressOfCmdAdr) 1)
+    (sr.elementOfCommandList ";" (` @tf.addressOfCmdErr) 1)
     (iw 0)
   )
 }
@@ -122,6 +128,7 @@
 {hm.addressOfEndOfDef; ; $0018}
 {hm.addressOfEndOfToken; ; $0020}
 {hm.addressOfCountOfLabelValue; ; $0028} [4:Current, 4:Previous]
+{hm.addressOfBaseOfStack; ; $0030}
 {hm.addressOfStartOfResultFunc; ; $0038}
 {hm.addressOfEndOfEmptyValueList; ; $0040} [2*14]
 {hm.addressOfStepCount; ; $0060}
@@ -146,7 +153,7 @@
 {hm.addressOfStack; ; (+ (hm.addressOfLabelValue) (hm.sizeOfLabelValue))}
 {hm.sizeOfStack; ; $4000}
 {hm.sizeOfElementOfStack; ; $8} [2:Line, 2:Func, 2:NumberOfArgument]
-{hm.sizeOfElementOfStackRun; ; $80} [4:Address, 2:Blank, 2:File, 4:AddressToReturnAt, 2:Condition, 2:Blank, 4{2:Value, 2:Remain}*16:Argument, 2*16:LocalLabel]
+{hm.sizeOfElementOfStackRun; ; $80} [4:Address, 2:Blank, 2:File, 4:AddressToReturnAt, 1:Condition, 1:DepthOfIf, 2:Blank, 8:ConditionOfIf, 8:Blank, 4{2:Value, 2:Remain}*16:Argument, 2*16:LocalLabel]
 {hm.addressOfInputFile; ; (+ (hm.addressOfStack) (hm.sizeOfStack))}
 {hm.sizeOfInputFile; ; $10000}
 {hm.addressOfLiteral; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
@@ -219,19 +226,22 @@
     (tf.contentOfConvertKS)
     (tf.contentOfPushValue)
     (tf.contentOfPopValue)
+    (tf.contentOfSplitValue)
+    (tf.contentOfPop16)
+    (tf.contentOfCmdRet)
+    (tf.contentOfCmdThn)
+    (tf.contentOfCmdEls)
+    (tf.contentOfCmdIf)
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)
     (tf.contentOfCmdAnd)
     (tf.contentOfCmdIor)
     (tf.contentOfCmdXor)
-    (tf.contentOfCmdIf)
+    (tf.contentOfCmdRes)
+    (tf.contentOfCmdBase)
     (tf.contentOfCmdNot)
     (tf.contentOfCmdShl)
     (tf.contentOfCmdShr)
-    (tf.contentOfCmdMul)
-    (tf.contentOfCmdDiv)
-    (tf.contentOfCmdMod)
-    (tf.contentOfCmdRes)
     (tf.contentOfCmdGts)
     (tf.contentOfCmdLbl)
     (tf.contentOfCmdAdr)
