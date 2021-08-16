@@ -99,7 +99,6 @@
 
 {tf.contentOfParseCommandLine; ;
   ('
-    (@ @tf.addressOfParseCommandLine)
     (CALdll "GetCommandLineW")
     (MOV (RDX) (RAX))
     (LEAmd (RSI) (hm.addressOfCommandLine))
