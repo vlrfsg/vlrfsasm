@@ -90,9 +90,9 @@
 'lPCL_4
 
 .PQ
-.CAMI8
+.CAMID
 /ADD:RSI:R
-.sCLi
+.sCLi:D
 
 .PQ
 .MORMD
