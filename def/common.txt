@@ -11,9 +11,15 @@
 {- A B; ; (+ A (c.neg (: B (# A))))}
 
 [get]
-{c.getRan A B C; ; (: (> A (- B 1)) C)}
+{c.getRan A B C; ; (: (> A B) C)}
 {c.getBit A B; ; (c.getRan A B 1)}
-{c.getSgn A; ; (c.getBit A (- (# A) 1))}
+{c.getSgn A; ;
+  (?
+    (# A)
+    (c.getBit A (- (# A) 1))
+    (: 0 1)
+  )
+}
 
 [sign extend]
 {:- A B; ;
@@ -23,7 +29,7 @@
       (>= (# A) (: B 64))
     )
     (: A B)
-    (' (! (: 0 (- (: B 64) (# A))) A)
+    (' (! (: 0 (- (: B 64) (# A))) A))
   )
 }
 
@@ -47,9 +53,98 @@
 {>!- A B; ; (! (<=- A B))}
 {>=- A B; ; (! (<!- A B))}
 
+[multiply]
+{* A B; ;
+  (:
+    (*L B (' (: 0 (# A)) (- (# A) 1)) A)
+    (# A)
+  )
+}
+{*L A 1 B C; ;
+  (?
+    (: B 64)
+    (c.emp)
+    (+ (> B 64) (? A C 0))
+  );
+  ('
+    (+ (> B 64) (? A (< C (: B 64)) 0))
+    (- (: B 64) 1)
+  )
+}
+{*- A B; ;
+  (?
+    (c.getSgn B)
+    (* (c.neg A) (: (c.neg B) (# A)))
+    (* A B)
+  )
+}
+
+[divide]
+{/ A B; ;
+  (?
+    B
+    (: (/L A B (: 0 (# B))) (# A))
+    (; "Division by zero")
+  )
+}
+{/L A 1 B C; ;
+  (>= (' C A) B);
+  (:
+    (?
+      (>= (' C A) B)
+      (- (' C A) B)
+      (' C A)
+    )
+    (# B)
+  )
+}
+{/- A B; ;
+  (?
+    (c.getSgn A)
+    (?
+      (c.getSgn B)
+      (/ (c.neg A) (c.neg B))
+      (c.neg (/ (c.neg A) B))
+    )
+    (?
+      (c.getSgn B)
+      (c.neg (/ A (c.neg B)))
+      (/ A B)
+    )
+  )
+}
+
+[modulo: Undefined on signed number]
+{% A B; ;
+  (?
+    B
+    (: (%L A B (' (: 0 (# B)) (: (# A) 1))) (# B))
+    (; "Division by zero")
+  )
+}
+{%L A 1 B C; ;
+  (?
+    (: B 64)
+    (c.emp)
+    (?
+      (>= (' (> B 64) A) C)
+      (- (' (> B 64) A) C)
+      (' (> B 64) A)
+    )
+  );
+  ('
+    (?
+      (>= (' (> B 64) A) C)
+      (- (' (> B 64) A) C)
+      (' (> B 64) A)
+    )
+    (- (: B 64) 1)
+  )
+}
+
 [align]
 {c.align A B; ; (? (& A (- B 1)) (+ (^ A (& A (- B 1))) B) A)}
-{c.alignS A B; ; (< A (- (c.align (# A) B) ($ A)))}
+{c.alignS A B; ; (< A (- (c.align (# A) B) (# A)))}
 
 [convert integer to string]
 {c.cnvIC A; ;
