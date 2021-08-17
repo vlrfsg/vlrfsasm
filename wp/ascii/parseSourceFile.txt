@@ -583,7 +583,7 @@
 /CMP:AH:R
 .$10
 
-.SE:W
+.SEB:W
 /EMP:CL:R
 
 .ORRMB
@@ -760,7 +760,7 @@
 
 *lPSF_31
 
-.JRCZB
+.JCZB
 'lPSF_33
 
 .PW
@@ -803,7 +803,7 @@
 
 *lPSF_34
 
-.JRCZB
+.JCZB
 'lPSF_UA
 
 .PW

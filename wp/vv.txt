@@ -35,6 +35,14 @@
     (sr.contentOfAppName)
   )
 }
+{sr.elementOfInternalCommandList A; ;
+  ('
+    (ib 0)
+    (ib 1)
+    (ib 0)
+    (iw (- A (` @sr.addressOfCommandList)))
+  )
+}
 {sr.elementOfCommandList A B C; ;
   ('
     (ib A)
@@ -55,9 +63,9 @@
 {sr.contentOfCommandList; ;
   (`
     (@ @sr.addressOfCommandList)
-    (sr.elementOfCommandList 0 (` @tf.addressOfCmdRet) 0)
-    (sr.elementOfCommandList 0 (` @tf.addressOfCmdThn) 0)
-    (sr.elementOfCommandList 0 (` @tf.addressOfCmdEls) 0)
+    (sr.elementOfInternalCommandList (` @tf.addressOfCmdRet))
+    (sr.elementOfInternalCommandList (` @tf.addressOfCmdThn))
+    (sr.elementOfInternalCommandList (` @tf.addressOfCmdEls))
     (sr.elementOfCommandList "?" (` @tf.addressOfCmdIf) 3)
     (sr.elementOfCommandList "'" (` @tf.addressOfCmdCct) 0)
     (sr.elementOfExCommandList "+" (` @tf.addressOfCmdAdd) (` @tf.addressOfCmdBase) 0)
@@ -75,7 +83,7 @@
     (iw 0)
   )
 }
-{sr.contentOfErrorFileName; ; (c.chgEdnSxL "error.txt")}
+{sr.contentOfErrorFileName; ; (c.chgEdnSx "error.txt")}
 {sr.elementOfNumberList A B; (' (ib A) (ib B))}
 {sr.sizeOfElementOfNumberList; ; $2}
 {sr.contentOfNumberList; ;
@@ -107,7 +115,7 @@
 {sr.contentOfAppName; ;
   ('
     (@ @sr.addressOfAppName)
-    (c.chgEdnSxL
+    (c.chgEdnSx
       ('
         "Vlrfsasm v"
         (c.cnvIS (h.majorImageVersion))
@@ -185,7 +193,7 @@
 {hm.sizeOfElementOfLabelList; ; $8} [2:Next{FFFE:Empty, FFFF:End}, 2:Token, 4:Position{31:Position, 1:Global/Local}]
 {hm.addressOfTempString; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
 {hm.sizeOfTempString; ; $20000}
-{hm.sizeOfElementOfTempString; ; $10000}
+{hm.sizeOfElementOfTempString; ; $8000}
 {h.sizeOfHeap; ; (+ (hm.addressOfTempString) (hm.sizeOfTempString))}
 
 [Text]

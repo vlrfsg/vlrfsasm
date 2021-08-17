@@ -16,14 +16,22 @@
 
 *lCBF_0
 
-.MORMB
-/AL:RDX:M
+.PW
+.MORMD
+/AX:RDX:M
 
 .CMAIB
 .$00
 
 .JNEB
 'lCBF_1
+
+.CAMIB
+/CMP:AH:R
+.$00
+
+.JEB
+'lCBF_3
 
 .MOMIB
 /EMP:RSI:M
@@ -85,8 +93,10 @@
 .CMAID
 .$0000:W
 
-.JNE
+.JB
 'lCBF_0
+
+*lCBF_3
 
 .PQ ,PM
 .MOMRD
