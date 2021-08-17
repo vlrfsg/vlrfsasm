@@ -1938,7 +1938,7 @@
 {tf.contentOfCmdAdd; ;
   ('
     (@ @tf.addressOfCmdAdd)
-    (BT (BL) (BH))
+    (SHR (BL) (i 1))
     (ADC (mib (R10) (R12)) (AL))
     (SC (BL))
     (RET)
