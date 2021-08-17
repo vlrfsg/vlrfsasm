@@ -37,7 +37,7 @@
 .PW
 .MOMID
 /EMP:RSI:M
-.$0102:W
+.$0202:W
 
 .EXCFE
 /INC:RSI:B

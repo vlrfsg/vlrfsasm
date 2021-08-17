@@ -212,7 +212,7 @@
 .sT
 
 .PQ ,PM
-.XAMRD
+.XAMRD:W
 /RAX:R13:B
 .eT
 
