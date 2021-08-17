@@ -1022,7 +1022,7 @@
     (CALdll "HeapFree")
     (ADD (RSP) (i $28))
     (MOV (EAX) (i 0))
-    (CALdll "ExitProcess")
+    (JMPdll "ExitProcess")
   )
 }
 
