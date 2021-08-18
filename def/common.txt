@@ -222,7 +222,7 @@
 }
 
 [Error]
-{c.errSxl A; ; (; (c.chgEdnSx A))}
+{c.errSxl A; ; (~ (c.chgEdnSx A))}
 
 [about vlrfsasm]
 {c.verI; ; $000200}

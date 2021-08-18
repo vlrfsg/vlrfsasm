@@ -49,7 +49,7 @@
 .CD
 'fCX:D
 
-.MZRMW:W
+.MZRMZ:W
 /EDX:RDI:B
 .$02
 
@@ -66,7 +66,7 @@
 /ADD:RCX:R
 .$02
 
-.MZRMW:W
+.MZRMZ:W
 /EDX:RDI:B
 .$06
 
@@ -83,7 +83,7 @@
 /ADD:RCX:R
 .$02
 
-.MZRMW:W
+.MZRMZ:W
 /EDX:RDI:B
 .$08
 
@@ -100,7 +100,7 @@
 /ADD:RCX:R
 .$02
 
-.MZRMW:W
+.MZRMZ:W
 /EDX:RDI:B
 .$0A
 
@@ -160,7 +160,7 @@
 
 .PQ ,PR
 .MORMD
-/R12:RCX:R
+/R12:RCX:RG
 
 .MORID ,ECX
 .$FFFFFFF5:D
@@ -212,6 +212,5 @@
 /ECX:EBX:R
 
 .EXCFF
-/CALL:RIP:M
+/CALL:RUP:M
 'dClHa:D
-

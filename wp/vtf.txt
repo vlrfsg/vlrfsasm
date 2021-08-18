@@ -913,6 +913,7 @@
 }
 
 {tf.contentOfWriteDestFile; ;
+  [RDI:Address, R12D:Size]
   ('
     (MOV (RBP) (RSP))
     (LEAmd (RSI) (hm.addressOfDestFileName))
@@ -949,7 +950,7 @@
     (JMP @tf.addressOfPrintError)
     (@ @tl.writeDestFile_1)
     (MOV (RDX) (RSI))
-    (MOV (BL) (i 0))
+    (MOV (BL) (i $0F))
   )
 }
 
