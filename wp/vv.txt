@@ -186,14 +186,14 @@
 {hm.sizeOfEmptyValueList; ; $20000}
 {hm.sizeOfElementOfEmptyValueList; ; $2}
 {hm.addressOfValueStack; ; (+ (hm.addressOfEmptyValueList) (hm.sizeOfEmptyValueList))}
-{hm.sizeOfValueStack; ; $10000}
+{hm.sizeOfValueStack; ; $20000}
 {hm.sizeOfElementOfValueStack; ; $2}
 {hm.addressOfLabelList; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
 {hm.sizeOfLabelList; ; $80000}
 {hm.sizeOfElementOfLabelList; ; $8} [2:Next{FFFE:Empty, FFFF:End}, 2:Token, 4:Position{31:Position, 1:Global/Local}]
 {hm.addressOfTempString; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
 {hm.sizeOfTempString; ; $20000}
-{hm.sizeOfElementOfTempString; ; $8000}
+{hm.sizeOfElementOfTempString; ; $10000}
 {h.sizeOfHeap; ; (+ (hm.addressOfTempString) (hm.sizeOfTempString))}
 
 [Text]
