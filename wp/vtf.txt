@@ -966,6 +966,7 @@
     (MOV (RDI) (RCX))
     (CALdll "GetLocalTime")
     (LEAmd (RCX) (+ (hm.addressOfTempString) (hm.sizeOfElementOfTempString)))
+    (MOV (R15) (RCX))
     (LEAs (RDX) @sr.addressOfAppName)
     (CALf @tf.addressOfCopyX)
     (MOZ (EDX) (mdw (RDI) 2))
@@ -1004,7 +1005,7 @@
     (CALdll "GetStdHandle")
     (MOV (ECX) (EAX))
     (MOV (EBX) (EAX))
-    (LEAmd (RDX) (hm.addressOfTempString))
+    (MOV (RDX) (R15))
     (MOV (R8) (R12))
     (SUB (R8) (RDX))
     (SHR (R8D) (i 1)) [Not confirmed; surrogate pairs?]

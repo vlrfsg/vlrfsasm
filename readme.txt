@@ -77,7 +77,7 @@ About vlrfsasm
   Address: 64 bits
   >  (` @A)
   Error: No result
-  If this function gets executed, utf-16 encoded argument A is printed out and vlrfsasm stops.
+  If this function gets executed, argument A is printed out and vlrfsasm stops. A must be encoded in utf16LE.
   >  (~ A)
 
 7. Label
