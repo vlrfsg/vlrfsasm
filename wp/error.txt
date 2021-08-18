@@ -1,4 +1,4 @@
-bin/error.txt
+wp/error.txt
 Copyright 2021 vlrfsg
 
 {$00 Not found or unopenable source file}
@@ -21,4 +21,4 @@ Copyright 2021 vlrfsg
 {$11 Undefined result function(.)}
 {$12 Too much step}
 {$13 Changed number of local label}
-
+{$14 Test - Hello world!}

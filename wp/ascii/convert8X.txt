@@ -67,7 +67,7 @@
 .EXCFF
 /INC:RDX:R
 
-.MOMRB
+.MORMB
 /AL:RDX:M
 
 .ANAIB
@@ -119,7 +119,7 @@
 
 .PW
 .ADAID
-.$D7C0
+.$D7C0:W
 
 .PW
 .MOMRD
@@ -138,8 +138,8 @@
 /AND:AH:R
 .$03
 
-.CAMI8
-/ADD:AH:R
+.CAMIB
+/OR:AH:R
 .$DC
 
 *lC8X_5

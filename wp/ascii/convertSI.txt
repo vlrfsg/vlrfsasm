@@ -49,10 +49,6 @@
 .XORMD
 /EAX:EAX:R
 
-.PR ,PM
-.XORMD
-/R9D:R9D:R
-
 *lCSI_3
 
 .CAMIB
@@ -65,7 +61,7 @@
 
 .PR
 .MORMB
-/R8B:RCX:M
+/R9B:RCX:M
 
 .PM
 .CAMIB
@@ -127,7 +123,7 @@
 .$02
 
 .JB
-'lCSI_0
+'lCSI_3
 
 *lCSI_7
 

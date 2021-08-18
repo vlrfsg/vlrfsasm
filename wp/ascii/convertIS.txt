@@ -52,9 +52,9 @@
 /SUB:RCX:R
 .$02
 
-.PQ
+.PQ ,PM
 .CMRMD
-/RCX:R8:R
+/RCX:R9:R
 
 .JBEB
 'lCIS_2
@@ -78,5 +78,10 @@
 'lCIS_1
 
 *lCIS_2
+
+.PQ ,PM
+.LERMD
+/RCX:R9:B
+.$02
 
 .RET

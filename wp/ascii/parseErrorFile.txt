@@ -4,7 +4,7 @@
 .PQ ,PM
 .LERMD
 /RSI:R13:D
-'mTS:D
+.mTSg:D
 
 .XORMB
 /BL:BL:R
@@ -37,8 +37,9 @@
 /EMP:BL:R
 
 .PQ
-.MORMD
-/RCX:RSI:R
+.LERMD
+/RCX:RSI:B
+.$02
 
 .JB
 'lPEF_3
@@ -60,7 +61,7 @@
 'lPEF_3
 
 .PW
-.MORMD
+.MOMID
 /EMP:RSI:M
 .$0000:W
 
@@ -102,7 +103,7 @@
 'lPEF_3
 
 .PW
-.MORMD
+.MOMID
 /EMP:RSI:M
 .$0000:W
 

@@ -41,7 +41,7 @@
     (JNE @tl.parseErrorFile_1)
     (CMP (AX) (i "{"))
     (SE (BL))
-    (MOV (RCX) (RSI))
+    (LEAd (RCX) (RSI) 2)
     (JMP @tl.parseErrorFile_3)
     (@ @tl.parseErrorFile_1)
     (CMP (BL) (i 1))
@@ -1095,7 +1095,7 @@
 }
 
 {tf.contentOfConvertIS; ; [Decimal]
-  [RCX:address, RDX:Value; RAX=0, R8=10]
+  [RCX:address, RDX:Value; RAX=0, R8=10, R9=End-2]
   ('
     (@ @tf.addressOfConvertIS)
     (MOV (RAX) (RDX))
@@ -1119,6 +1119,7 @@
     (ADD (R9) (i 2))
     (JMP @tl.convertIS_1)
     (@ @tl.convertIS_2)
+    (LEAd (RCX) (R9) 2)
     (RET)
   )
 }
@@ -1141,7 +1142,6 @@
     (@ @tl.convertSI_2)
     (MOZ (R8) (AL))
     (MOV (RAX) (i 0))
-    (MOV (R9) (i 0))
     (@ @tl.convertSI_3)
     (CMP (mdb (RCX) 1) (i 0))
     (JNE @tl.convertSI_6)
@@ -1214,7 +1214,7 @@
     (ADD (RCX) (i 2))
     (MOV (EAX) (R8D))
     (AND (AH) (i $03))
-    (ADD (AH) (i $DC))
+    (OR (AH) (i $DC))
     (@ @tl.convert8X_5)
     (MOV (mw (RCX)) (AX))
     (ADD (RCX) (i 2))

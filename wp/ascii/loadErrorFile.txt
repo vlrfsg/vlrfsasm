@@ -15,7 +15,7 @@
 .PQ ,PM
 .LERMD
 /RCX:R13:D
-.mTS:D
+.mTSg:D
 
 .PQ ,PM
 .LERMD
