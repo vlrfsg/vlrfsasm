@@ -94,7 +94,6 @@
     (MOV (mdd (RSI) 2) (ECX))
     (ADD (RDX) (i (hm.sizeOfElementOfCommandList)))
     (ADD (RSI) (i (hm.sizeOfElementOfToken)))
-    (CMP (AX) (i 0))
     (JMP @tl.copyBuiltinFunc_0)
     (@ @tl.copyBuiltinFunc_3)
     (MOV (mmdq (hm.addressOfEndOfToken)) (RSI))

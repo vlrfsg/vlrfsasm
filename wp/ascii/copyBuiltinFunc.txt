@@ -8,7 +8,7 @@
 
 .PQ ,PM
 .LERMD
-/RSI:R13:D
+/RSI:R13:B
 .mT
 
 .XORMD
@@ -63,7 +63,7 @@
 .MOMRB
 /AL:SIB:D
 +R13:RDI:B
-.mL
+.mL:D
 
 .CAMI8
 /ADD:EDI:R
@@ -88,10 +88,6 @@
 .CAMI8
 /ADD:RSI:R
 .sT
-
-.PW
-.CMAID
-.$0000:W
 
 .JB
 'lCBF_0
