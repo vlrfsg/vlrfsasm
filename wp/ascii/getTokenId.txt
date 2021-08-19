@@ -1,0 +1,25 @@
+#wp/ascii/getTokenId.txt
+#Copyright 2021 vlrfsg
+
+*fGT
+
+.PQ
+.MORMD
+/RDX:RDI:R
+
+.PQ ,PM
+.LERMD
+/RCX:R13:D
+.mT:D
+
+.PQ
+.SURMD
+/RDX:RCX:R
+
+.SHMID
+/SHR:EDX:R
+.gT
+
+.RET
+
+

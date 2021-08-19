@@ -1278,7 +1278,6 @@
     (JB @tl.searchI_0)
     (ADD (R15) (i (hm.sizeOfElementOfToken)))
     (MOV (mdq (RDI) 8) (RAX))
-    (LEAd (R15) (RDI) (hm.sizeOfElementOfToken))
     (@ @tl.searchI_2)
     (CALf @tf.addressOfGetTokenId)
     (RET)
