@@ -1293,7 +1293,7 @@
     (CMP (AX) (i 0))
     (JE @tl.searchX_1)
     (ROL (DX) (i 7))
-    (XOR (DX) (AX))
+    (XOR (EDX) (EAX)q)
     (ADD (RCX) (i 2))
     (JMP @tl.searchX_0)
     (@ @tl.searchX_1)

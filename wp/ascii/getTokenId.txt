@@ -1,7 +1,7 @@
 #wp/ascii/getTokenId.txt
 #Copyright 2021 vlrfsg
 
-*fGT
+*fGTI
 
 .PQ
 .MORMD
