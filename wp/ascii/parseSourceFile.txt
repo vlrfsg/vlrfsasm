@@ -218,7 +218,7 @@
 .$40
 
 .JNZB
-'lPSF_6
+'lPSF_9
 
 .EXCF6
 /TEST:BL:R
@@ -320,6 +320,13 @@
 .CD
 'fGNC:D
 
+.EXCF6
+/TEST:BH:R
+.$06
+
+.JNZB
+'lPSF_27
+
 .CAMIB
 /ADD:BH:R
 .$05
@@ -410,6 +417,10 @@
 
 *lPSF_19
 
+.PM
+.EXCFF
+/INC:R12D:R
+
 .CAMIB
 /CMP:BH:R
 .$06
@@ -463,12 +474,6 @@
 
 .CD
 'fGNC:D
-
-.CMAIB
-.$22
-
-.JEB
-'lPSF_27
 
 .JB
 'lPSF_3
