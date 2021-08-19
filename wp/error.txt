@@ -10,6 +10,7 @@ Copyright 2021 vlrfsg
 {$06 Twice-assigned label address}
 {$07 Wrong number of argument}
 {$08 Unpaired bracket}
+
 {$0A Too long value}
 {$0B Overflowed stack}
 {$0C Wrong type of argument}
@@ -21,4 +22,3 @@ Copyright 2021 vlrfsg
 {$11 Undefined result function(.)}
 {$12 Too much step}
 {$13 Changed number of local label}
-{$14 Test - Hello world!}

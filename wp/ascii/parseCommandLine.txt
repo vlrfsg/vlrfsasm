@@ -63,8 +63,7 @@
 
 .PW
 .MOMRD
-/AX:RDI:B
-.$02
+/AX:RDI:M
 
 .PQ
 .CAMI8
