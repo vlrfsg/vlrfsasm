@@ -1,0 +1,32 @@
+#wp/ascii/convert8X.txt
+#Copyright 2021 vlrfsg
+
+*fAD
+
+.XORMD
+/ECX:ECX:R
+
+.MORIB ,CL
+.sD
+
+.PM
+.XAMRD:W
+/ECX:R13:B
+.eD
+
+.PQ ,PM
+.LERMD
+/RCX:SIB:M
++R13:RCX:B
+
+.PW
+.MOMRD
+/DX:RCX:M
+
+.PW
+.PR
+.MOMRD
+/R8W:RCX:B
+.$04
+
+.RET
