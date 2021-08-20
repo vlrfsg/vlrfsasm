@@ -16,8 +16,9 @@
 
 .PQ ,PM
 .LERMD
-/RCX:SIB:M
+/RCX:SIB:D
 +R13:RCX:B
+.mD:D
 
 .PW
 .MOMRD

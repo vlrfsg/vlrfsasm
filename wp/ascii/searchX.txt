@@ -132,7 +132,7 @@
 /ADD:RDI:R
 .sT
 
-.PQ
+.PQ ,PM
 .CMRMD
 /RDI:R15:R
 
@@ -172,11 +172,13 @@
 .$0A
 
 .MOMRD
-/RCX:RDI:M
+/RCX:RDI:B
+.$0C
 
 .PQ ,PM
 .LERMD
 /RCX:SIB:D
++R13:RCX:B
 .mL:D
 
 .PQ

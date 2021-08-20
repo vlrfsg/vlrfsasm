@@ -15,7 +15,7 @@
 .LERMD
 /RCX:SIB:D
 +R13:R11:B
-.mS:D ,2:D
+.mS:D ,$2:D
 
 .PW
 .CAMI8

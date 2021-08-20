@@ -20,7 +20,7 @@
 .PQ ,PM
 .LERMD
 /RSI:R13:D
-.mTS:D
+.mTSg:D
 
 .PR ,PM
 .MOMRD
@@ -379,13 +379,14 @@
 .PM
 .CAMID
 /ADD:R12D:R
+.$00010000:D
 
 .PW
 .PR ,PM
 .XORMD
 /R12W:R12W:R
 
-.XORMD
+.XORMB
 /BL:BL:R
 
 .JB
@@ -525,7 +526,7 @@
 .PQ ,PR ,PM
 .LERMD
 /R8:R13:D
-.mFD
+.mFD:D
 
 .PQ ,PM
 .MOMRD
@@ -611,7 +612,7 @@
 /CMP:BL:R
 .$18
 
-.JB
+.JBEB
 'lPSF_E
 
 .XORMB
@@ -638,7 +639,7 @@
 .PQ ,PM
 .LERMD
 /RSI:R13:D
-.mTS:D
+.mTSg:D
 
 .PQ
 .MORMD
@@ -706,7 +707,7 @@
 .MORIB ,CL
 .$01
 
-.XCRMD
+.XCRMB
 /CL:RDI:B
 .$02
 
@@ -761,7 +762,7 @@
 .PM
 .MZRMW:W
 /ECX:R13:D
-.mFD:D ,2:D
+.mFD:D ,$2:D
 
 *lPSF_31
 
