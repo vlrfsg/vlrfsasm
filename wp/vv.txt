@@ -192,8 +192,8 @@
 {hm.sizeOfLabelList; ; $80000}
 {hm.sizeOfElementOfLabelList; ; $8} [2:Next{FFFE:Empty, FFFF:End}, 2:Token, 4:Position{31:Position, 1:Global/Local}]
 {hm.addressOfTempString; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
-{hm.sizeOfTempString; ; $20000}
-{hm.sizeOfElementOfTempString; ; $10000}
+{hm.sizeOfTempString; ; $40000}
+{hm.sizeOfElementOfTempString; ; $20000}
 {h.sizeOfHeap; ; (+ (hm.addressOfTempString) (hm.sizeOfTempString))}
 
 [Text]
