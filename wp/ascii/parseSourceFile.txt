@@ -766,7 +766,10 @@
 
 *lPSF_31
 
-.JCZB
+.EXCFF
+/DEC:ECX:R
+
+.JSB
 'lPSF_33
 
 .PW
@@ -776,16 +779,8 @@
 +R13:RCX:W
 .mAL:D
 
-.JEB
-'lPSF_32
-
-.EXCFF
-/DEC:ECX:R
-
-.JB
+.JNEB
 'lPSF_31
-
-*lPSF_32
 
 .MORIB ,DL
 .$0F
@@ -805,11 +800,14 @@
 .PM
 .MZRMW:W
 /ECX:R13:D
-.mFD:D ,4:D
+.mFD:D ,$4:D
 
 *lPSF_34
 
-.JCZB
+.EXCFF
+/DEC:ECX:R
+
+.JSB
 'lPSF_UA
 
 .PW
@@ -819,16 +817,8 @@
 +R13:RCX:W
 .mLLL:D
 
-.JEB
-'lPSF_35
-
-.EXCFF
-/DEC:ECX:R
-
-.JB
+.JNEB
 'lPSF_34
-
-*lPSF_35
 
 .MORIB ,DL
 .$F0
