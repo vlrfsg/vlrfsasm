@@ -1,0 +1,93 @@
+#wp/ascii/convertKS.txt
+#Copyright 2021 vlrfsg
+
+*fCKS
+
+.PQ ,PM
+.LERMD
+/RCX:R13:D
+.mTSg:D
+
+.PQ
+.MORMD
+/RDI:RCX:R
+
+.PQ ,PM
+.LERMD
+/RSI:R13:D
+.mS:D
+
+*lCKS_0
+
+.PQ ,PM
+.CMRMD
+/R14:RSI:R
+
+.JBB
+'lCKS_1
+
+.PR ,PM
+.MORMD
+/R12D:R14:B
+.$04
+
+.PM
+.MORMD
+/EAX:R14:M
+
+.PQ ,PM
+.LERMD
+/RAX:SIB:D
++R13:RAX:B
+.mD:D
+
+.PW
+.PR
+.MORMD
+/R12W:RAX:B
+.$04
+
+.PQ
+.MORMD
+/RDX:RCX:R
+
+.PW
+.MORMD
+/CX:RAX:M
+
+.CD
+'fGTA:D
+
+.PQ
+.XCRMD
+/RCX:RDX:R
+
+.XORMB
+/AL:AL:R
+
+.CD
+'fGTN:D
+
+.CD
+'fCLS:D
+
+.PQ ,PM
+.CAMI8
+/ADD:R14:R
+.$80 #-sSR
+
+.JB
+'lCKS_0
+
+*lCKS_1
+
+.PW
+.MOMID
+/EMP:RCX:M
+.$0000:W
+
+.PQ
+.MORMD
+/RDX:RDI:R
+
+.RET
