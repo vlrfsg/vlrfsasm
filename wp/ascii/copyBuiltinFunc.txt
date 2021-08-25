@@ -8,8 +8,8 @@
 
 .PQ ,PM
 .LERMD
-/RSI:R13:B
-.mT
+/RSI:R13:D
+.mT:D
 
 .XORMD
 /EDI:EDI:R

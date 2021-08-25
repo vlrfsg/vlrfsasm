@@ -7,7 +7,7 @@
 /CMP:BH:R
 .$00
 
-.SEB:W
+.SNEB:W
 /ENP:AH:R
 
 .ORRMB

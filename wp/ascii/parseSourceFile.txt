@@ -44,64 +44,64 @@
 /CMP:AH:R
 .$00
 
-.JNEB
-'lPSF_5
+.JNED:W
+'lPSF_5:D
 
 .CMAIB
 .$00
 
-.JEB
-'lPSF_15
+.JED:W
+'lPSF_15:D
 
 .CMAIB
 .$1C
 
-.JEB
-'lPSF_16
-
-.CMAIB
-.$0A
-
-.JEB
-'lPSF_17
+.JED:W
+'lPSF_16:D
 
 .CMAIB
 .$0D
 
-.JEB
-'lPSF_18
+.JED:W
+'lPSF_17:D
+
+.CMAIB
+.$0A
+
+.JED:W
+'lPSF_18:D
 
 .CAMIB
 /CMP:BH:R
 .$06
 
-.JAEB
-'lPSF_20
+.JAED:W
+'lPSF_20:D
 
 .CMAIB
 "]
 
-.JEB
-'lPSF_22
+.JED:W
+'lPSF_22:D
 
 .EXCF6
 /TEST:BL:R
 .$40
 
-.JNZB
-'lPSF_9
+.JNZD:W
+'lPSF_9:D
 
 .CMAIB
 "[
 
-.JEB
-'lPSF_23
+.JED:W
+'lPSF_23:D
 
 .CMAIB
 "{
 
-.JEB
-'lPSF_24
+.JED:W
+'lPSF_24:D
 
 .EXCF6
 /TEST:BL:R
@@ -113,38 +113,38 @@
 .CMAIB
 ";
 
-.JEB
-'lPSF_25
+.JED:W
+'lPSF_25:D
 
 .CMAIB
 "}
 
-.JEB
-'lPSF_26
+.JED:W
+'lPSF_26:D
 
 .CMAIB
 .$09
 
-.JEB
-'lPSF_27
+.JED:W
+'lPSF_27:D
 
 .CMAIB
 .$20
 
-.JEB
-'lPSF_27
+.JED:W
+'lPSF_27:D
 
 .CMAIB
 "(
 
-.JEB
-'lPSF_49
+.JED:W
+'lPSF_49:D
 
 .CMAIB
 ")
 
-.JEB
-'lPSF_48
+.JED:W
+'lPSF_48:D
 
 .CMAIB
 "0
@@ -231,7 +231,7 @@
 
 .CAMIB
 /AND:BL:R
-.$3F
+.$7F
 
 *lPSF_7
 
@@ -255,8 +255,8 @@
 /ADD:R14:R
 .$02
 
-.JB
-'lPSF_0
+.JD
+'lPSF_0:D
 
 *lPSF_10
 
@@ -280,8 +280,8 @@
 /TEST:BL:R
 .$07
 
-.JZB
-'lPSF_E
+.JZD:W
+'lPSF_E:D
 
 .EXCF6
 /TEST:BL:R
@@ -303,8 +303,8 @@
 /CMP:BH:R
 .$00
 
-.JEB
-'lPSF_E
+.JED:W
+'lPSF_E:D
 
 .CAMIB
 /AND:BL:R
@@ -314,8 +314,8 @@
 /CMP:BL:R
 .$18
 
-.JBB
-'lPSF_E
+.JBD:W
+'lPSF_E:D
 
 .CD
 'fGNC:D
@@ -324,15 +324,15 @@
 /TEST:BH:R
 .$06
 
-.JNZB
-'lPSF_27
+.JNZD:W
+'lPSF_27:D
 
 .CAMIB
 /ADD:BH:R
 .$05
 
-.JB
-'lPSF_27
+.JD
+'lPSF_27:D
 
 *lPSF_13
 
@@ -356,16 +356,16 @@
 /TEST:BL:R
 .$3F
 
-.JZB
-'lPSF_53
+.JZD:W
+'lPSF_53:D
 
 .PR ,PM
 .MORMD
 /R12D:R13:D
 .mFD:D ,$00000010:D
 
-.JB
-'lPSF_NO
+.JD
+'lPSF_NO:D
 
 *lPSF_16
 
@@ -373,8 +373,8 @@
 /TEST:BL:R
 .$3F
 
-.JNZB
-'lPSF_NC
+.JNZD:W
+'lPSF_NC:D
 
 .PM
 .CAMID
@@ -389,8 +389,8 @@
 .XORMB
 /BL:BL:R
 
-.JB
-'lPSF_9
+.JD
+'lPSF_9:D
 
 *lPSF_17
 
@@ -399,6 +399,10 @@
 
 .CAMIB
 /OR:AH:R
+.$80
+
+.CAMIB
+/OR:BL:R
 .$80
 
 .JB
@@ -410,8 +414,8 @@
 /TEST:BL:R
 .$80
 
-.JNZB
-'lPSF_6
+.JNZD:W
+'lPSF_6:D
 
 .CD
 'fGNC:D
@@ -422,12 +426,19 @@
 .EXCFF
 /INC:R12D:R
 
+.EXCF6
+/TEST:BL:R
+.$40
+
+.JNZD:W
+'lPSF_7:D
+
 .CAMIB
 /CMP:BH:R
 .$06
 
-.JBB
-'lPSF_27
+.JBD:W
+'lPSF_27:D
 
 .MOMID
 /EMP:RSI:M
@@ -438,8 +449,8 @@
 /ADD:RSI:R
 .$04
 
-.JB
-'lPSF_7
+.JD
+'lPSF_7:D
 
 *lPSF_20
 
@@ -462,34 +473,38 @@
 .JEB
 'lPSF_14
 
-.JB
-'lPSF_2
+.JD
+'lPSF_2:D
 
 *lPSF_21
 
 .CMAIB
 "\
 
-.JEB
-'lPSF_8
+.JED:W
+'lPSF_8:D
 
 .CD
 'fGNC:D
 
-.JB
-'lPSF_3
+.JD
+'lPSF_3:D
 
 *lPSF_22
 
 .EXCF6
 /TEST:BL:R
-.$80
+.$40
 
-.JNZB
-'lPSF_6
+.JZD:W
+'lPSF_E:D
 
-.JB
-'lPSF_E
+.CAMIB
+/CMP:BL:R
+.$3F
+
+.JD
+'lPSF_7:D
 
 *lPSF_23
 
@@ -509,8 +524,8 @@
 /TEST:BL:R
 .$38
 
-.JNZB
-'lPSF_NC
+.JNZD:W
+'lPSF_NC:D
 
 .XORMD
 /ECX:ECX:R
@@ -518,7 +533,7 @@
 .MORIB ,CL
 .sFH
 
-.PQ ,PM
+.PM
 .XAMRD:W
 /RCX:R13:B
 .eD
@@ -555,8 +570,8 @@
 .MORIB ,BL
 .$08
 
-.JB
-'lPSF_9
+.JD
+'lPSF_9:D
 
 *lPSF_25
 
@@ -565,8 +580,8 @@
 /CMP:R11D:R
 .$00
 
-.JAB
-'lPSF_NC
+.JAD:W
+'lPSF_NC:D
 
 .MORIB ,AH
 .$38
@@ -582,8 +597,8 @@
 /CMP:AH:R
 .$20
 
-.JAB
-'lPSF_E
+.JAD:W
+'lPSF_E:D
 
 .CAMIB
 /CMP:AH:R
@@ -605,15 +620,15 @@
 /CMP:R11D:R
 .$00
 
-.JAB
-'lPSF_NC
+.JAD:W
+'lPSF_NC:D
 
 .CAMIB
 /CMP:BL:R
 .$18
 
-.JBEB
-'lPSF_E
+.JBED:W
+'lPSF_E:D
 
 .XORMB
 /AH:AH:R
@@ -628,8 +643,8 @@
 /CMP:BH:R
 .$01
 
-.JBEB
-'lPSF_42
+.JBED:W
+'lPSF_42:D
 
 .PW
 .MOMID
@@ -669,14 +684,14 @@
 /CMP:BL:R
 .$18
 
-.JBB
-'lPSF_37
+.JBD:W
+'lPSF_37:D
 
 .CD
 'fSI:D
 
-.JB
-'lPSF_41
+.JD
+'lPSF_41:D
 
 *lPSF_28
 
@@ -684,8 +699,8 @@
 /CMP:BH:R
 .$04
 
-.JAB
-'lPSF_40
+.JAD:W
+'lPSF_40:D
 
 .CD
 'fSX:D
@@ -715,8 +730,8 @@
 /CMP:CL:R
 .$00
 
-.JNEB
-'lPSF_TD
+.JNED:W
+'lPSF_TD:D
 
 .PQ ,PM
 .LERMD
@@ -735,8 +750,8 @@
 /RDI:RCX:B
 .$08
 
-.JB
-'lPSF_42
+.JD
+'lPSF_42:D
 
 *lPSF_29
 
@@ -745,10 +760,10 @@
 .MOMRD
 /DX:SIB:D
 +R13:R11:B
-.mS:D ,2:D
+.mS:D ,$2:D
 
-.JB
-'lPSF_42
+.JD
+'lPSF_42:D
 
 *lPSF_30
 
@@ -840,8 +855,8 @@
 /TEST:BL:R
 .$08
 
-.JZ
-'lPSF_E
+.JZD:W
+'lPSF_E:D
 
 .PQ ,PM
 .LERMD
@@ -856,14 +871,14 @@
 /CMP:ECX:R
 .$00
 
-.JNEB
-'lPSF_E
+.JNED:W
+'lPSF_E:D
 
 .PQ ,PM
 .LERMD
 /RCX:SIB:D
 +R13:RCX:D
-.mD:D ,8:D
+.mD:D ,$8:D
 
 .MORMD
 /EDX:RDX:M
@@ -895,7 +910,7 @@
 .PM
 .XAMRD:W
 /CX:R13:D
-.mFD:D ,4:D
+.mFD:D ,$4:D
 
 .PW
 .PM
@@ -913,7 +928,7 @@
 .PM
 .XAMRD:W
 /CX:R13:D
-.mFD:D ,6:D
+.mFD:D ,$6:D
 
 .PW
 .PM
@@ -952,7 +967,7 @@
 .EXCFF
 /INC:SIB:D
 +R13:R11:B
-.mS:D ,4:D
+.mS:D ,$4:D
 
 .CD
 'fCI:D
@@ -991,6 +1006,13 @@
 ")
 
 .JEB
+'lPSF_47
+
+.EXCF6
+/TEST:BL:R
+.$06
+
+.JZB
 'lPSF_47
 
 .PW
@@ -1057,7 +1079,7 @@
 .PQ ,PM
 .MORMD
 /RCX:R13:D
-.mFD:D ,8:D
+.mFD:D ,$8:D
 
 .EXCFE
 /INC:RCX:B
@@ -1080,8 +1102,8 @@
 .MORMB
 /BL:AH:R
 
-.JB
-'lPSF_9
+.JD
+'lPSF_9:D
 
 *lPSF_48
 
@@ -1106,8 +1128,8 @@
 /CMP:BH:R
 .$00
 
-.JNEB
-'lPSF_27
+.JNED:W
+'lPSF_27:D
 
 *lPSF_E
 
@@ -1144,7 +1166,7 @@
 .MORMD
 /R12W:SIB:D
 +R13:R11:B
-.mS
+.mS:D
 
 *lPSF_NO
 
