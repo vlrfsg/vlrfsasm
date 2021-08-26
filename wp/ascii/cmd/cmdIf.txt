@@ -1,0 +1,11 @@
+#wp/ascii/cmd/cmdIf.txt
+#Copyright 2021 vlrfsg
+
+*fQIF
+
+.PM
+.EXCFE
+/DEC:R14:B
+.$0D
+
+.RET

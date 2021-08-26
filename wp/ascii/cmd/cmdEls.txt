@@ -1,0 +1,26 @@
+#wp/ascii/cmd/cmdEls.txt
+#Copyright 2021 vlrfsg
+
+*fQEL
+
+.PM
+.MORMB
+/CL:R14:B
+.$0D
+
+.XORMD
+/EQX:EAX:R
+
+.INCFE
+/INC:AL:R
+
+.PQ
+.SHMCD
+/SHL:RAX:R
+
+.PQ ,PM
+.XOMRD
+/RAX:R14:B
+.$10
+
+.RET

@@ -1,0 +1,53 @@
+#wp/ascii/valueSub/getValueAddress.txt
+#Copyright 2021 vlrfsg
+
+*fGVA
+
+.MORMD
+/ECX:EAX:R
+
+.CD
+'fGLV:D
+
+.MORMB
+/CL:DL:R
+
+.XORMD
+/EDX:EDX:R
+
+.MORIB ,DL
+.$01
+
+.SHMCD
+/SHL:EDX:R
+
+.EXCFF
+/DEC:EDX:R
+
+.ANRMD
+/EDX:EAX:R
+
+.EXCF6
+/NEG:CL:R
+
+.CAMIB
+/ADD:CL:R
+.$0F
+
+.SHMCD
+/SHL:EDX:R
+
+.SHMID
+/SHL:ECX:R
+.$0F #gV-3
+
+.ADRMD
+/EDX:ECX:R
+
+.PQ ,PM
+.LERMD
+/RCX:SIB:D
++R13:RDX:Q
+.mV:D
+
+.RET

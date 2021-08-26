@@ -1,0 +1,87 @@
+#wp/ascii/commonSub/convertIS.txt
+#Copyright 2021 vlrfsg
+
+*fCIS
+
+.PQ
+.MORMD
+/RAX:RDX:R
+
+.PQ ,PR
+.MORMD
+/R9:RCX:R
+
+.PM
+.MORID ,R8D
+.$0000000A:D
+
+*lCIS_0
+
+.XORMD
+/EDX:EDX:R
+
+.PQ ,PM
+.EXCF7
+/DIV:R8:R
+
+.CAMIB
+/ADD:DL:R
+"0
+
+.PW
+.MOMRD
+/DX:RCX:M
+
+.PQ
+.CAMI8
+/ADD:RCX:R
+.$02
+
+.PQ
+.CAMI8
+/CMP:RAX:R
+.$00
+
+.JNEB
+'lCIS_0
+
+*lCIS_1
+
+.PQ
+.CAMI8
+/SUB:RCX:R
+.$02
+
+.PQ ,PM
+.CMRMD
+/RCX:R9:R
+
+.JBEB
+'lCIS_2
+
+.MORMB
+/DL:RCX:M
+
+.PM
+.XCRMB
+/DL:R9:M
+
+.MOMRB
+/DL:RCX:M
+
+.PQ ,PM
+.CAMI8
+/ADD:R9:R
+.$02
+
+.JB
+'lCIS_1
+
+*lCIS_2
+
+.PQ ,PM
+.LERMD
+/RCX:R9:B
+.$02
+
+.RET

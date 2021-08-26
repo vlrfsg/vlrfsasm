@@ -1,0 +1,20 @@
+#wp/ascii/errorSub/newLine.txt
+#Copyright 2021 vlrfsg
+
+*fNL
+
+.MOMID
+/EMP:RCX:M
+.$000A000D:D
+
+.MOMID
+/EMP:RCX:B
+.$04
+.$00200020:D
+
+.PQ
+.CAMI8
+/ADD:RCX:R
+.$08
+
+.RET

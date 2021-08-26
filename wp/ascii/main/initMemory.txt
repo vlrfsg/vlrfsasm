@@ -1,0 +1,43 @@
+#wp/ascii/main/initMemory.txt
+#Copyright 2021 vlrfsg
+
+.PQ
+.CAMI8
+/SUB:RSP:R
+.$28
+
+.EXCFF
+/CALL:RIP:M
+'dGtPsHp:D
+
+.MORMD
+/EBX:EAX:R
+
+.MORMD
+/ECX:EAX:R
+
+.XORMD
+/EDX:EDX:R
+
+.MORIB ,DL
+.$08
+
+.PM
+.MORID ,R8D
+.sH:D
+
+.EXCFF
+/CALL:RIP:M
+'dHpAc:D
+
+.MOMRD
+/EBX:RAX:M
+
+.PQ
+.MOMRD
+/RSP:RAX:B
+.mBS
+
+.PQ ,PR
+.MORMD
+/R13:RAX:R

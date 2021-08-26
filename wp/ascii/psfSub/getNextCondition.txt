@@ -1,0 +1,21 @@
+#wp/ascii/psfSub/getNextCondition.txt
+#Copyright 2021 vlrfsg
+
+*fGNC
+
+.CAMIB
+/CMP:BH:R
+.$00
+
+.SNEB:W
+/ENP:AH:R
+
+.ORRMB
+/AH:BL:R
+
+.CAMIB
+/AND:AH:R
+.$39
+
+.RET
+

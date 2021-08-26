@@ -1,0 +1,28 @@
+#wp/ascii/valueSub/getLogOfValue.txt
+#Copyright 2021 vlrfsg
+
+*fGLV
+
+.EXCF7
+/NOT:ECX:R
+
+.PW
+.BRRMD:W
+/DX:CX:R
+
+.CAMIB
+/CMP:DL:R
+.$02
+
+.JAEB
+'lGLV_0
+
+.MORIB ,DL
+.$02
+
+*lGLV_0
+
+.XORMD
+/ECX:ECX:R
+
+.RET

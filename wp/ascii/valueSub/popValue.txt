@@ -1,0 +1,35 @@
+#wp/ascii/valueSub/popValue.txt
+#Copyright 2021 vlrfsg
+
+*fPpV
+
+.PQ
+.CAMI8
+/SUB:RBP:R
+.sVS
+
+.MZRMW:W
+/EAX:RBP:B
+.$00
+
+.PM
+.CAMI8
+/CMP:SIB:D
++R13:RAX:Q
+.mVI:D
+
+.JLB
+'lPpV_0
+
+.RET
+
+*lPpV_0
+
+.CD
+'fCKS:D
+
+.MORIB ,BL
+.$0C
+
+.JD
+'fPE:D
