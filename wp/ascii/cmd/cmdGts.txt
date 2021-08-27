@@ -1,0 +1,40 @@
+#wp/ascii/cmd/cmdGts.txt
+#Copyright 2021 vlrfsg
+
+*fQGS
+
+.CD
+'fPpV:D
+
+.CD
+'fFV:D
+
+.PM
+.MORMD
+/EBX:SIB:D
++R13:RAX:Q
+.mVI:R
+
+.PQ
+.SWRD:W ,RBX
+
+.XORMD
+/ECX:ECX:R
+
+.MORIB ,CL
+.$40
+
+.CD
+'fAV:D
+
+.CD
+'fPhV:D
+
+.CD
+'fGVA:D
+
+.PQ
+.MOMRD
+/RBX:RCX:M
+
+.RET
