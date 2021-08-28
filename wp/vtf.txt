@@ -96,6 +96,7 @@
     (ADD (RSI) (i (hm.sizeOfElementOfToken)))
     (JMP @tl.copyBuiltinFunc_0)
     (@ @tl.copyBuiltinFunc_3)
+    (MOV (mmdd (hm.addressOfEndOfLiteral)) (EDI))
     (MOV (mmdq (hm.addressOfEndOfToken)) (RSI))
   )
 }

@@ -183,7 +183,7 @@
 
 .PQ
 .MORMD
-/RDX:RDI:R
+/RDX:RSI:R
 
 .CD
 'fCX:D
