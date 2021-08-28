@@ -1,0 +1,37 @@
+#def/pic/pic16f/pic16f1827/register.txt
+#Copyright 2021 vlrfsg
+
+[Common among all banks]
+{INDF0; ; $00}
+{INDF1; ; $01}
+{PCL; ; $02}
+{STATUS; ; $03}
+  {STATUS.C; ; 0}
+  {STATUS.DC; ; 1}
+  {STATUS.Z; ; 2}
+  {STATUS.PD; ; 3}
+  {STATUS.TO; ; 4}
+{FSR0L; ; $04}
+{FSR1L; ; $05}
+{FSR0H; ; $06}
+{FSR1H; ; $07}
+{BSR; ; $08}
+{WREG; ; $09}
+{PCLATH; ; $0A}
+{INTCON; ; $0B}
+
+[Bank 0]
+{PORTA; ; $0C}
+{PORTB; ; $0D}
+
+[Bank 1]
+{TRISA; ; $0C}
+{TRISB; ; $0D}
+
+[Bank 2]
+{LATA; ; $0C}
+{LATB; ; $0D}
+
+[Bank 3]
+{ANSELA; ; $0C}
+{ANSELB; ; $0D}

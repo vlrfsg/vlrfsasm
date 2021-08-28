@@ -1,0 +1,102 @@
+#def/pic/pic16f/pic16f1827/instruction.txt
+#Copyright 2021 vlrfsg
+
+
+{nop; ; (: $0000 16)}
+{rst; ; (: $0001 16)}
+{retp; ; (: $0008 16)}
+{rfip; ; (: $0009 16)}
+{calpw; ; (: $000A 16)}
+{brapw; ; (: $000B 16)}
+{imovwn A; ; (: (| $0010 (< (: A 1) 2)) 16)}
+{dmovwn A; ; (: (| $0011 (< (: A 1) 2)) 16)}
+{moviwn A; ; (: (| $0012 (< (: A 1) 2)) 16)}
+{movdwn A; ; (: (| $0013 (< (: A 1) 2)) 16)}
+{imovnw A; ; (: (| $0014 (< (: A 1) 2)) 16)}
+{dmovnw A; ; (: (| $0015 (< (: A 1) 2)) 16)}
+{movinw A; ; (: (| $0016 (< (: A 1) 2)) 16)}
+{movdnw A; ; (: (| $0017 (< (: A 1) 2)) 16)}
+{movbi A; ; (: (| $0020 (: A 5)) 16)}
+{movow; ; (: $0062 16)}
+{slp; ; (: $0063 16)}
+{clrd; ; (: $0064 16)}
+{movaw; ; (: $0065 16)}
+{movbw; ; (: $0066 16)}
+{movfw A; ; (is.f $00 1 A)}
+{clrw; ; (: $0100 16)}
+{clrf A; ; (is.f $01 1 A)}
+{subwf A; ; (is.f $02 0 A)}
+{subfw A; ; (is.f $02 1 A)}
+{decwf A; ; (is.f $03 0 A)}
+{decff A; ; (is.f $03 1 A)}
+{iorwf A; ; (is.f $04 0 A)}
+{iorfw A; ; (is.f $04 1 A)}
+{andwf A; ; (is.f $05 0 A)}
+{andfw A; ; (is.f $05 1 A)}
+{xorwf A; ; (is.f $06 0 A)}
+{xorfw A; ; (is.f $06 1 A)}
+{addwf A; ; (is.f $07 0 A)}
+{addfw A; ; (is.f $07 1 A)}
+{movwf A; ; (is.f $08 0 A)}
+{movff A; ; (is.f $08 1 A)}
+{comwf A; ; (is.f $09 0 A)}
+{comff A; ; (is.f $09 1 A)}
+{incwf A; ; (is.f $0A 0 A)}
+{incff A; ; (is.f $0A 1 A)}
+{deswf A; ; (is.f $0B 0 A)}
+{desff A; ; (is.f $0B 1 A)}
+{rcrwf A; ; (is.f $0C 0 A)}
+{rcrff A; ; (is.f $0C 1 A)}
+{rclwf A; ; (is.f $0D 0 A)}
+{rclff A; ; (is.f $0D 1 A)}
+{swpwf A; ; (is.f $0E 0 A)}
+{swpff A; ; (is.f $0E 1 A)}
+{inswf A; ; (is.f $0F 0 A)}
+{insff A; ; (is.f $0F 1 A)}
+{bcfff A B; ; (is.b 4 B A)}
+{bsfff A B; ; (is.b 5 B A)}
+{bcsff A B; ; (is.b 6 B A)}
+{bssff A B; ; (is.b 7 B A)}
+{cafpl A; ; (: (| $30 (: (` A) 11)) 16)}
+{calpl A; B;
+  (?
+    (== (> (` A) 11) (> (` B) 11))
+    (' (: (| $30 (: (` A) 11)) 16) (@ B))
+    (c.errSxl "Unreachable address")
+  )
+}
+{gofpl A; ; (: (| $34 (: (` A) 11)) 16)}
+{gotpl A; B;
+  (?
+    (== (> (` A) 11) (> (` B) 11))
+    (' (: (| $34 (: (` A) 11)) 16) (@ B))
+    (c.errSxl "Unreachable address")
+  )
+}
+{movwi A; ; (is.i $30 A)}
+{addsi A B; ; (: (| $3100 (< (: A 1) 6) (: B 6)) 16)}
+{movpl A; ; (: (| $3180 (: (> (` A) 8) 7)) 16)}
+{brapl A; B;
+  (? (==- (- (` A) (` B)) (: (- (` A) (` B)) 9))
+    (' (: (| $3200 (: (- (` A) (` B)) 9)) 16) (@ B))
+    (c.errSxl "Unreachable address")
+  )
+}
+{rmovwi A; ; (is.i $34 A)}
+{lslwf A; ; (is.f $35 0 A)}
+{lslff A; ; (is.f $35 1 A)}
+{lsrwf A; ; (is.f $36 0 A)}
+{lsrff A; ; (is.f $36 1 A)}
+{asrwf A; ; (is.f $37 0 A)}
+{asrff A; ; (is.f $37 1 A)}
+{iorwi A; ; (is.i $38 A)}
+{andwi A; ; (is.i $39 A)}
+{xorwi A; ; (is.i $3A A)}
+{sbbwf A; ; (is.f $3B 0 A)}
+{sbbfw A; ; (is.f $3B 1 A)}
+{subwi A; ; (is.i $3C A)}
+{addwf A; ; (is.f $3D 0 A)}
+{addfw A; ; (is.f $3D 1 A)}
+{addwi A; ; (is.i $3E A)}
+{movwk A B; ; (: (| $3F00 (< (: A 1) 6) (: B 6)) 16)}
+{movkw A B; ; (: (| $3F80 (< (: A 1) 6) (: B 6)) 16)}

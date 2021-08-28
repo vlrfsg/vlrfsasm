@@ -79,7 +79,7 @@
     (sr.elementOfCommandList "#" (` @tf.addressOfCmdGts) 1)
     (sr.elementOfCommandList "@" (` @tf.addressOfCmdLbl) 1)
     (sr.elementOfCommandList "`" (` @tf.addressOfCmdAdr) 1)
-    (sr.elementOfCommandList ";" (` @tf.addressOfCmdErr) 1)
+    (sr.elementOfCommandList "~" (` @tf.addressOfCmdErr) 1)
     (iw 0)
   )
 }

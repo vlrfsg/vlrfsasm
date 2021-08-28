@@ -1,0 +1,29 @@
+#def/pic/pic16f/pic16f1827/configurationWord.txt
+#Copyright 2021 vlrfsg
+
+{hx.contentOfConfigurationWord; ;
+  ('
+    (: 0 2)
+    (: (cw.FCMEN) 1)
+    (: (cw.IESO) 1)
+    (: (cw.CLKOUTEN) 1)
+    (: (cw.BOREN) 2)
+    (: (cw.CPD) 1)
+    (: (cw.CP) 1)
+    (: (cw.MCLRE) 1)
+    (: (cw.PWRTE) 1)
+    (: (cw.WDTE) 2)
+    (: (cw.FOSC) 3)
+    (: 0 2)
+    (: (cw.LVP) 1)
+    (: (cw.DEBUG))
+    (: 1 1)
+    (: (cw.BORV) 1)
+    (: (cw.STVREN) 1)
+    (: (cw.PLLEN) 1)
+    (: 63 6)
+    (: (cw.WRT) 2)
+  )
+}
+
+{hx.addressOfConfigurationWord; ; $8007}

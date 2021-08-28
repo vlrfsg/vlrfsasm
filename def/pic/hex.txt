@@ -1,0 +1,73 @@
+#def/pic/hex.txt
+#Copyright 2021 vlrfsg
+
+{hx.contentOfText; ; (machine.bin)}
+
+
+{.; ;
+  (c.cnvSxS8
+    ('
+      (hx.convert (hx.contentOfText) 0)
+      (hx.convert
+        (hx.contentOfConfigurationWord)
+        (hx.addressOfConfigurationWord)
+      )
+      (hx.contentOfEndOfFile)
+    )
+  )
+}
+
+{hx.convert A B; ;
+  ('
+    (hx.record
+      ('
+        (: 2 8)
+        (: 0 16)
+        (: 4 16)
+        (: (> B 15) 16)
+      )
+    )
+    (hx.convertL A (< B 1))
+  )
+}
+
+{hx.convertL A 128 B; ;
+  (hx.record
+    ('
+      (: (> A 3) 8)
+      (: B 16)
+      (: 0 8)
+      A
+    )
+  );
+  (+ B 16)
+}
+
+{hx.record A; ;
+  ('
+    ":"
+    (hx.string (hx.parity A (' (: (> A 3) 8) (: 0 8))))
+    "\r\n"
+  )
+}
+
+{hx.parity A 8 B; ;
+  ('
+    A
+    (?
+      (= (> B 8) 1)
+      (: (c.neg (+ A B)) 8)
+      (c.empty)
+    )
+  );
+  ('
+    (+ (> B 8) 1)
+    (+ (: B 8) A)
+  )
+}
+
+{hx.string A 8; ; (c.cnvISFixed A 16 2)}
+
+{hx.contentOfEndOfFile; ;
+  ":00000001FF\r\n"
+}

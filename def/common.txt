@@ -165,6 +165,16 @@
     (c.cnvIS A B)
   )
 }
+{c.cnvISFixed A B C; ;
+  ('
+    (?
+      (>= (> (# (c.cnvIS A B)) 4) C)
+      (c.emp)
+      (c.repS "0" (- C (> (# (c.cnvIS A B)) 4)))
+    )
+    (c.cnvIS A B)
+  )
+}
 
 [Convert utf-16 to utf-8]
 {c.cnvCcS8 A; ;
@@ -201,7 +211,7 @@
     (?
       (getBit A 10)
       (c.cnvCcS8 (- (' (: B 10) (: A 10)) $00010000))
-      (c.empty)
+      (c.emp)
     )
   );
   (?
@@ -219,6 +229,11 @@
 [Utf-16 change endian]
 {c.chgEdnSx A 16; ;
   (' (c.getRan A 0 8) (c.getRan A 8 8))
+}
+
+[Repeat string]
+{c.repS A B; ;
+  (? B (' A (c.repS A (- B 1))) (c.emp))
 }
 
 [Error]
