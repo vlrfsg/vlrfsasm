@@ -34,7 +34,7 @@
 .JAB
 'lCI_0
 
-.SNEB:W
+.SEB:W
 /EMP:DL:R
 
 .EXCFE

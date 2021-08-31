@@ -144,6 +144,11 @@
 /ADD:R15:R
 .sT
 
+.PQ ,PR ,PM
+.MOMRD
+/R15:R13:B
+.eT
+
 .PM
 .MORMD
 /ECX:R8D:R

@@ -20,9 +20,8 @@
 +R13:RCX:B
 .mD:D
 
-.PW
 .MOMRD
-/DX:RCX:M
+/EDX:RCX:M
 
 .PW
 .PR

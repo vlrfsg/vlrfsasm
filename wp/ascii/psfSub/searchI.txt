@@ -39,6 +39,11 @@
 /ADD:R15:R
 .sT
 
+.PQ ,PR ,PM
+.MOMRD
+/R15:R13:B
+.eT
+
 .PQ
 .MOMRD
 /RAX:RDI:B
