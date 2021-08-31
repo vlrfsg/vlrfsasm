@@ -20,8 +20,8 @@ About vlrfsasm
   
 
 4. Example
-  An example is in folder "example".
-  I recommend you check it before you start on your own.
+  An example is in the "example" folder.
+  I recommend you to check it before you start on your own.
 
 5. Grammar
   Vlrfsasm uses s-expression.
