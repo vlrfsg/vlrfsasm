@@ -1,7 +1,12 @@
 #def/pic/pic16f/pic16f1827/instruction.txt
 #Copyright 2021 vlrfsg
 
+[instruction template]
+{is.f A B C; ; (: (' (: A 6) (: B 1) (: C 7)) 16)}
+{is.b A B C; ; (: (' (' A 4) (: B 3) (: C 7)) 16)}
+{is.i A B; ; (: (' (: A 6) (: B 8)) 16)}
 
+[instruction]
 {nop; ; (: $0000 16)}
 {rst; ; (: $0001 16)}
 {retp; ; (: $0008 16)}
