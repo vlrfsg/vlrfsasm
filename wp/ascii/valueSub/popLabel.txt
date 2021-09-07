@@ -20,6 +20,7 @@
 
 .CAMI8
 /CMP:EBX:R
+.$00
 
 .JGEB
 'lPpV_0
@@ -27,10 +28,7 @@
 .CD
 'fFV:D
 
-.CD
-'fGVA:D
-
-.MZRMW
+.MZRMW:W
 /ESI:RCX:M
 
 .RET

@@ -9,9 +9,9 @@
 .$0D
 
 .XORMD
-/EQX:EAX:R
+/EAX:EAX:R
 
-.INCFE
+.EXCFE
 /INC:AL:R
 
 .PQ

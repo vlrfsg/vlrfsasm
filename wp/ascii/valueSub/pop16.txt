@@ -9,9 +9,6 @@
 .CD
 'fFV:D
 
-.CD
-'fGVA:D
-
 .PM
 .MORMD
 /EDX:SIB:D
@@ -21,14 +18,19 @@
 .MORMD
 /EBX:EDX:R
 
-.SHRID
-/SHR:EBX:R
-.$04
+.PQ
+.CAMI8
+/SUB:RBX:R
+.$19
+
+.PQ
+.SHMID
+/SAR:RBX:R
+.$03
 
 .MORMD
-/EAX:SIB:B
+/EAX:SIB:M
 +RCX:RBX:B
-.$FE
 
 .SWRD:W ,EAX
 
@@ -37,6 +39,10 @@
 
 .EXCF6
 /NEG:CL:R
+
+.CAMIB
+/AND:CL:R
+.$07
 
 .SHMCD
 /SHR:EAX:R
@@ -48,14 +54,11 @@
 .JAEB
 'lP16_0
 
-.EXCF6
-/NEG:CL:R
+.MORMB
+/CL:DL:R
 
-.XORMD
-/EDX:EDX:R
-
-.EXCFE
-/INC:DL:R
+.MORIB ,DL
+.$01
 
 .SHMCD
 /SHL:EDX:R
@@ -68,8 +71,8 @@
 
 *lP16_0
 
-.MORMD
-/EBX:EAX:R
+.MZRMW:W
+/EBX:AX:R
 
 .CD
 'fPpV:D
@@ -79,7 +82,7 @@
 
 .PQ ,PR
 .MORMD
-/R9:RCX:R
+/R10:RCX:R
 
 .PM
 .MORMD

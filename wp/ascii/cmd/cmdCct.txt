@@ -51,9 +51,6 @@
 .CD
 'fAV:D
 
-.CD
-'fGVA:D
-
 .PQ ,PR
 .MORMD
 /R10:RCX:R
@@ -131,7 +128,7 @@
 *lQCC_3
 
 .PR ,PM
-.MZRMB
+.MZRMB:W
 /R12D:R10:M
 
 .PM
@@ -229,6 +226,7 @@
 .mVI:D ,$6:D
 
 .PR ,PM
+.MORMD
 /R12D:R9D:R
 
 .PQ ,PM
@@ -275,7 +273,7 @@
 'lQCC_8
 
 .EXCFF
-/INC:EDC:R
+/INC:EDX:R
 
 .JB
 'lQCC_7
@@ -325,6 +323,8 @@
 .JD
 'lQCC_2:D
 
+*lQCC_10
+
 .CAMIB
 /CMP:BL:R
 .$08
@@ -345,10 +345,13 @@
 .PM
 .MOMID
 /EMP:R15:M
-.$FFFF
+.$FFFF:W
 
 .PORQ ,RAX
 
 .PORQ ,RBP
+
+.CD
+'fPhV:D
 
 .RET

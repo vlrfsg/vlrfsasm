@@ -17,9 +17,8 @@ About vlrfsasm
   Other file extensions indicate binary source files.
   
   >  vlrfsasm <destination file> <source file>
-  
 
-4. Example
+4. Example [Under preparation - Coming in the next release]
   An example is in the "example" folder.
   I recommend you to check it before you start on your own.
 
@@ -82,38 +81,13 @@ About vlrfsasm
 
 7. Label
   Labels embedded in (.) are evaluated after each step.
-  Vlfsasm repeats converting with value of labels from previous step.
-  If no value have changed, it stops.
+  Vlfsasm repeats converting source file to (.) with value of labels from previous step.
+  If no value changes, it stops.
 
 8. Result
   Finally, vlrfsasm creates destination file and writes (.) from the last step in it.
-  
 
-/*5. Grammar
-  Vlrfsasm has 14 commands.
-  Every expression begins a command character, takes 1 to 3 parameters, and ends with a space.
-  Parameters are separated by one colon(:).
-  Write commands use little endian.
-  [Size] is interpreted as 2**[Size]; 0,1,2,3 are 1,2,4,8 respectively.
-  Though they are not distinguished below, writing label values will be written AFTER all * commands are processed.
-  
-    .[Value]:[Size] #Write [Value] at current position and shift the position right next to there.
-    ,[Value]:[Size] #Calculate bitwise OR of [Value] and the memory back for [Size] from current position and then write it there.
-    -[Value]:[Size] #Subtract [Value] from the memory back for [Size] from current position and then write it there.
-    /[R]:[R/M]:[M]  #Write ([R]<<4 | [R/M] | [M]>>2) as 1 byte and shift the position by 1 byte.
-    +[M]:[I]:[S]    #Write ([R]<<4 | [M] | [E]>>2) as 1 byte and shift the position by 1 byte.
-    *[Name]         #Save current position as label [Name].
-    '[Name]:[Size]  #Write at current position, the address of label [Name], relative from the end of wrinting position and shift current position there.
-    ?[Name]:[Size]  #Write at current position the absolute address of label [Name] and shift the position right next to there.
-    <[Name]:[Size]  #Subtract the address of label [Name] relative from current position from the memory back for [Size] from current position and then write it there.
-    @[Address]      #Set [Address] to current position.
-    _[FileSize]     #Set the size of destination file.
-    =[Name]:[Value] #Define a constant.
-    "[Str]:[Size]:[Null] #Write string [Str] as utf-16 in [Size], shifting current position. Add a null if [null] is null.
-    >[Size]         #Shift current position till it matches alignment of [Size].
-*/
-
-8. License
+9. License
   Copyright 2021 vlrfsg
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -127,3 +101,7 @@ About vlrfsasm
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
+
+10. History
+  2021/9/8 v0.2
+    [New] The first release.

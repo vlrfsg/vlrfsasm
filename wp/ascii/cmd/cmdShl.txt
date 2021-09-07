@@ -12,6 +12,9 @@
 .ADRMD
 /EBX:ESI:R
 
+.MORMD
+/ECX:EBX:R
+
 .CD
 'fAV:D
 
@@ -50,7 +53,7 @@
 .PM
 .MORMB
 /AL:SIB:M
-+R9:RDX:B
++R10:RDX:B
 
 .MOMRB
 /AL:SIB:M
@@ -83,7 +86,7 @@
 .PM
 .ANRMB
 /AL:SIB:M
-+R9:RDX:B
++R10:RDX:B
 
 .MOMRB
 /AL:SIB:M

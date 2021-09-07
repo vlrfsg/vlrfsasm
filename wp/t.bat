@@ -1,0 +1,1 @@
+vlrfsasm result.bin test.txt

@@ -13,7 +13,7 @@
 .MORMD
 /EBX:SIB:D
 +R13:RAX:Q
-.mVI:R
+.mVI:D
 
 .PQ
 .SWRD:W ,RBX
@@ -29,9 +29,6 @@
 
 .CD
 'fPhV:D
-
-.CD
-'fGVA:D
 
 .PQ
 .MOMRD

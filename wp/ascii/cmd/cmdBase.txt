@@ -3,16 +3,18 @@
 
 *fQAD
 
+.PM
 .SHM1B
-/SHR:BL:R
+/SHR:R8B:R
 
 .PM ,PI
 .ACMRB
 /AL:SIB:M
 +R10:R12:B
 
+.PM
 .SCB:W
-/EMP:BL:R
+/EMP:R8B:R
 
 .RET
 
@@ -72,10 +74,6 @@
 
 .PURQ ,RSI
 
-.PQ ,PR
-.MORMD
-/R15:RAX:R
-
 .PR
 .LERMD
 /R9D:ECX:B
@@ -99,7 +97,7 @@
 .$00
 
 .CD
-'fGVA:D
+'fFV:D
 
 .PQ
 .MORMD
@@ -121,9 +119,6 @@
 .CD
 'fAV:D
 
-.CD
-'fGVA:D
-
 .PURQ ,RAX
 
 .EXCFF
@@ -143,11 +138,11 @@
 
 .MORMB
 /AL:SIB:M
-+RDI:RBX:W
++RDI:RBX:B
 
 .MOMRB
 /AL:SIB:M
-+RCX:RBX:W
++RCX:RBX:B
 
 .JB
 'lQBA_1
@@ -157,8 +152,8 @@
 .CD
 'fP16:D
 
-.MORMD
-/EDI:EAX:R
+.CD
+'fPhV:D
 
 .PR
 .MORMD
@@ -170,16 +165,7 @@
 .CD
 'fAV:D
 
-.CD
-'fGVA:D
-
 .PURQ ,RAX
-
-.MORMD
-/EAX:ESI:R
-
-.CD
-'fPhV:D
 
 *lQBA_3
 
@@ -201,9 +187,6 @@
 
 .CD
 'fFV:D
-
-.CD
-'fGVA:D
 
 .PQ
 .MORMD
@@ -237,7 +220,7 @@
 /DEC:EBX:R
 
 .SHMID
-/SHR:EBX:R
+/SAR:EBX:R
 .$03
 
 .CAMI8
@@ -245,7 +228,7 @@
 .$07
 
 .SHMID
-/SHR:EDX:R
+/SAR:EDX:R
 .$03
 
 .MZRMB:W
@@ -266,10 +249,14 @@
 
 .PR
 .MORMD
-/R12D:RDX:R
+/R12D:EDX:R
 
 .XORMD
 /EDX:EDX:R
+
+.PR ,PM
+.XORMD
+/R8D:R8D:R
 
 *lQBA_5
 
@@ -298,7 +285,7 @@
 /SHL:ESI:R
 
 .XCRMB
-/CL:CH:T
+/CL:CH:R
 
 .SHMCD
 /SHR:ESI:R
@@ -316,7 +303,8 @@
 /CALL:R15:R
 
 .SHMID
-/SHL:EAX:R
+/SHR:EAX:R
+.$08
 
 .JB
 'lQBA_5

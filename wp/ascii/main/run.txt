@@ -88,14 +88,14 @@
 /CMP:CH:R
 .$04
 
-.JEB
-'lR_MS
+.JED:W
+'lR_MS:D
 
 .XORMB
 /BL:BL:R
 
 .JCZB
-'lR_9
+'lR_9A
 
 .PQ ,PR ,PM
 .LERMD
@@ -237,6 +237,8 @@
 .JED:W
 'lR_35:D
 
+*lR_9A
+
 .PM
 .MORMD
 /EAX:R13:B
@@ -260,6 +262,11 @@
 /CX:R14:B
 .$06
 
+.PM
+.MOMRD
+/EAX:R14:B
+.$08
+
 .CAMI8
 /ADD:EAX:R
 .sFH
@@ -267,6 +274,13 @@
 .PM
 .MOMRD
 /EAX:R14:M
+
+.PW
+.PM
+.MOMID
+/EMP:R14:B
+.$0C
+.$FF00:W
 
 .PQ ,PM
 .LERMD
@@ -325,7 +339,7 @@
 
 .PW
 .MORID ,DX
-.$8000
+.$8000:W
 
 *lR_12
 
@@ -389,10 +403,10 @@
 .$E0
 
 .JAED:W
-'lR_27
+'lR_27:D
 
 .CD
-'fGVA:D
+'fGTA:D
 
 .PQ
 .MORMD
@@ -454,8 +468,8 @@
 .JEB
 'lR_17
 
-.JB
-'lR_24
+.JD
+'lR_24:D
 
 *lR_14
 
@@ -501,7 +515,7 @@
 /RDX:RAX:R
 
 .PQ ,PR
-.MSRMB
+.MSRMB:W
 /R15:RSI:B
 .$02
 
@@ -513,7 +527,7 @@
 /CALL:RDX:R
 
 .JD
-'lR_29
+'lR_29:D
 
 *lR_15
 
@@ -531,14 +545,15 @@
 .JD
 'lR_25:D
 
-"lR_16
+*lR_16
 
-.MZRMW
+.MZRMW:W
 /ECX:RSI:B
-.$02
+.$08
 
-.SHM1D
+.SHMID
 /SHL:ECX:R
+.$04
 
 .CD
 'fAV:D
@@ -557,7 +572,7 @@
 'fGTN:D
 
 .JD
-'lR_29
+'lR_29:D
 
 *lR_17
 
@@ -625,7 +640,7 @@
 .MOMRD
 /EDX:RBX:M
 
-.MORMB ,AH
+.MORIB ,AH
 .$FF
 
 .PW
@@ -872,7 +887,7 @@
 .EXCFF
 /INC:SIB:D
 +R13:RAX:Q
-.mVI:D
+.mVI:D ,$4:D
 
 *lR_29
 
@@ -895,12 +910,11 @@
 .CMRMD
 /RCX:RBP:R
 
-.JNEB
-'lR_WNR
+.JNED:W
+'lR_WNR:D
 
 .CD
 'fPpV:D
-
 
 .PQ ,PM
 .LERMD
@@ -942,7 +956,7 @@
 *lR_31
 
 .MORID ,ECX
-.$0000FFFF:W
+.$0000FFFF:D
 
 .CMRMD
 /EDX:ECX:R
@@ -1097,7 +1111,7 @@
 
 *lR_34
 
-.JD
-'fPE:D
+.JB
+'fPE
 
 *lR_35

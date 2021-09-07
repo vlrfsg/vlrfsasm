@@ -1,5 +1,6 @@
 [wp/test.txt
  Copyright 2021 vlrfsg]
 
-{abcd A B; ; (' A (? A B 0) B)}
+{.; ; (tt.f)}
 
+{tt.f; ; (? 0 $77 (! $BB))}

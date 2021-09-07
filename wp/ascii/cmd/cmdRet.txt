@@ -65,7 +65,7 @@
 *lQRE_1
 
 .MZRMW:W
-/EBZ:RSI:B
+/EBX:RSI:B
 .$02
 
 *lQRE_2
@@ -88,6 +88,7 @@
 /CMP:SIB:B
 +RDI:RBX:D
 .$08
+.$00
 
 .JEB
 'lQRE_2
@@ -136,7 +137,7 @@
 
 *lQRE_7
 
-.MZMRW:W
+.MZRMW:W
 /EBX:RDI:B
 .$02
 

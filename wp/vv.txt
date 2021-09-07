@@ -234,6 +234,7 @@
     (tf.contentOfConvertKS)
     (tf.contentOfPushValue)
     (tf.contentOfPopValue)
+    (tf.contentOfPopLabel)
     (tf.contentOfSplitValue)
     (tf.contentOfPop16)
     (tf.contentOfCmdRet)

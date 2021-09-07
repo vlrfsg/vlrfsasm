@@ -7,7 +7,7 @@
 .MORMB
 /R9B:AL:R
 
-.PM
+.PR
 .MZRMW:W
 /R8D:RDX:B
 .$08
@@ -32,10 +32,8 @@
 .JEB
 'lGTN_2
 
-.PI
 .MORMD
-/AX:SIB:M
-+RDX:R8:W
+/AX:RDX:M
 
 .PM
 .CAMIB
@@ -57,6 +55,11 @@
 .PQ
 .CAMI8
 /ADD:RCX:R
+.$02
+
+.PQ
+.CAMI8
+/ADD:RDX:R
 .$02
 
 .PM

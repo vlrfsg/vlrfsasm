@@ -328,7 +328,7 @@
 'lPSF_27:D
 
 .CAMIB
-/ADD:BH:R
+/ADD:AH:R
 .$05
 
 .JD
@@ -1044,9 +1044,9 @@
 /ADD:R11D:R
 .sS
 
-.PR
+.PQ ,PR
 .MOMRD
-/R12W:RCX:B
+/R12:RCX:B
 .sS
 
 .CAMIB

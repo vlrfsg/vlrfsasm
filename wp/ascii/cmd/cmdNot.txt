@@ -9,9 +9,6 @@
 .CD
 'fFV:D
 
-.CD
-'fGVA:D
-
 .PQ
 .MORMD
 /RSI:RCX:R
@@ -34,8 +31,9 @@
 .CD
 'fGVA:D
 
-.EXCFF
-/DEC:EBX:R
+.CAMI8
+/ADD:EBX:R
+.$07
 
 .SHMID
 /SAR:EBX:R
@@ -57,7 +55,7 @@
 /NOT:AL:R
 
 .MOMRB
-/AL:SIB:B
+/AL:SIB:M
 +RCX:RBX:B
 
 .JB

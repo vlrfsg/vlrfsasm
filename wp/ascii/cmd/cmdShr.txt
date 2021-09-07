@@ -29,9 +29,6 @@
 .CD
 'fPhV:D
 
-.CD
-'fGVA:D
-
 .CAMI8
 /ADD:ESI:R
 .$07
@@ -51,7 +48,7 @@
 .PM
 .MORMB
 /AL:SIB:M
-+R9:RSI:B
++R10:RSI:B
 
 .MOMRB
 /AL:SIB:M

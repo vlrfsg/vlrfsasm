@@ -9,9 +9,6 @@
 .CD
 'fFV:D
 
-.CD
-'fGVA:D
-
 .PQ
 .MORMD
 /RBX:RCX:R
@@ -48,7 +45,7 @@
 /SUB:ECX:R
 .$08
 
-.JS
+.JSB
 'lQTH_1
 
 .CAMIB

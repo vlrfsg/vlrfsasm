@@ -19,7 +19,7 @@
 
 *lCKS_0
 
-.PQ ,PM
+.PQ ,PR
 .CMRMD
 /R14:RSI:R
 

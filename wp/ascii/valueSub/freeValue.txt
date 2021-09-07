@@ -24,31 +24,28 @@
 
 .PM
 .MORID ,R8D
-.$00000004:D
+.$00000002:D
 
 .PM
 .SHMCD
 /SHL:R8D:R
 
+.EXCF6
+/NOT:DL:R
+
+.CAMI8
+/AND:DL:R
+.$0F
+
 .MORIB ,CL
 .$01
 
-.MZRMB:W
-/EDX:DL:R
-
-.PQ ,PM
-.LERMD
-/RDX:SIB:B
+.PW
+.PM
+.XAMRD:W
+/CX:SIB:B
 +R13:RDX:W
 .eEVL
-
-.PW
-.EXCFF
-/INC:RDX:M
-
-.PW
-.MORMD
-/CX:RDX:M
 
 .PQ ,PM
 .SURMD
@@ -95,5 +92,8 @@
 'lFV_0
 
 *lFV_1
+
+.CD
+'fGVA:D
 
 .RET
