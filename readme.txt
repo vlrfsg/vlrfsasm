@@ -12,7 +12,7 @@ About vlrfsasm
 
 3. How to use vlrfsasm
   Create either a shortcut or batch file.
-  Then edit them to execute vlrfsasm.exe with the path of source and destination files.
+  Then edit it to execute vlrfsasm.exe with the path of source and destination files.
   Text source file must be encoded in Utf-8 and suffixed with ".txt".
   Other file extensions indicate binary source files.
   
@@ -47,7 +47,7 @@ About vlrfsasm
 6. Built-in functions
   Function name: size of result
   Arguments shorter than result are extended automatically with 0 on left.
-  Concatenate: sum of arguments
+  Concatenate: sum of size of arguments
   >  (' A B ...)
   Add: size of argument A
   >  (+ A B ...)
@@ -64,14 +64,14 @@ About vlrfsasm
   Shift right: max of 0 and ((size of argument A) - argument B)
   >  (> A B)
   If: same with chosen argument
-  If every bit of A is 0, C is chosen.
+  If A contains no bit set to 1, C is chosen.
   Otherwise B is chosen.
   >  (? A B C)
   Resize: argument B
   >  (: A B)
   Get size: 64 bits
   >  (# A)
-  Label: No result
+  Label: 0 bit
   >  (@ @A)
   Address: 64 bits
   >  (` @A)
