@@ -10,11 +10,11 @@
 {c.negate A; ; (+ (! A) 1)}
 
 [unsigned sub]
-{- A B; ; (+ A (c.neg (: B (# A))))}
+{- A B; ; (+ A (c.negate (: B (# A))))}
 
 [get]
 {c.getRange A B C; ; (: (> A B) C)}
-{c.getBit A B; ; (c.getRan A B 1)}
+{c.getBit A B; ; (c.getRange A B 1)}
 {c.getSign A; ;
   (?
     (# A)
@@ -117,14 +117,14 @@
 }
 
 [modulo: Undefined on signed number]
-{% A B; ;
+{c.modulo A B; ;
   (?
     B
-    (: (%L A B (' (: 0 (# B)) (: (# A) 1))) (# B))
+    (: (c.modulo.loop A B (' (: 0 (# B)) (: (# A) 1))) (# B))
     (c.errorSb "Division by zero")
   )
 }
-{%L A 1 B C; ;
+{c.modulo.loop A 1 B C; ;
   (?
     (: B 64)
     (c.empty)
@@ -149,8 +149,8 @@
 {c.alignS A B; ; (< A (- (c.align (# A) B) (# A)))}
 
 [string length]
-{c.getLengthS8 A; ; (: (> (# A) 3) 64)}
-{c.getLengthSx A; ; (: (> (# A) 4) 64)}
+{c.getLengthS8 A; ; (> (# A) 3)}
+{c.getLengthSx A; ; (> (# A) 4)}
 
 [convert integer to string]
 {c.convertIC A; ;
@@ -159,7 +159,7 @@
 {c.convertISbR A B; ;
   (?
     A
-    (' (c.cnvISbR (/ A B) B) (c.convertIC (% A B)))
+    (' (c.cnvISbR (/ A B) B) (c.convertIC (c.modulo A B)))
     (c.empty)
   )
 }
@@ -210,12 +210,12 @@
     )
   )
 }
-{c.convertSbS8L A 16 B; ;
+{c.convertSbS8.loop A 16 B; ;
   (?
     (== (c.getRange A 11 5) %11011)
     (c.convertCS8 A)
     (?
-      (getBit A 10)
+      (c.getBit A 10)
       (c.convertCS8 (- (' (: B 10) (: A 10)) $00010000))
       (c.empty)
     )
@@ -226,7 +226,7 @@
     0
   )
 }
-{c.convertSbS8 A; ; (c.convertSbS8L A 0)}
+{c.convertSbS8 A; ; (c.convertSbS8.loop A 0)}
 
 [String with null]
 {c.concatenateS8N A; ;

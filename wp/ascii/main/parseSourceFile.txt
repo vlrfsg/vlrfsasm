@@ -865,21 +865,20 @@
 /CMP:ECX:R
 .$00
 
-.JNED:W
+.JED:W
 'lPSF_E:D
 
 .PQ ,PM
 .LERMD
 /RCX:SIB:D
 +R13:RCX:D
-.mD:D ,$8:D
+.mD:D ,$4:D
 
 .MORMD
 /EDX:RDX:M
 
-.PW
 .MOMRD
-/AX:SIB:M
+/EAX:SIB:M
 +RCX:RDX:B
 
 .JB
@@ -1070,19 +1069,38 @@
 
 *lPSF_45
 
-.PM
-.MORMD
-/EDX:R13:D
+.PQ ,PM
+.LERMD
+/RDX:R13:D
 .mFD:D
 
+.MORMD
+/EAX:RDX:B
+.$04
+
+.MORMD
+/ECX:RDX:M
+
+.PQ ,PM
+.LERMD
+/RDI:R13:D
+.mD:D ,$2:D
+
+.MOMRD
+/EAX:SIB:M
++RDI:RCX:R
+
 .CAMI8
-/ADD:EDX:R
+/ADD:ECX:R
 .sFH
 
 .PM
-.CMRMD
-/EDX:R13:B
+.MORMD
+/EAX:R13:B
 .eD
+
+.CMRMD
+/ECX:EAX:R
 
 .JEB
 'lPSF_E
@@ -1095,15 +1113,17 @@
 'lPSF_46
 
 .PW
-.PM
 .CAMI8
-/CMP:SIB:D
-+R13:RDX:B
-.$1FFFB2:D #mD-sD-sFH
+/CMP:SIB:B
++RDI:RAX:B
+.$F8 #-(sD+2)
 .$00
 
 .JEB
 'lPSF_E
+
+.JED:W
+'lR_35:D
 
 .PQ ,PM
 .MORMD
@@ -1125,6 +1145,10 @@
 
 .CD
 'fAD:D
+
+.PM
+.MORMD
+/EAX:R10D:R
 
 *lPSF_47
 

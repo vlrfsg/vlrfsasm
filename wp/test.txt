@@ -1,6 +1,4 @@
 [wp/test.txt
  Copyright 2021 vlrfsg]
 
-{.; ; (tt.f)}
-
-{tt.f; ; (? 0 $77 (! $BB))}
+{.; ; (c.convertCS8 "A")}

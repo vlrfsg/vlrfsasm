@@ -597,14 +597,13 @@
 .JNED:W
 'lR_UF:D
 
-.XORMD
-/EBX:EBX:R
-
-.MORIB ,BL
-.sSR
+.PQ ,PM
+.CAMI8
+/SUB:R14:R
+.$80 #-sSR
 
 .PQ ,PM
-.XAMRD:W
+.MORMD
 /RBX:R14:R
 
 .MORMD
@@ -689,8 +688,8 @@
 
 .MOMRD
 /EAX:SIB:B
-+RDI:RSI:D
-.$40
++RBX:RSI:D
+.$20
 
 .JB
 'lR_18

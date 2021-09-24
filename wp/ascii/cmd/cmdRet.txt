@@ -33,6 +33,9 @@
 .JEB
 'lQRE_0
 
+.XORMD
+/ECX:ECX:R
+
 .MORIB ,CL
 .$02
 
@@ -181,7 +184,7 @@
 
 .MOMRD
 /EAX:SIB:B
-+RDI:RBX:D
++RSI:RBX:D
 .$14
 
 .JB
@@ -237,6 +240,10 @@
 .MORMD
 /EAX:RSI:B
 .$FC
+
+.CAMI8
+/ADD:EAX:R
+.$42 #sFH-sD
 
 .PM
 .MOMRD
