@@ -160,8 +160,8 @@
 {hm.sizeOfElementOfLabelValue; ; $4} [2:PrevValue, 2:NextValue]
 {hm.addressOfStack; ; (+ (hm.addressOfLabelValue) (hm.sizeOfLabelValue))}
 {hm.sizeOfStack; ; $4000}
-{hm.sizeOfElementOfStack; ; $8} [2:Line, 2:Func, 2:NumberOfArgument]
-{hm.sizeOfElementOfStackRun; ; $80} [4:Address, 2:Blank, 2:File, 4:AddressToReturnAt, 1:Condition, 1:DepthOfIf, 2:Blank, 8:ConditionOfIf, 8:Blank, 4{2:Value, 2:Remain}*16:Argument, 2*16:LocalLabel]
+{hm.sizeOfElementOfStack; ; $A} [2:Line, 2:Func, 2:NumberOfArgument, 4:AddressOfThen/AddressOfElse]
+{hm.sizeOfElementOfStackRun; ; $80} [4:Address, 2:Blank, 2:File, 4:AddressToReturnAt, 1:Condition, 21:Blank, 4{2:Value, 2:Remain}*16:Argument, 2*16:LocalLabel]
 {hm.addressOfInputFile; ; (+ (hm.addressOfStack) (hm.sizeOfStack))}
 {hm.sizeOfInputFile; ; $10000}
 {hm.addressOfLiteral; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}

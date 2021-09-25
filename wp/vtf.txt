@@ -229,7 +229,7 @@
     (@ @tl.loadSourceFile_11)
     (ADD (RBX) (hm.sizeOfElementOfCommandLine))
     (JMP @tl.loadSourceFile_0)
-    (@ @loadSourceFile_12)
+    (@ @tl.loadSourceFile_12)
   )
 }
 
@@ -1389,17 +1389,24 @@
   ('
     (@ @tf.addressOfCheckIf)
     (CMP (R11D) (i 0))
-    (JE @tl.checkIf_0)
-    (LEAmid (RCX) (R11) (+ (hm.addressOfStack) 2))
-    (CMP (mw (RCX)) (i 3))
-    (JNE @tl.checkIf_0)
-    (CMP (mdw (RCX) 2) (i 2))
-    (JA @tl.checkIf_0)
+    (JE @tl.checkIf_1)
+    (LEAmid (RCX) (R11) (+ (hm.addressOfStack) 6))
+    (CMP (mdw (RCX) (c.neg 4)) (i 3))
+    (JNE @tl.checkIf_1)
+    (MOV (EDI) (mmdd (hm.addressOfEndOfDef)))
+    (MOV (EDX) (md (RCX)))
+    (MOV (md (RCX)) (EDI))
+    (CMP (mdw (RCX) (c.neg 2)) (i 2))
+    (LEAmd (RCX) (hm.addressOfDef))
+    (JB @tl.checkIf_0)
+    (MOV (midd (RCX) (RDX) 2) (EDI))
+    (JA @tl.checkIf_1)
+    (@ @tl.checkIf_0)
     (SE (DL))
     (INC (DL))
-    (MOV (DH) (i 0))
-    (CALf @tf.addressOfAddDef)
-    (@ @tl.checkIf_0)
+    (MOV (mib (RCX) (RDI)) (DL))
+    (ADD (mmdd (hm.addressOfEndOfDef)) (i (hm.sizeOfElementOfDef)))
+    (@ @tl.checkIf_1)
     (RET)
   )
 }
@@ -1819,10 +1826,6 @@
     (CALf @tf.addressOfPopValue)
     (CALf @tf.addressOfFreeValue)
     (MOV (RBX) (RCX))
-    (MOV (RDX) (i 1))
-    (INC (mdb (R14) 13))
-    (MOV (CL) (mdb (R14) 13))
-    (SHL (RDX) (CL))
     (MOV (ECX) (m8dd (RAX) (hm.addressOfValueIndex)))
     (@ @tl.cmdThn_0)
     (SUB (ECX) (i 8))
@@ -1838,31 +1841,11 @@
     (NEG (AL))
     (TEST (AL) (mb (RBX)))
     (JNZ @tl.cmdThn_2)
-    (DEC (RDX))
-    (AND (mdq (R14) 16) (RDX))
-    (RET)
-    
-    (@ @tl.cmdThn_2)
-    (OR (mdq (R14) 16) (RDX))
-    (RET)
-  )
-}
-
-{tf.contentOfCmdEls; ;
-  ('
     (@ @tf.addressOfCmdEls)
-    (MOV (CL) (mdb (R14) 13))
-    (MOV (RAX) (i 1))
-    (SHL (RAX) (CL))
-    (XOR (mdq (R14) 16) (RAX))
-    (RET)
-  )
-}
-
-{tf.contentOfCmdIf; ;
-  ('
+    (MOV (EAX) (mdd (RDI) 2))
+    (MOV (md (R14)) (EAX))
+    (@ @tl.cmdThn_2)
     (@ @tf.addressOfCmdIf)
-    (DEC (mdb (R14) 13))
     (RET)
   )
 }

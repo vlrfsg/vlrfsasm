@@ -9,30 +9,56 @@
 .$00
 
 .JEB
-'lCI_0
+'lCI_1
 
 .PQ ,PM ,PI
 .LERMD
 /RCX:SIB:D
 +R13:R11:B
-.mS:D ,$2:D
-
-.PW
-.CAMI8
-/CMP:RCX:M
-.$03
-
-.JNEB
-'lCI_0
+.mS:D ,$6:D
 
 .PW
 .CAMI8
 /CMP:RCX:B
-.$02
+.$FC
+.$03
+
+.JNEB
+'lCI_1
+
+.PM
+.MORMD
+/EDI:R13:B
+.eD
+
+.MORMD
+/EDX:RCX:M
+
+.MOMRD
+/EDI:RCX:M
+
+.PW
+.CAMI8
+/CMP:RCX:B
+.$FE
 .$02
 
-.JAB
+.PQ ,PM
+.LERMD
+/RCX:R13:D
+.mD:D
+
+.JBB
 'lCI_0
+
+.MOMRD
+/EDI:SIB:B
++RCX:RDX:B
+
+.JAB
+'lCI_1
+
+*lCI_0
 
 .SEB:W
 /EMP:DL:R
@@ -40,12 +66,16 @@
 .EXCFE
 /INC:DL:R
 
-.XORMB
-/DH:DH:R
+.MOMRB
+/DL:SIB:M
++RCX:RDI:R
 
-.CD
-'fAD:D
+.PM
+.CAMI8
+/ADD:R13:B
+.eD
+.sD
 
-*lCI_0
+*lCI_1
 
 .RET
