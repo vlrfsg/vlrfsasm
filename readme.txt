@@ -103,5 +103,9 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2021/9/28 v0.3
+    [New] Stable loop
+    [New] Examples
+    
   2021/9/8 v0.2
     [New] The first release.

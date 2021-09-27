@@ -3,7 +3,7 @@
 
 [Version]
 {h.majorImageVersion; ; 0}
-{h.minorImageVersion; ; 2}
+{h.minorImageVersion; ; 3}
 
 [Subsystem]
 {h.subsystem; ; 3} [IMAGE_SUBSYSTEM_WINDOWS_CUI]
@@ -238,8 +238,6 @@
     (tf.contentOfSplitValue)
     (tf.contentOfPop16)
     (tf.contentOfCmdRet)
-    (tf.contentOfCmdThn)
-    (tf.contentOfCmdEls)
     (tf.contentOfCmdIf)
     (tf.contentOfCmdCct)
     (tf.contentOfCmdAdd)

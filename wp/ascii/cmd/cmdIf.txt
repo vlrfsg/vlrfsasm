@@ -1,4 +1,4 @@
-#wp/ascii/cmd/cmdThn.txt
+#wp/ascii/cmd/cmdIf.txt
 #Copyright 2021 vlrfsg
 
 *fQTH
@@ -48,7 +48,7 @@
 /EAX:EAX:R
 
 .EXCFE
-/INC:EAX:R
+/INC:AH:R
 
 .CAMIB
 /AND:CL:R

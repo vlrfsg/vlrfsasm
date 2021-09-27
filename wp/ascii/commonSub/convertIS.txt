@@ -45,29 +45,35 @@
 .JNEB
 'lCIS_0
 
+.PQ ,PR
+.MORMD
+/R8:RCX:R
+
 *lCIS_1
 
-.PQ
+.PQ ,PM
 .CAMI8
-/SUB:RCX:R
+/SUB:R8:R
 .$02
 
-.PQ ,PM
+.PQ ,PR ,PM
 .CMRMD
-/RCX:R9:R
+/R8:R9:R
 
 .JBEB
 'lCIS_2
 
+.PM
 .MORMB
-/DL:RCX:M
+/DL:R8:M
 
 .PM
 .XCRMB
 /DL:R9:M
 
+.PM
 .MOMRB
-/DL:RCX:M
+/DL:R8:M
 
 .PQ ,PM
 .CAMI8
@@ -78,10 +84,5 @@
 'lCIS_1
 
 *lCIS_2
-
-.PQ ,PM
-.LERMD
-/RCX:R9:B
-.$02
 
 .RET

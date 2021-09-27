@@ -3,14 +3,15 @@
 
 *fCLS
 
+.PW
 .MOMID
 /EMP:RCX:M
-.$0020003C:D
+.$0020:W
 
 .PQ
 .CAMI8
 /ADD:RCX:R
-.$04
+.$02
 
 .PM
 .MORMD

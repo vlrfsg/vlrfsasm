@@ -40,8 +40,8 @@
 {-- A B; ; (- A (:- B (# A)))}
 
 [unsigned compare]
-{== A B; ; (: (? (^ A (: B (# A))) 1 0) 1)}
-{!= A B; ; (^ (== A B) 1)}
+{== A B; ; (: (? (^ A (: B (# A))) 0 1) 1)}
+{!= A B; ; (! (== A B))}
 {<! A B; ; (c.getSign (- A B))}
 {<= A B; ; (| (<! A B) (== A B))}
 {>! A B; ; (! (<= A B))}
@@ -58,11 +58,11 @@
 [multiply]
 {* A B; ;
   (:
-    (*L B A (' (: 0 (# A)) (- (# A) 1)))
+    (*.loop B A (' (: 0 (# A)) (- (# A) 1)))
     (# A)
   )
 }
-{*L A 1 B C; ;
+{*.loop A 1 B C; ;
   (?
     (: C 64)
     (c.empty)
@@ -85,11 +85,11 @@
 {/ A B; ;
   (?
     B
-    (: (/L A B (: 0 (# B))) (# A))
+    (: (/.loop A B (: 0 (# B))) (# A))
     (c.errorSb "Division by zero")
   )
 }
-{/L A 1 B C; ;
+{/.loop A 1 B C; ;
   (>= (' C A) B);
   (:
     (?
@@ -120,27 +120,27 @@
 {c.modulo A B; ;
   (?
     B
-    (: (c.modulo.loop A B (' (: 0 (# B)) (: (# A) 1))) (# B))
+    (: (c.modulo.loop A B (' (: 0 (# B)) (# A))) (# B))
     (c.errorSb "Division by zero")
   )
 }
 {c.modulo.loop A 1 B C; ;
   (?
-    (: B 64)
+    (!= (: C 64) 1)
     (c.empty)
     (?
-      (>= (' (> B 64) A) C)
-      (- (' (> B 64) A) C)
-      (' (> B 64) A)
+      (>= (' (> C 64) A) B)
+      (- (' (> C 64) A) B)
+      (' (> C 64) A)
     )
   );
   ('
     (?
-      (>= (' (> B 64) A) C)
-      (- (' (> B 64) A) C)
-      (' (> B 64) A)
+      (>= (' (> C 64) A) B)
+      (- (' (> C 64) A) B)
+      (' (> C 64) A)
     )
-    (- (: B 64) 1)
+    (- (: C 64) 1)
   )
 }
 
@@ -159,7 +159,7 @@
 {c.convertISbR A B; ;
   (?
     A
-    (' (c.cnvISbR (/ A B) B) (c.convertIC (c.modulo A B)))
+    (' (c.convertISbR (/ A B) B) (c.convertIC (c.modulo A B)))
     (c.empty)
   )
 }
@@ -212,11 +212,11 @@
 }
 {c.convertSbS8.loop A 16 B; ;
   (?
-    (== (c.getRange A 11 5) %11011)
+    (!= (c.getRange A 11 5) %11011)
     (c.convertCS8 A)
     (?
       (c.getBit A 10)
-      (c.convertCS8 (- (' (: B 10) (: A 10)) $00010000))
+      (c.convertCS8 (+ (' (: B 10) (: A 10)) $00010000))
       (c.empty)
     )
   );

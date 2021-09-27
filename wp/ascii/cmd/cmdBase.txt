@@ -181,7 +181,7 @@
 /DEC:R9D:R
 
 .JSB
-'lQBA_7
+'lQBA_8
 
 .CD
 'fPpV:D
@@ -198,6 +198,9 @@
 /EBX:SIB:D
 +R13:RAX:Q
 .mVI:D
+
+.XORMD
+/EAX:EAX:R
 
 .XORMD
 /ECX:ECX:R
@@ -224,6 +227,15 @@
 /SAR:EBX:R
 .$03
 
+.JSB
+'lQBA_5
+
+.MORMB
+/AL:SIB:M
++RDI:RBX:B
+
+*lQBA_5
+
 .CAMI8
 /ADD:EDX:R
 .$07
@@ -231,10 +243,6 @@
 .SHMID
 /SAR:EDX:R
 .$03
-
-.MZRMB:W
-/EAX:SIB:M
-+RDI:RBX:B
 
 .XCRMB
 /CL:CH:R
@@ -259,7 +267,7 @@
 .XORMD
 /R8D:R8D:R
 
-*lQBA_5
+*lQBA_6
 
 .PM
 .EXCFF
@@ -272,9 +280,9 @@
 /DEC:EBX:R
 
 .JSB
-'lQBA_6
+'lQBA_7
 
-.MZRMW:W
+.MZRMB:W
 /ESI:SIB:M
 +RDI:RBX:B
 
@@ -297,7 +305,7 @@
 .ORRMD
 /EAX:ESI:R
 
-*lQBA_6
+*lQBA_7
 
 .PM
 .EXCFF
@@ -308,9 +316,9 @@
 .$08
 
 .JB
-'lQBA_5
+'lQBA_6
 
-*lQBA_7
+*lQBA_8
 
 .PORQ ,RAX
 
@@ -322,14 +330,14 @@
 .$3A
 
 .JEB
-'lQBA_8
+'lQBA_9
 
 .PQ
 .CAMI8
 /SUB:RBP:R
 .sVS
 
-*lQBA_8
+*lQBA_9
 
 .CD
 'fPhV:D
