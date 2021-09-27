@@ -3,6 +3,58 @@
 
 *fAD
 
+.PW
+.CAMI8
+/CMP:DX:R
+.$03
+
+.JNEB
+'lAD_0
+
+.MORMD
+/ECX:EDX:R
+
+.SHMID
+/SHR:ECX:R
+.$10
+
+.PW
+.CAMI8
+/CMP:CX:R
+.$03
+
+.JEB
+'lAD_0
+
+.PW
+.PR ,PM
+.MORMD
+/R12W:R8W:R
+
+.PQ
+.MORMD
+/RCX:RSI:R
+
+.CD
+'fCLS:D
+
+.PW
+.MOMID
+/EMP:RCX:M
+.$0000:W
+
+.PQ
+.MORMD
+/RDX:RSI:R
+
+.MORIB ,BL
+.$07
+
+.JD
+'fPE:D
+
+*lAD_0
+
 .XORMD
 /ECX:ECX:R
 

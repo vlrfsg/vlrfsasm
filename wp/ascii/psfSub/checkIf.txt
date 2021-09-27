@@ -54,6 +54,7 @@
 .MOMRD
 /EDI:SIB:B
 +RCX:RDX:B
+.$02
 
 .JAB
 'lCI_1

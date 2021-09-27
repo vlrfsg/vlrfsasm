@@ -55,9 +55,9 @@
 *lC8X_2
 
 .ANAIB
-.$3F
+.$1F
 
-.PM
+.PR
 .MZRMB:W
 /R8D:AL:R
 

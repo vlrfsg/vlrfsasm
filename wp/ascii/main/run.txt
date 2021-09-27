@@ -586,8 +586,8 @@
 .JEB
 'lR_14
 
-.JAB
-'lR_22
+.JAD:W
+'lR_22:D
 
 .CAMIB
 /CMP:RSI:B
