@@ -1,5 +1,5 @@
-#def/pic/pic16f/pic16f1827/configurationWord.txt
-#Copyright 2021 vlrfsg
+[def/pic/pic16f/pic16f1827/configurationWord.txt
+ Copyright 2021 vlrfsg]
 
 {hx.contentOfConfigurationWord; ;
   ('

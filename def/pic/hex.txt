@@ -1,5 +1,5 @@
-#def/pic/hex.txt
-#Copyright 2021 vlrfsg
+[def/pic/hex.txt
+ Copyright 2021 vlrfsg]
 
 {hx.contentOfText; ; (machine.bin)}
 
@@ -27,11 +27,11 @@
         (: (> B 15) 16)
       )
     )
-    (hx.convertL A (< B 1))
+    (hx.convert.loop A (< B 1))
   )
 }
 
-{hx.convertL A 128 B; ;
+{hx.convert.loop A 128 B; ;
   (hx.record
     ('
       (: (> A 3) 8)
@@ -46,7 +46,7 @@
 {hx.record A; ;
   ('
     ":"
-    (hx.string (hx.parity A (' (: (> A 3) 8) (: 0 8))))
+    (hx.string (hx.parity A (' (: (> (# A) 3) 8) (: 0 8))))
     "\r\n"
   )
 }
@@ -55,13 +55,13 @@
   ('
     A
     (?
-      (= (> B 8) 1)
-      (: (c.neg (+ A B)) 8)
+      (== (> B 8) 1)
+      (: (c.negate (+ A B)) 8)
       (c.empty)
     )
   );
   ('
-    (+ (> B 8) 1)
+    (- (> B 8) 1)
     (+ (: B 8) A)
   )
 }

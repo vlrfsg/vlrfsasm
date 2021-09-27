@@ -1,5 +1,5 @@
-#def/pic/pic16f/pic16f1827/instruction.txt
-#Copyright 2021 vlrfsg
+[def/pic/pic16f/pic16f1827/instruction.txt
+ Copyright 2021 vlrfsg]
 
 [instruction template]
 {is.f A B C; ; (: (' (: A 6) (: B 1) (: C 7)) 16)}
