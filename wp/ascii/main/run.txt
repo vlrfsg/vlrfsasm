@@ -598,13 +598,9 @@
 'lR_UF:D
 
 .PQ ,PM
-.CAMI8
-/SUB:R14:R
-.$80 #-sSR
-
-.PQ ,PM
-.MORMD
-/RBX:R14:R
+.LERMD
+/RBX:R14:D
+.sSR:D
 
 .MORMD
 /EDX:RSI:B
@@ -627,6 +623,10 @@
 
 .JNED:W
 'lR_WNA:D
+
+.PQ ,PR
+.MORMD
+/R14:RBX:R
 
 .MOMRD
 /EDX:RBX:B

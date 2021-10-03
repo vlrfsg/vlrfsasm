@@ -103,6 +103,10 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2021/10/3 v0.4
+    [Fix] Wrong stack display for error 7
+    [Fix] Time display; issue #2
+
   2021/9/28 v0.3
     [New] Stable loop
     [New] Examples

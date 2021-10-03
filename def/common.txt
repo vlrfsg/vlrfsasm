@@ -152,6 +152,9 @@
 {c.getLengthS8 A; ; (> (# A) 3)}
 {c.getLengthSx A; ; (> (# A) 4)}
 
+[Compare both Value and Length]
+{c.compareStrict A B; ; (& (== (# A) (# B)) (== A B))}
+
 [convert integer to string]
 {c.convertIC A; ;
   (? (<! A 10) (+ "0" A) (+ "A" (- A 10)))

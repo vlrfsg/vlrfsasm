@@ -1,6 +1,26 @@
 #wp/ascii/commonSub/convertIS.txt
 #Copyright 2021 vlrfsg
 
+*fCIS2
+
+.PQ
+.CAMI8
+/CMP:RDX:R
+.$0A
+
+.JAEB
+'fCIS
+
+.PW
+.MOMID
+/EMP:RCX:M
+"0:W
+
+.PQ
+.CAMI8
+/ADD:RCX:R
+.$02
+
 *fCIS
 
 .PQ
