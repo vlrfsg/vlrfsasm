@@ -1044,7 +1044,7 @@
     (MOV (EDX) (i 0))
     (CALdll "HeapFree")
     (ADD (RSP) (i $28))
-    (MOV (EAX) (i 0))
+    (MOV (ECX) (i 0))
     (JMPdll "ExitProcess")
   )
 }

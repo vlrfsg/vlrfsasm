@@ -22,7 +22,7 @@
 .$28
 
 .XORMD
-/EAX:EAX:R
+/ECX:ECX:R
 
 .EXCFF
 /JMP:RIP:M
