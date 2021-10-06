@@ -1,4 +1,4 @@
-[def/pic/hex.txt
+[def/pic/hex.vlra
  Copyright 2021 vlrfsg]
 
 {hx.contentOfText; ; (machine.bin)}

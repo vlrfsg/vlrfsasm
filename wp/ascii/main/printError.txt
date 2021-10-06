@@ -12,9 +12,6 @@
 .MORMD
 /RBP:RSP:R
 
-.MZRMB:W
-/EBX:BL:R
-
 .PQ
 .MORMD
 /RSI:RDX:R
@@ -50,6 +47,22 @@
 'fCX:D
 
 .MZRMW:W
+/EDX:RDI:M
+
+.CD
+'fCIS:D
+
+.PW
+.MOMID
+/EMP:RCX:M
+"-:W
+
+.PQ
+.CAMI8
+/ADD:RCX:R
+.$02
+
+.MZRMW:W
 /EDX:RDI:B
 .$02
 
@@ -59,7 +72,7 @@
 .PW
 .MOMID
 /EMP:RCX:M
-"/:W
+"-:W
 
 .PQ
 .CAMI8
@@ -108,55 +121,58 @@
 'fCIS2:D
 
 .CD
-'fNL:D
+'fCE:D
 
+.PQ ,PE
 .MORMD
-/EDX:EBX:R
-
-.CD
-'fCIS:D
-
-.PW
-.MOMID
-/EMP:RCX:M
-.$003A:W
-
-.PQ
-.CAMI8
-/ADD:RCX:R
-.$02
-
-.SHMID
-/SHL:EBX:R
-.gEM
+/R14:RCX:R
 
 .PQ ,PM
 .LERMD
-/RDX:SIB:D
-+R13:RBX:B
-.mEM:D
-
-.CD
-'fCX:D
-
-.EXCF6
-/TEST:BL:R
-.$10
-
-.JNZB
-'lPE_0
-
-.CD
-'fNL:D
+/RDI:R13:D
+.mTSg:D
 
 .PQ
 .MORMD
-/RDX:RSI:R
+/RCX:RDI:R
+
+.PQ ,PR ,PM
+.MORMD
+/R8:R15:R
 
 .CD
-'fCX:D
+'fCX8:D
 
-*lPE_0
+.PQ ,PR
+.MORMD
+/R12:RCX:R
+
+.PQ ,PR
+.SURMD
+/R12:RDI:R
+
+.PQ ,PM
+.LERMD
+/RCX:R13:D
+.mLFN:D
+
+.CD
+'fWF:D
+
+.PQ ,PM
+.MORMD
+/RCX:R14:R
+
+.CAMIB
+/AND:BL:R
+.$01
+
+.CAMIB
+/OR:BL:R
+.$20
+
+.CD
+'fCE:D
 
 .PQ ,PR
 .MORMD

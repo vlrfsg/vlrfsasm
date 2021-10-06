@@ -1,4 +1,4 @@
-[wp/vv.txt
+[wp/vv.vlra
  Copyright 2021 vlrfsg]
 
 [Version]
@@ -154,7 +154,8 @@
 {hm.sizeOfCommandLine; ; $4000}
 {hm.sizeOfElementOfCommandLine; ; $200}
 {hm.addressOfDestFileName; ; (+ (hm.addressOfCommandLine) (hm.sizeOfElementOfCommandLine))}
-{hm.addressOfSourceFileName; ; (+ (hm.addressOfDestFileName) (hm.sizeOfElementOfCommandLine))}
+{hm.addressOfLogFileName; ; (+ (hm.addressOfDestFileName) (hm.sizeOfElementOfCommandLine))}
+{hm.addressOfSourceFileName; ; (+ (hm.addressOfLogFileName) (hm.sizeOfElementOfCommandLine))}
 {hm.addressOfLabelValue; ; (+ (hm.addressOfCommandLine) (hm.sizeOfCommandLine))}
 {hm.sizeOfLabelValue; ; $4000}
 {hm.sizeOfElementOfLabelValue; ; $4} [2:PrevValue, 2:NextValue]
@@ -213,9 +214,12 @@
     (tf.contentOfPrintError)
     (tf.contentOfExit)
     (tf.contentOfReadFile)
+    (tf.contentOfWriteFile)
+    (tf.contentOfCopyError)
     (tf.contentOfConvertIS)
     (tf.contentOfConvertSI)
     (tf.contentOfConvert8X)
+    (tf.contentOfConvertX8)
     (tf.contentOfCopyX)
     (tf.contentOfNewLine)
     (tf.contentOfGetNextCondition)

@@ -1,4 +1,4 @@
-[def/win_x64/instruction.txt
+[def/win_x64/instruction.vlra
  Copyright 2021 vlrfsg]
 
 {INC A; ; (b.om $FE 0 A)}

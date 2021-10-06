@@ -1,4 +1,4 @@
-[wp/test.txt
+[wp/test.vlra
  Copyright 2021 vlrfsg]
 
 {.; ; (c.convertSbS8 (? (>= 30 7) "😊" "😔"))}

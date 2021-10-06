@@ -1,1 +1,1 @@
-vlrfsasm result.bin test.txt ../def/common.txt
+vlrfsasm result.bin test.vlra ../def/common.vlra
