@@ -123,7 +123,7 @@
 .CD
 'fCE:D
 
-.PQ ,PE
+.PQ ,PR
 .MORMD
 /R14:RCX:R
 

@@ -960,11 +960,11 @@
     (MOV (mw (RCX)) (i "-"))
     (ADD (RCX) (i 2))
     (MOZ (EDX) (mdw (RDI) 2))
-    (CALf @tf.addressOfConvertIS)
+    (CALf @tf.addressOfConvertIS2)
     (MOV (mw (RCX)) (i "-"))
     (ADD (RCX) (i 2))
     (MOZ (EDX) (mdw (RDI) 6))
-    (CALf @tf.addressOfConvertIS)
+    (CALf @tf.addressOfConvertIS2)
     (MOV (mw (RCX)) (i " "))
     (ADD (RCX) (i 2))
     (MOZ (EDX) (mdw (RDI) 8))
@@ -1088,7 +1088,7 @@
 {tf.contentOfWriteFile; ;
   ('
     (@ @tl.addressOfWriteFile)
-    (SUB (RSP) (i $28))
+    (SUB (RSP) (i $38))
     (MOV (RBP) (RSP))
     (MOV (RSI) (RCX))
     (MOV (EDX) (i $40000000))
@@ -1123,7 +1123,7 @@
     (MOV (BL) (i $0F))
     (@ @tl.writeFile_2)
     (MOV (RDX) (RSI))
-    (ADD (RSP) (i $28))
+    (ADD (RSP) (i $38))
     (RET)
   )
 }

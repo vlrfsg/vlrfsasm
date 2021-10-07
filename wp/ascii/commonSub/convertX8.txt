@@ -19,9 +19,9 @@
 .JEB
 'lCX8_5
 
-.CAMI8
-/CMP:EAX:R
-.$80
+.PW
+.CMAID
+.$0080:W
 
 .JAEB
 'lCX8_1
@@ -118,7 +118,7 @@
 /SHR:EAX:R
 .$08
 
-.INCFE
+.EXCFE
 /DEC:DL:R
 
 .JNZB

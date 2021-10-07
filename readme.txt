@@ -13,10 +13,10 @@ About vlrfsasm
 3. How to use vlrfsasm
   Create either a shortcut or batch file.
   Then edit it to execute vlrfsasm.exe with the path of source and destination files.
-  Text source file must be encoded in Utf-8 and suffixed with ".txt".
+  Text source file must be encoded in Utf-8 and suffixed with ".vlra".
   Other file extensions indicate binary source files.
   
-  >  vlrfsasm <destination file> <source file>
+  >  vlrfsasm <destination file> <log file> <source file>
 
 4. Example [Under preparation - Coming in the next release]
   An example is in the "example" folder.
@@ -103,6 +103,11 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2021/10/7 v0.5
+    [New] Log file exportation
+    [New] Year display
+    [Change] Extension of source file from ".txt" to ".vlra"
+
   2021/10/3 v0.4
     [Fix] Wrong stack display for error 7
     [Fix] Time display; issue #2

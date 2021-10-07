@@ -1,1 +1,1 @@
-vlrfsasm result.bin test.vlra ../def/common.vlra
+vlrfsasm result.bin result.log test.vlra ../def/common.vlra
