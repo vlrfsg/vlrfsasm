@@ -155,6 +155,11 @@
 [Compare both Value and Length]
 {c.compareStrict A B; ; (& (== (# A) (# B)) (== A B))}
 
+[Get string in range]
+{c.getRangeSx A B C; ;
+  (c.getRange A (- (# A) (< (+ B C) 4)) (< C 4))
+}
+
 [convert integer to string]
 {c.convertIC A; ;
   (? (<! A 10) (+ "0" A) (+ "A" (- A 10)))
@@ -271,6 +276,57 @@
 [Repeat]
 {c.repeat A B; ;
   (? B (' A (c.repeat A (- B 1))) (c.empty))
+}
+
+[Search for string]
+{c.searchSx A B; ;
+  (?
+    (>= (# A) (# B))
+    (c.searchSx.loop
+      (: A (- (+ (# A) 16) (# B)))
+      B
+      (' (> A (- (+ (# A) 16) (# B))) 0)
+    )
+    (c.empty)
+  )
+}
+{c.searchSx.loop A 16 B C; ;
+  (?
+    (== (' (> C 64) A) B)
+    (: C 64)
+    (c.empty)
+  );
+  ('
+    (c.getRange C 64 (- (# B) 16))
+    A
+    (+ (: C 64) 1)
+  )
+}
+{c.getNumberOfSx A B; ; (> (# (c.searchSx A B)) 6)}
+{c.getIndexSx A B C; ;
+  (?
+    C
+    (+
+      (?
+        (== (+ (c.getNumberOfSx A B) 1) C)
+        (c.getLengthSx A)
+        (c.getRange (c.searchSx A B) (< (- (c.getNumberOfSx A B) C) 6) 64)
+      )
+      (c.getLengthSx B)
+    )
+    0
+  )
+}
+{c.splitSx A B C; ;
+  (?
+    (>= (c.getNumberOfSx A B) C)
+    (c.getRangeSx
+      A
+      (c.getIndexSx A B C)
+      (- (c.getIndexSx A B (+ C 1)) (c.getIndexSx A B C))
+    )
+    (c.empty)
+  )
 }
 
 [Error]
