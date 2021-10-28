@@ -190,7 +190,7 @@
   )
 }
 
-[Convert utf-16 to utf-8]
+[Convert utf-16BE to utf-8]
 {c.convertCS8 A; ;
   (?
     (>= $7F A)
@@ -235,6 +235,80 @@
   )
 }
 {c.convertSbS8 A; ; (c.convertSbS8.loop A 0)}
+
+[Convert utf-8 to utf-16BE]
+{c.convertS8Sb.loop A 8 B; ;
+  (?
+    (: B 8)
+    (?
+      (== (: B 8) 1)
+      (?
+        (>! $10000 (' (> B 8) (: A 6)))
+        (: (' (> B 8) (: A 6)) 16)
+        ('
+          (: %110110 6)
+          (: (- (> B 12) $40) 10)
+          (: %110111 6)
+          (: (> B 8) 4)
+          (: A 6)
+        )
+      )
+      (c.emoty)
+    )
+    (?
+      (c.getBit A 7)
+      (c.empty)
+      (: A 16)
+    )
+  );
+  ('
+    (?
+      (: B 8)
+      (?
+        (== (: B 8) 1)
+        (c.empty)
+        (' (> B 8) (: A 6))
+      )
+      (?
+        (c.getBit A 7)
+        (?
+          (c.getBit A 5)
+          (?
+            (c.getBit A 4)
+            (: A 3)
+            (: A 4)
+          )
+          (: A 5)
+        )
+        (c.empty)
+      )
+    )
+    110*****
+    1110****
+    11110***
+    (:
+      (?
+        (: B 8)
+        (- (: B 8) 1)
+        (?
+          (c.getBit A 7)
+          (?
+            (c.getBit A 5)
+            (?
+              (c.getBit A 4)
+              3
+              2
+            )
+            1
+          )
+          0
+        )
+      )
+      8
+    )
+  )
+}
+{c.convertS8Sb A; ; (c.convertS8Sb.loop A (' (: 0 8)))}
 
 [String with null]
 {c.concatenateS8N A; ;
