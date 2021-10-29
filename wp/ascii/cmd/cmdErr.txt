@@ -56,5 +56,8 @@
 .MORMD
 /RDX:RDI:R
 
+.MORIB ,BL
+.$0D
+
 .JD
 'fPE:D

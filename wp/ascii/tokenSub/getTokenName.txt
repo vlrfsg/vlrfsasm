@@ -32,6 +32,7 @@
 .JEB
 'lGTN_2
 
+.PW
 .MORMD
 /AX:RDX:M
 

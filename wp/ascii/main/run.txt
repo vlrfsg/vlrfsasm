@@ -639,12 +639,8 @@
 .MOMRD
 /EDX:RBX:M
 
-.MORIB ,AH
-.$FF
-
-.PW
-.MOMRD
-/AX:RBX:B
+.MOMRB
+/AL:RBX:B
 .$0C
 
 .PW
@@ -712,6 +708,31 @@
 
 .CD
 'fPhV:D
+
+.MZRMW:W
+/EAX:RBX:B
+.$20
+
+.PM
+.CAMI8
+/CMP:SIB:D
++R13:RAX:Q
+.mVI:D
+.$00
+
+.JNEB
+'lR_20A
+
+.PQ ,PM
+.LERMD
+/RSI:R14:B
+.$0C
+
+.CD
+'lQRE_1:D
+
+.JD
+'lR_29:D
 
 *lR_20A
 

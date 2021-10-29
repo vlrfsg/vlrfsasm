@@ -103,6 +103,9 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2021/10/29 v0.6
+    [Fix] Fix unintended behaviour of builtin function <
+
   2021/10/7 v0.5
     [New] Log file exportation
     [New] Year display

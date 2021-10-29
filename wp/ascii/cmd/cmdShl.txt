@@ -36,7 +36,7 @@
 /DEC:EBX:R
 
 .SHMID
-/SAL:EBX:R
+/SAR:EBX:R
 .$03
 
 .XORMD
