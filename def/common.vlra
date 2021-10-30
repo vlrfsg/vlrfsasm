@@ -149,8 +149,8 @@
 {c.alignS A B; ; (< A (- (c.align (# A) B) (# A)))}
 
 [string length]
-{c.getLengthS8 A; ; (> (# A) 3)}
-{c.getLengthSx A; ; (> (# A) 4)}
+{c.getLengthS8 A; ; (: (> (# A) 3) 64)}
+{c.getLengthSx A; ; (: (> (# A) 4) 64)}
 
 [Compare both Value and Length]
 {c.compareStrict A B; ; (& (== (# A) (# B)) (== A B))}
@@ -326,11 +326,7 @@
 
 [Utf16 convert newline to \r\n]
 {c.regularizeNewLineSb A B; ;
-  (c.regularizeNewLineSbL
-    A
-    B
-    (' (: 0 1) (c.getLengthSx A))
-  )
+  (c.regularizeNewLineSbL A B (: 0 1))
 }
 {c.regularizeNewLineSbL A 16 B C; ;
   (?
@@ -342,10 +338,7 @@
       A
     )
   );
-  ('
-    (== A "\r")
-    (- (: C 16) 1)
-  )
+  (== A "\r")
 }
 
 [Repeat]
