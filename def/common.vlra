@@ -55,6 +55,13 @@
 {>!- A B; ; (! (<=- A B))}
 {>=- A B; ; (! (<!- A B))}
 
+[min. max, abs]
+{c.min A B; ; (? (<= A B) A B)}
+{c.max A B; ; (? (>= A B) A B)}
+{c.min- A B; ; (? (<=- A B) A B)}
+{c.max- A B; ; (? (>=- A B) A B)}
+{c.abs A; ; (? (c.getSign A) (c.negate A) A)}
+
 [multiply]
 {* A B; ;
   (:
@@ -324,7 +331,7 @@
   (' (c.getRange A 0 8) (c.getRange A 8 8))
 }
 
-[Utf16 convert newline to \r\n]
+[Utf16 convert newline]
 {c.regularizeNewLineSb A B; ;
   (c.regularizeNewLineSbL A B (: 0 1))
 }
@@ -360,7 +367,7 @@
 }
 {c.searchSx.loop A 16 B C; ;
   (?
-    (== (' (> C 64) A) B)
+    (== (' (c.getRange C 64 (- (# B) 16)) A) B)
     (: C 64)
     (c.empty)
   );
@@ -391,7 +398,13 @@
     (c.getRangeSx
       A
       (c.getIndexSx A B C)
-      (- (c.getIndexSx A B (+ C 1)) (c.getIndexSx A B C))
+      (c.max
+        (-
+          (c.getIndexSx A B (+ C 1))
+          (+ (c.getIndexSx A B C) (c.getLengthSx B))
+        )
+        0
+      )
     )
     (c.empty)
   )

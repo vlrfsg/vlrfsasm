@@ -3,7 +3,7 @@
 
 [Version]
 {h.majorImageVersion; ; 0}
-{h.minorImageVersion; ; 6}
+{h.minorImageVersion; ; 7}
 
 [Subsystem]
 {h.subsystem; ; 3} [IMAGE_SUBSYSTEM_WINDOWS_CUI]

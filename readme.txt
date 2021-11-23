@@ -103,6 +103,9 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2021/11/24 v0.7
+    [Fix] Fix unintended behaviour of builtin function < (Seriously)
+
   2021/10/29 v0.6
     [Fix] Fix unintended behaviour of builtin function <
 

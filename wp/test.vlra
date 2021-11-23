@@ -1,4 +1,4 @@
 [wp/test.vlra
  Copyright 2021 vlrfsg]
 
-{.; ; (c.convertS8Sb (input.txt))}
+{.; ; (c.splitSx "atj,fb,c" ";" 0)}
