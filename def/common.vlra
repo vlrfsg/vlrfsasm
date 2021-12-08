@@ -55,11 +55,11 @@
 {>!- A B; ; (! (<=- A B))}
 {>=- A B; ; (! (<!- A B))}
 
-[min. max, abs]
-{c.min A B; ; (? (<= A B) A B)}
-{c.max A B; ; (? (>= A B) A B)}
-{c.min- A B; ; (? (<=- A B) A B)}
-{c.max- A B; ; (? (>=- A B) A B)}
+[min, max, abs]
+{c.min A B; ; (? (<= A B) A (: B (# A)))}
+{c.max A B; ; (? (>= A B) A (: B (# A)))}
+{c.min- A B; ; (? (<=- A B) A (:- B (# A)))}
+{c.max- A B; ; (? (>=- A B) A (:- B (# A)))}
 {c.abs A; ; (? (c.getSign A) (c.negate A) A)}
 
 [multiply]
