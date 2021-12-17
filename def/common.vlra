@@ -42,7 +42,7 @@
 [unsigned compare]
 {== A B; ; (: (? (^ A (: B (# A))) 0 1) 1)}
 {!= A B; ; (! (== A B))}
-{<! A B; ; (c.getSign (- A B))}
+{<! A B; ; (c.getSign (- (: A (+ (# A) 1)) B))}
 {<= A B; ; (| (<! A B) (== A B))}
 {>! A B; ; (! (<= A B))}
 {>= A B; ; (! (<! A B))}
