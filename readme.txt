@@ -103,6 +103,10 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2021/12/17 v0.7.1
+    [Fix] Several functions in common.vlra
+    [Fix] Accept files with size just 65536 Bytes
+
   2021/11/24 v0.7
     [Fix] Fix unintended behaviour of builtin function < (Seriously)
 
