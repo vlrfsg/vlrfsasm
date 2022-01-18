@@ -47,12 +47,15 @@
 .SHMCD
 /SHR:EAX:R
 
-.MORID ,EBX
-.$0007FFFF:D
+.XORMD
+/EBX:EBX:R
+
+.EXCFE
+/INC:BL:R
 
 .CAMI8
 /CMP:EDX:R
-.$13
+.$14
 
 .JAEB
 'lP16_0
@@ -60,22 +63,34 @@
 .MORMB
 /CL:DL:R
 
-.XORMD
-/EBX:EBX:R
-
-.EXCFE
-/INC:BL:R
-
 .SHMCD
 /SHL:EBX:R
 
 .EXCFF
 /DEC:EBX:R
 
-*lP16_0
-
 .ANRMD
 /EBX:EAX:R
+
+.JB
+'lP16_1
+
+*lP16_0
+
+.SHMID
+/SHL:EBX:R
+.$13
+
+.CMRMD
+/EAX:EBX:R
+
+.JBEB
+'lP16_1
+
+.MORMD
+/EBX:EAX:R
+
+*lP16_1
 
 .CD
 'fPpV:D
