@@ -62,20 +62,20 @@
 {bsfff A B; ; (is.b 5 B A)}
 {bcsff A B; ; (is.b 6 B A)}
 {bssff A B; ; (is.b 7 B A)}
-{cafpl A; ; (: (| $30 (: (` A) 11)) 16)}
+{cafpl A; ; (: (| $3000 (: (` A) 11)) 16)}
 {calpl A; B;
   (?
     (== (> (` A) 11) (> (` B) 11))
-    (' (: (| $30 (: (` A) 11)) 16) (@ B))
-    (c.errSxl "Unreachable address")
+    (' (: (| $3000 (: (` A) 11)) 16) (@ B))
+    (c.errorSxl "Unreachable address")
   )
 }
-{gofpl A; ; (: (| $34 (: (` A) 11)) 16)}
+{gofpl A; ; (: (| $3400 (: (` A) 11)) 16)}
 {gotpl A; B;
   (?
     (== (> (` A) 11) (> (` B) 11))
-    (' (: (| $34 (: (` A) 11)) 16) (@ B))
-    (c.errSxl "Unreachable address")
+    (' (: (| $3400 (: (` A) 11)) 16) (@ B))
+    (c.errorSxl "Unreachable address")
   )
 }
 {movwi A; ; (is.i $30 A)}
@@ -84,7 +84,7 @@
 {brapl A; B;
   (? (==- (- (` A) (` B)) (: (- (` A) (` B)) 9))
     (' (: (| $3200 (: (- (` A) (` B)) 9)) 16) (@ B))
-    (c.errSxl "Unreachable address")
+    (c.errorSxl "Unreachable address")
   )
 }
 {rmovwi A; ; (is.i $34 A)}

@@ -3,9 +3,8 @@
 
 {hx.contentOfText; ; (machine.bin)}
 
-
 {.; ;
-  (c.cnvSxS8
+  (c.convertSxS8
     ('
       (hx.convert (hx.contentOfText) 0)
       (hx.convert
@@ -21,9 +20,8 @@
   ('
     (hx.record
       ('
-        (: 2 8)
         (: 0 16)
-        (: 4 16)
+        (: 2 8)
         (: (> B 15) 16)
       )
     )
@@ -46,12 +44,16 @@
 {hx.record A; ;
   ('
     ":"
-    (hx.string (hx.parity A (' (: (> (# A) 3) 8) (: 0 8))))
+    (hx.string (hx.parity A (: (> (# A) 3) 8)))
     "\r\n"
   )
 }
 
-{hx.parity A 8 B; ;
+{hx.parity A B; ;
+  (hx.parity.loop (' B A) (' B (: 0 8)))
+}
+
+{hx.parity.loop A 8 B; ;
   ('
     A
     (?
@@ -66,7 +68,7 @@
   )
 }
 
-{hx.string A 8; ; (c.cnvISFixed A 16 2)}
+{hx.string A 8; ; (c.convertISbFixed A 16 2)}
 
 {hx.contentOfEndOfFile; ;
   ":00000001FF\r\n"

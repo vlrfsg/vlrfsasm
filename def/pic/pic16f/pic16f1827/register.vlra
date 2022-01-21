@@ -2,36 +2,36 @@
  Copyright 2021 vlrfsg]
 
 [Common among all banks]
-{INDF0; ; $00}
-{INDF1; ; $01}
-{PCL; ; $02}
-{STATUS; ; $03}
+{INDF0; ; (r $00)}
+{INDF1; ; (r $01)}
+{PCL; ; (r $02)}
+{STATUS; ; (r $03)}
   {STATUS.C; ; 0}
   {STATUS.DC; ; 1}
   {STATUS.Z; ; 2}
   {STATUS.PD; ; 3}
   {STATUS.TO; ; 4}
-{FSR0L; ; $04}
-{FSR1L; ; $05}
-{FSR0H; ; $06}
-{FSR1H; ; $07}
-{BSR; ; $08}
-{WREG; ; $09}
-{PCLATH; ; $0A}
-{INTCON; ; $0B}
+{FSR0L; ; (r $04)}
+{FSR1L; ; (r $05)}
+{FSR0H; ; (r $06)}
+{FSR1H; ; (r $07)}
+{BSR; ; (r $08)}
+{W; ; (r $09)}
+{PCLATH; ; (r $0A)}
+{INTCON; ; (r $0B)}
 
 [Bank 0]
-{PORTA; ; $0C}
-{PORTB; ; $0D}
+{PORTA; ; (r $0C)}
+{PORTB; ; (r $0D)}
 
 [Bank 1]
-{TRISA; ; $0C}
-{TRISB; ; $0D}
+{TRISA; ; (r $8C)}
+{TRISB; ; (r $8D)}
 
 [Bank 2]
-{LATA; ; $0C}
-{LATB; ; $0D}
+{LATA; ; (r $10C)}
+{LATB; ; (r $10D)}
 
 [Bank 3]
-{ANSELA; ; $0C}
-{ANSELB; ; $0D}
+{ANSELA; ; (r $18C)}
+{ANSELB; ; (r $18D)}

@@ -1,0 +1,26 @@
+
+{r A; ; (' (: 1 1) (: A 127))}
+{i.getType A; ; (> A 127)}
+
+{add A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) A) (add B (W)))
+        (? (== A (W)) (i.wf $3D B) (i.fw $3D A))
+      )
+      (?
+        (== A (W))
+        (i.wi $3E B)
+        (' (mov (W) B) (add A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{mov A B; ;
+  ()
+}
