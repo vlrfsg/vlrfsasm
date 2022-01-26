@@ -23,7 +23,70 @@
     (: (cw.PLLEN) 1)
     (: 63 6)
     (: (cw.WRT) 2)
+    (?
+      (&
+        (<= (cw.FOSC) 2)
+        (!= (cw.CLKOUTEN.ignore) (cw.CLKOUTEN))
+      )
+      (c.errorSb "With this FOSC, CLKOUTEN is ignored")
+      (c.empty)
+    )
+    (?
+      (&
+        (cw.LVP)
+        (!= (cw.MCLRE.ignore) (cw.MCLRE))
+      )
+      (c.errorSb "With this LVP, MCLRE is ignored")
+      (c.empty)
+    )
   )
 }
 
 {hx.addressOfConfigurationWord; ; $8007}
+
+{cw.FCMEN.disable; ; 0}
+{cw.FCMEN.enable; ; 1}
+{cw.IESO.disable; ; 0}
+{cw.IESO.enable; ; 1}
+{cw.CLKOUTEN.enable; ; 0}
+{cw.CLKOUTEN.disable; ; 1}
+{cw.CLKOUTEN.ignore; ; 2}
+{cw.BOREN.disable; ; 0}
+{cw.BOREN.SBOREN; ; 1}
+{cw.BOREN.disableInSleep; ; 2}
+{cw.BOREN.enable; ; 3}
+{cw.CPD.enable; ; 0}
+{cw.CPD.disable; ; 1}
+{cw.CP.enable; ; 0}
+{cw.CP.disable; ; 1}
+{cw.MCLRE.MCLR; ; 0}
+{cw.MCLRE.RA5; ; 1}
+{cw.MCLRE.ignore; ; 2}
+{cw.PWRTE.enable; ; 0}
+{cw.PWRTE.disable; ; 1}
+{cw.WDTE.disable; ; 0}
+{cw.WDTE.SWDTEN; ; 1}
+{cw.WDTE.disableInSleep; ; 2}
+{cw.WDTE.enable; ; 3}
+{cw.FOSC.LP; ; 0}
+{cw.FOSC.XT; ; 1}
+{cw.FOSC.HS; ; 2}
+{cw.FOSC.EXTRC; ; 3}
+{cw.FOSC.INTOSC; ; 4}
+{cw.FOSC.ECL; ; 5}
+{cw.FOSC.ECM; ; 6}
+{cw.FOSC.ECH; ; 7}
+{cw.LVP.disable; ; 0}
+{cw.LVP.enable; ; 1}
+{cw.DEBUG.enable; ; 0}
+{cw.DEBUG.disable; ; 1}
+{cw.BORV.high; ; 0}
+{cw.BORV.low; ; 1}
+{cw.STVREN.disable; ; 0}
+{cw.STVREN.enable; ; 1}
+{cw.PLLEN.disable; ; 0}
+{cw.PLLEN.enable; ; 1}
+{cw.WRT.four; ; 0}
+{cw.WRT.two; ; 1}
+{cw.WRT.half; ; 2}
+{cw.WRT.no; ; 3}
