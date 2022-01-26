@@ -16,7 +16,7 @@
     (: (cw.FOSC) 3)
     (: 0 2)
     (: (cw.LVP) 1)
-    (: (cw.DEBUG))
+    (: (cw.DEBUG) 1)
     (: 1 1)
     (: (cw.BORV) 1)
     (: (cw.STVREN) 1)

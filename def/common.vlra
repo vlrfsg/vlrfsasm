@@ -186,7 +186,7 @@
     (c.convertISb A B)
   )
 }
-{c.cnvISbFixed A B C; ;
+{c.convertISbFixed A B C; ;
   ('
     (?
       (>= (> (# (c.convertISb A B)) 4) C)

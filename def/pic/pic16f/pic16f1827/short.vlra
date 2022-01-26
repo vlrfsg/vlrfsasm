@@ -1,6 +1,94 @@
+[def/pic/pic16f/pic16f1827/short.vlra
+ Copyright 2022 vlrfsg]
+
+{.; ; (t.content)}
 
 {r A; ; (' (: 1 1) (: A 127))}
+{F; ; 1}
 {i.getType A; ; (> A 127)}
+{i.o A; ; (: A 16)}
+{i.f A B C; ; (i.o (' (: A 6) (: B 1) (: C 7)))}
+{i.b A B C; ; (i.o (' (' A 4) (: B 3) (: C 7)))}
+{i.i A B; ; (i.o (' (: 3 2) (: A 4) (: B 8)))}
+{i.x A; ; (r (: A 2))}
+{i.wf A B; ; (i.f A 0 B)}
+{i.fw A B; ; (i.f A 1 B)}
+{i.fd A D B; ; (i.f A (!= (W) D) B)}
+
+{Nop; ; (i.o 0)}
+{Reset; ; (i.o 1)}
+{Return; ; (i.o 8)}
+{Retfie; ; (i.o 9)}
+{Callw; ; (i.o $A)}
+{Brw; ; (i.o $B)}
+{Movwi N MM; ;
+  (i.o
+    (?
+      (i.getType MM)
+      (| $0010 (< (: N 1) 2) (: MM 2))
+      (| $3F00 (< (: N 1) 6) (: MM 6))
+    )
+  )
+}
+  {Movi.im; ; (i.x 0)}
+  {Movi.dm; ; (i.x 1)}
+  {Movi.mi; ; (i.x 2)}
+  {Movi.md; ; (i.x 3)}
+{Moviw N MM; ;
+  (i.o
+    (?
+      (i.getType MM)
+      (| $0018 (< (: N 1) 2) (: MM 2))
+      (| $3F80 (< (: N 1) 6) (: MM 6))
+    )
+  )
+}
+{Movlb K; ; (i.o (| $0020 (: K 5)))}
+{Option; ; (i.o $62)}
+{Sleep; ; (i.o $63)}
+{Clrwdt; ; (i.o $64)}
+{Tris P; ; (i.o (| $60 (: P 3)))}
+  {Tris.TRISA; ; 5}
+  {Tris.TRISB; ; 6}
+{Movwf A; ; (i.fw 0 A)}
+{Clrw; ; (i.o $100)}
+{Clrf A; ; (i.fw 1 A)}
+{Subwf A D; ; (i.fd 2 D A)}
+{Decf A D; ; (i.fd 3 D A)}
+{Iorwf A D; ; (i.fd 4 D A)}
+{Andwf A D; ; (i.fd 5 D A)}
+{Xorwf A D; ; (i.fd 6 D A)}
+{Addwf A D; ; (i.fd 7 D A)}
+{Movf A D; ; (i.fd 8 D A)}
+{Comf A D; ; (i.fd 9 D A)}
+{Incf A D; ; (i.fd 10 D A)}
+{Decfsz A D; ; (i.fd 11 D A)}
+{Rrf A D; ; (i.fd 12 D A)}
+{Rlf A D; ; (i.fd 13 D A)}
+{Swapf A D; ; (i.fd 14 D A)}
+{Incfsz A D; ; (i.fd 15 D A)}
+{Bcf A B; ; (i.b 4 B A)}
+{Bsf A B; ; (i.b 5 B A)}
+{Btfsc A B; ; (i.b 6 B A)}
+{Btfss A B; ; (i.b 7 B A)}
+{Call A; ; (i.o (| $3000 (: A 11)))}
+{Goto A; ; (i.o (| $3400 (: A 11)))}
+{Movlw A; ; (i.i 0 A)}
+{Addfsr N K; ; (i.o (| $3100 (< (: N 1) 6) (: K 6)))}
+{Movlp K; ; (i.o (| $3180 (: K 7)))}
+{Bra K; ; (i.o (| $3200 (: K 9)))}
+{Retlw A; ; (i.i 4 A)}
+{Lslf A D; ; (i.fd $35 D A)}
+{Lsrf A D; ; (i.fd $36 D A)}
+{Asrf A D; ; (i.fd $37 D A)}
+{Iorlw A; ; (i.i 8 A)}
+{Andlw A; ; (i.i 9 A)}
+{Xorlw A; ; (i.i 10 A)}
+{Subwfb A D; ; (i.fd $3B D A)}
+{Sublw A; ; (i.i 12 A)}
+{Addwfc A D; ; (i.fd $3D D A)}
+{Addlw A; ; (i.i 14 A)}
+
 
 {add A B; ;
   (?
@@ -111,7 +199,7 @@
         (' (mov (W) B) (sbb A (W)))
         (?
           (== A (W))
-          (' (mov (T) (W)) (comw B) (adc (W) T))
+          (' (mov (T) (W)) (comw B) (adc (W) (T)))
           (i.fw $3B A)
         )
       )

@@ -103,6 +103,10 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2022/1/27 v1.0
+    [Fix] All builtin functions are now stable
+    [New] The datasheet set of assembly instructions for PIC16F1827
+
   2021/12/17 v0.7.1
     [Fix] Several functions in common.vlra
     [Fix] Accept files with size just 65536 Bytes

@@ -4,7 +4,7 @@
 {hx.contentOfText; ; (machine.bin)}
 
 {.; ;
-  (c.convertSxS8
+  (c.convertSbS8
     ('
       (hx.convert (hx.contentOfText) 0)
       (hx.convert
@@ -21,18 +21,20 @@
     (hx.record
       ('
         (: 0 16)
-        (: 2 8)
+        (: 4 8)
         (: (> B 15) 16)
       )
     )
-    (hx.convert.loop A (< B 1))
+    (hx.convert.loop
+      (c.changeEndianSx A)
+      (< B 1)
+    )
   )
 }
 
 {hx.convert.loop A 128 B; ;
   (hx.record
     ('
-      (: (> A 3) 8)
       (: B 16)
       (: 0 8)
       A
@@ -50,16 +52,16 @@
 }
 
 {hx.parity A B; ;
-  (hx.parity.loop (' B A) (' B (: 0 8)))
+  (hx.parity.loop (' (- B 3) A) (' B (: 0 8)))
 }
 
 {hx.parity.loop A 8 B; ;
   ('
     A
     (?
-      (== (> B 8) 1)
-      (: (c.negate (+ A B)) 8)
+      (> B 8)
       (c.empty)
+      (: (c.negate (+ A B)) 8)
     )
   );
   ('

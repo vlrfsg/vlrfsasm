@@ -1,15 +1,30 @@
 [wp/test.vlra
  Copyright 2021 vlrfsg]
 
-{.; ;
+{t.content; ;
   ('
-    (goto @afterInterrupt)
-    (nop)
-    (nop)
-    (nop)
+    (Goto (> (` @afterInterrupt) 1))
+    (Nop)
+    (Nop)
+    (Nop)
     
     (@ @afterInterrupt)
   )
 }
 
-{cw.FCMEN}
+{cw.FCMEN; ; (cw.FCMEN.disable)}
+{cw.IESO; ; (cw.IESO.disable)}
+{cw.CLKOUTEN; ; (cw.CLKOUTEN.disable)}
+{cw.BOREN; ; (cw.BOREN.enable)}
+{cw.CPD; ; (cw.CPD.enable)}
+{cw.CP; ; (cw.CPD.enable)}
+{cw.MCLRE; ; (cw.MCLRE.MCLR)}
+{cw.PWRTE; ; (cw.PWRTE.enable)}
+{cw.WDTE; ; (cw.WDTE.disable)}
+{cw.FOSC; ; (cw.FOSC.INTOSC)}
+{cw.LVP; ; (cw.LVP.disable)}
+{cw.DEBUG; ; (cw.DEBUG.disable)}
+{cw.BORV; ; (cw.BORV.low)}
+{cw.STVREN; ; (cw.STVREN.enable)}
+{cw.PLLEN; ; (cw.PLLEN.disable)}
+{cw.WRT; ; (cw.WRT.four)}
