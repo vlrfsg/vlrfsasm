@@ -254,10 +254,6 @@
 /RAX:SIB:M
 +RCX:RDX:Q
 
-.PW
-.MORMD
-/AX:DX:R
-
 .XORMD
 /EDX:EDX:R
 

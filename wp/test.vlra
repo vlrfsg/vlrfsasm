@@ -1,4 +1,15 @@
 [wp/test.vlra
  Copyright 2021 vlrfsg]
 
-{.; ; (c.splitSx "atj,fb,c" ";" 0)}
+{.; ;
+  ('
+    (goto @afterInterrupt)
+    (nop)
+    (nop)
+    (nop)
+    
+    (@ @afterInterrupt)
+  )
+}
+
+{cw.FCMEN}

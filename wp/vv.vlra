@@ -2,8 +2,8 @@
  Copyright 2021 vlrfsg]
 
 [Version]
-{h.majorImageVersion; ; 0}
-{h.minorImageVersion; ; 7}
+{h.majorImageVersion; ; 1}
+{h.minorImageVersion; ; 0}
 
 [Subsystem]
 {h.subsystem; ; 3} [IMAGE_SUBSYSTEM_WINDOWS_CUI]

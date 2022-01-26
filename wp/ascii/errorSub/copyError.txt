@@ -39,8 +39,8 @@
 'fCX:D
 
 .EXCF6
-/TEST:BL:R
-.$10
+/TEST:BH:R
+.$08
 
 .JNZB
 'lPE_0

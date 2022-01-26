@@ -190,6 +190,8 @@
 /TEST:BL:R
 .$06
 
+*lPSF_2A
+
 .JNZB
 'lPSF_3
 
@@ -280,8 +282,8 @@
 /TEST:BL:R
 .$07
 
-.JZD:W
-'lPSF_E:D
+.JZB
+'lPSF_2A
 
 .EXCF6
 /TEST:BL:R

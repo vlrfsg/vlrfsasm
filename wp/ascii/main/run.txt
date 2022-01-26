@@ -77,6 +77,11 @@
 /EAX:R13:B
 .mSRF
 
+.PM
+.EXCFE
+/INC:R13:B
+.mSC
+
 *lR_4
 
 .PM
@@ -94,7 +99,10 @@
 .XORMB
 /BL:BL:R
 
-.JCZB
+.EXCFF
+/DEC:ECX:R
+
+.JZB
 'lR_9A
 
 .PQ ,PR ,PM
@@ -942,6 +950,10 @@
 +R13:RAX:Q
 .mVI:D
 
+.EXCFE
+/DEC:RSI:B
+.$04
+
 .PR
 .MORMD
 /R12D:RSI:M
@@ -962,14 +974,13 @@
 /EDX:RSI:B
 .$06
 
-.XORMD
-/ESI:ESI:R
-
+.PM
 .EXCFF
-/INC:ESI:R
+/INC:R13:B
+.mSC
 
 .PM
-.XAMRD:W
+.MORMD
 /ESI:R13:B
 .mSC
 
@@ -1034,7 +1045,7 @@
 .PW
 .MOMRD
 /AX:RCX:B
-.$04
+.$06
 
 .JB
 'lR_31

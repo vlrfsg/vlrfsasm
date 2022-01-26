@@ -1,1 +1,2 @@
-vlrfsasm result.bin result.log test.vlra ../def/common.vlra input.txt
+vlrfsasm machine.bin result.log test.vlra ../def/common.vlra ../def/pic/pic16f/pic16f1827/short.vlra ../def/pic/pic16f/pic16f1827/register.vlra
+vlrfsasm result.hex result.log test.vlra machine.bin ../def/common.vlra ../def/pic/hex.vlra ../def/pic/pic16f/pic16f1827/configurationWord.vlra

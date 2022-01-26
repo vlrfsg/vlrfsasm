@@ -27,7 +27,7 @@
 .$01
 
 .JNZB
-'lQGA_0
+'lQGA_1
 
 .CD
 'fGTA:D
@@ -37,6 +37,14 @@
 .MORMD
 /BX:R13:B
 .mSC
+
+.PW
+.CAMI8
+/CMP:BX:R
+.$01
+
+.JEB
+'lQGA_0
 
 .PW
 .CMRMD
@@ -52,9 +60,17 @@
 .$04
 
 .JB
-'lQGA_1
+'lQGA_2
 
 *lQGA_0
+
+.XORMD
+/EAX:EAX:R
+
+.JB
+'lQGA_2
+
+*lQGA_1
 
 .PW
 .PM
@@ -63,7 +79,7 @@
 +R13:RCX:D
 .mLV:D
 
-*lQGA_1
+*lQGA_2
 
 .PQ
 .SWRD:W ,RAX

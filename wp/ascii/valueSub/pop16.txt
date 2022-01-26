@@ -84,7 +84,7 @@
 .CMRMD
 /EAX:EBX:R
 
-.JBEB
+.JAEB
 'lP16_1
 
 .MORMD
