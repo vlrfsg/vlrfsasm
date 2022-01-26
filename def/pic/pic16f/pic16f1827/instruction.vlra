@@ -100,8 +100,8 @@
 {sbbwf A; ; (is.f $3B 0 A)}
 {sbbfw A; ; (is.f $3B 1 A)}
 {subwi A; ; (is.i $3C A)}
-{addwf A; ; (is.f $3D 0 A)}
-{addfw A; ; (is.f $3D 1 A)}
+{adcwf A; ; (is.f $3D 0 A)}
+{adcfw A; ; (is.f $3D 1 A)}
 {addwi A; ; (is.i $3E A)}
 {movwk A B; ; (: (| $3F00 (< (: A 1) 6) (: B 6)) 16)}
 {movkw A B; ; (: (| $3F80 (< (: A 1) 6) (: B 6)) 16)}

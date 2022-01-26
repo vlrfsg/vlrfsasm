@@ -9,8 +9,8 @@
       (i.getType B)
       (?
         (& (!= A (W)) (!= B (W)))
-        (' (mov (W) A) (add B (W)))
-        (? (== A (W)) (i.wf $3D B) (i.fw $3D A))
+        (' (mov (W) B) (add A (W)))
+        (? (== A (W)) (i.wf $07 B) (i.fw $07 A))
       )
       (?
         (== A (W))
@@ -21,6 +21,241 @@
     (c.errorSb "Assignment into an immediate")
   )
 }
-{mov A B; ;
-  ()
+{adc A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) B) (adc A (W)))
+        (? (== A (W)) (i.wf $3D B) (i.fw $3D A))
+      )
+      (?
+        (== A (W))
+        ('
+          (mov (T) (W))
+          (mov (W) B)
+          (adc (W) (T))
+        )
+        (' (mov (W) B) (adc A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
 }
+{and A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) B) (and A (W)))
+        (? (== A (W)) (i.wf $05 B) (i.fw $05 A))
+      )
+      (?
+        (== A (W))
+        (i.wi $39 B)
+        (' (mov (W) B) (and A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{ior A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) B) (ior A (W)))
+        (? (== A (W)) (i.wf $04 B) (i.fw $04 A))
+      )
+      (?
+        (== A (W))
+        (i.wi $38 B)
+        (' (mov (W) B) (ior A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{mov A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) B) (mov A (W)))
+        (? (== A (W)) (i.wf $08 B) (i.fw $00 A))
+      )
+      (?
+        (== A (W))
+        (i.wi $30 B)
+        (' (mov (W) B) (mov A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{sbb A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) B) (sbb A (W)))
+        (?
+          (== A (W))
+          (' (mov (T) (W)) (comw B) (adc (W) T))
+          (i.fw $3B A)
+        )
+      )
+      (?
+        (== A (W))
+        ('
+          (mov (T) (W))
+          (mov (W) B)
+          (sbn (W) (T))
+        )
+        (' (mov (W) B) (sbb A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{sbbd A B; ;
+  (?
+    (& (== (W) A) (i.getType B))
+    (' (comf B) (adc (W) B))
+    (sbb A B)
+  )
+}
+{sbn A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (comw B) (adc A (W)))
+        (?
+          (== A (W))
+          (' (comf (W)) (adc (W) B))
+          (i.wf $3B A)
+        )
+      )
+      (?
+        (== A (W))
+        ('
+          (mov (T) (W))
+          (comf (T))
+          (mov (W) B)
+          (adc (W) (T))
+        )
+        (' (mov (W) B) (comf A) (adc A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{sub A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) B) (sub A (W)))
+        (?
+          (== A (W))
+          ('
+            (mov (T) (W))
+            (mov (W) B)
+            (sun (W) (T))
+          )
+          (i.fw $02 A)
+        )
+      )
+      (?
+        (== A (W))
+        ('
+          (mov (T) (W))
+          (mov (W) B)
+          (sun (W) (T))
+        )
+        (' (mov (W) B) (sub A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{subv A B; ;
+  (?
+    (== (W) A)
+    (?
+      (i.getType B)
+      (' (sun (W) B) (sun (W) 0))
+      (add (W) (c.negate B))
+    )
+    (sub A B)
+  )
+}
+{sun A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) A) (sun (W) (B)) (mov A (W)))
+        (?
+          (== A (W))
+          (i.wf $02 B)
+          ('
+            (bsf (STATUS) (STATUS.CF))
+            (comf A)
+            (adc A (W))
+          )
+        )
+      )
+      (?
+        (== A (W))
+        (i.wi $3C B)
+        (' (mov (W) A) (i.wi $3C B) (mov A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+{sunv A B; ;
+  (?
+    (& (c.getType A) (== (W) B))
+    (' (sub A (W)) (sun A 0))
+    (sun A B)
+  )
+}
+{xor A B; ;
+  (?
+    (i.getType A)
+    (?
+      (i.getType B)
+      (?
+        (& (!= A (W)) (!= B (W)))
+        (' (mov (W) B) (xor A (W)))
+        (? (== A (W)) (i.wf $06 B) (i.fw $06 A))
+      )
+      (?
+        (== A (W))
+        (i.wi $3A B)
+        (' (mov (W) B) (xor A (W)))
+      )
+    )
+    (c.errorSb "Assignment into an immediate")
+  )
+}
+

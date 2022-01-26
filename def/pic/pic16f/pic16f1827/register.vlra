@@ -20,6 +20,8 @@
 {PCLATH; ; (r $0A)}
 {INTCON; ; (r $0B)}
 
+{T; ; (r $7F)}
+
 [Bank 0]
 {PORTA; ; (r $0C)}
 {PORTB; ; (r $0D)}
