@@ -13,6 +13,9 @@
 .JNZB
 'lFV_1
 
+.JSB
+'lFV_2
+
 .MORMD
 /ECX:EAX:R
 
@@ -97,3 +100,14 @@
 'fGVA:D
 
 .RET
+
+*lFV_2
+
+.CD
+'fCKS:D
+
+.MORIB ,BL
+.$09
+
+.JD
+'fPE:D

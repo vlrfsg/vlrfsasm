@@ -103,6 +103,9 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2022/3/23 v1.1
+    [Fix] Unintended actions around functions (:), (<) and (>)
+
   2022/1/27 v1.0
     [Fix] All builtin functions are now stable
     [New] The datasheet set of assembly instructions for PIC16F1827

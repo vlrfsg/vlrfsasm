@@ -53,15 +53,20 @@
 .EXCFE
 /INC:BL:R
 
-.CAMI8
-/CMP:EDX:R
-.$14
-
-.JAEB
-'lP16_0
-
 .MORMB
 /CL:DL:R
+
+.CAMI8
+/CMP:EDX:R
+.$18
+
+.JBEB
+'lP16_0
+
+.MORIB ,CL
+.$18
+
+*lP16_0
 
 .SHMCD
 /SHL:EBX:R
@@ -72,23 +77,19 @@
 .ANRMD
 /EBX:EAX:R
 
-.JB
+.MORID ,EDX
+.$00800000:D
+
+.CMRMD
+/EBX:EDX:R
+
+.JBEB
 'lP16_1
 
 *lP16_0
 
-.SHMID
-/SHL:EBX:R
-.$13
-
-.CMRMD
-/EAX:EBX:R
-
-.JAEB
-'lP16_1
-
 .MORMD
-/EBX:EAX:R
+/EBX:EDX:R
 
 *lP16_1
 
