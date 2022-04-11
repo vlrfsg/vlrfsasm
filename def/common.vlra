@@ -151,6 +151,69 @@
   )
 }
 
+[Square root]
+{c.sqrt A; ;
+  (:
+    (c.sqrt.loop
+      (: A (c.sqrt.size A))
+      ('
+        (: 0 (c.sqrt.size A))
+        (: 0 (c.sqrt.size A))
+        (: (# A) 32)
+        (: (c.sqrt.size A) 32)
+      )
+    )
+    (# A)
+  )
+}
+{c.sqrt.loop A 2 B; ;
+  (?
+    (<= (c.getRange B 32 32) 2)
+    (|
+      (c.sqrt.getR B)
+      (>=
+        (' (c.sqrt.getD B) A)
+        (+ (< (c.sqrt.getR B) 1) 1)
+      )
+    )
+    (c.empty)
+  );
+  ('
+    (:
+      (<
+        (|
+          (c.sqrt.getR B)
+          (>=
+            (' (c.sqrt.getD B) A)
+            (+ (< (c.sqrt.getR B) 1) 1)
+          )
+        )
+        1
+      )
+      (: B 32)
+    )
+    (:
+      (-
+        (' (c.sqrt.getD B) A)
+        (?
+          (>=
+            (' (c.sqrt.getD B) A)
+            (+ (< (c.sqrt.getR B) 1) 1)
+          )
+          (+ (< (c.sqrt.getR B) 1) 1)
+          0
+        )
+      )
+      (: B 32)
+    )
+    (- (c.getRange B 32 32) 2)
+    (: B 32)
+  )
+}
+{c.sqrt.size A; ; (+ (& (# A) 1) (# A))}
+{c.sqrt.getR A; ; (> A (+ (: A 32) 64))}
+{c.sqrt.getD A; ; (c.getRange A 64 (: A 32))}
+
 [align]
 {c.align A B; ; (? (& A (- B 1)) (+ (^ A (& A (- B 1))) B) A)}
 {c.alignS A B; ; (< A (- (c.align (# A) B) (# A)))}

@@ -191,6 +191,9 @@
 .MORMD
 /RDX:R15:R
 
+.CD
+'fCC:D
+
 .JD
 'fPE:D
 

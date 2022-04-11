@@ -127,6 +127,9 @@
 .MORMD
 /RDX:RSI:R
 
+.CD
+'fCC:D
+
 .PQ
 .CAMI8
 /ADD:RSP:R

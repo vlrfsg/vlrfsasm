@@ -3,7 +3,7 @@
 
 [Version]
 {h.majorImageVersion; ; 1}
-{h.minorImageVersion; ; 0}
+{h.minorImageVersion; ; 2}
 
 [Subsystem]
 {h.subsystem; ; 3} [IMAGE_SUBSYSTEM_WINDOWS_CUI]
@@ -230,6 +230,7 @@
     (tf.contentOfCheckIf)
     (tf.contentOfGetTokenAddress)
     (tf.contentOfConvertLS)
+    (tf.contentOfCopyC)
     (tf.contentOfGetTokenName)
     (tf.contentOfAllocValue)
     (tf.contentOfFreeValue)
