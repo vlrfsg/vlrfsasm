@@ -295,18 +295,10 @@
 /RBP:R13:D
 .mVS:D
 
-.XORMD
-/ECX:ECX:R
+.MORID ,ECX
+.$00002C23:D
 
 *lR_10
-
-.PW
-.CAMI8
-/CMP:CX:R
-.$FF
-
-.JEB
-'lR_11
 
 .PW
 .PM
@@ -315,16 +307,14 @@
 +R13:RCX:W
 .mEVL:D
 
+.PW
 .EXCFF
-/INC:ECX:R
+/DEC:CX:R
 
-.JB
+.JNSB
 'lR_10
 
 *lR_11
-
-.MORIB ,CL
-.$FD
 
 .PW
 .PM
@@ -345,33 +335,46 @@
 /RCX:R13:B
 .eEVL
 
-.PW
-.MORID ,DX
-.$8000:W
+.XORMD
+/EDX:EDX:R
 
 *lR_12
 
-.EXCF6
-/TEST:DL:R
-.$02
-
-.JNZB
-'lR_13
-
 .PW
-.MOMRD
-/DX:RCX:M
+.MOMID
+/EMP:SIB:M
++RCX:RDX:W
+.$0400:W
 
-.SHM1D
-/SHR:EDX:R
+.EXCFE
+/INC:DL:R
 
-.PQ
-.CAMI8
-/ADD:RCX:R
-.xEVL
+.CAMIB
+/CMP:DL:R
+.$0B
 
-.JB
+.JNEB
 'lR_12
+
+.MORIB ,DL
+.$16
+
+*lR_12A
+
+.MOMIB
+/EMP:SIB:M
++RCX:RDX:B
+.$04
+
+.EXCFE
+/INC:DL:R
+
+.CAMIB
+/CMP:DL:R
+.$1F
+
+.JNEB
+'lR_12A
 
 *lR_13
 

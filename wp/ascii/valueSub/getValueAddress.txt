@@ -6,48 +6,63 @@
 .MORMD
 /ECX:EAX:R
 
-.CD
-'fGLV:D
-
-.MORMB
-/CL:DL:R
-
-.XORMD
-/EDX:EDX:R
-
-.MORIB ,DL
-.$01
-
-.SHMCD
-/SHL:EDX:R
-
-.EXCFF
-/DEC:EDX:R
-
-.ANRMD
+.MORMD
 /EDX:EAX:R
 
-.EXCF6
-/NEG:CL:R
+.SHMID
+/SHR:ECX:R
+.$02
 
 .CAMIB
-/ADD:CL:R
-.$0F
+/CMP:AH:R
+.$2C
+
+.JEB
+'lGVA_0
+
+.MORMB
+/CL:CH:R
+
+.CAMIB
+/AND:DH:R
+.$03
+
+.CAMIB
+/OR:DH:R
+.$04
 
 .SHMCD
 /SHL:EDX:R
-
-.SHMID
-/SHL:ECX:R
-.$0F #gV-3
-
-.ADRMD
-/EDX:ECX:R
 
 .PQ ,PM
 .LERMD
 /RCX:SIB:D
 +R13:RDX:Q
-.mV:D
+.$39E000:D #mV-8*400
+
+.RET
+
+*lGVA_0
+
+.CAMIB
+/ADD:CL:R
+.$0E
+
+.CAMI8
+/AND:EDX:R
+.$03
+
+.CAMIB
+/OR:DL:R
+.$04
+
+.SHMCD
+/SHL:EDX:R
+
+.PQ ,PM
+.LERMD
+/RCX:SIB:D
++R13:RDX:B
+.$C8E000:D #mV+zVS-4000*4
 
 .RET

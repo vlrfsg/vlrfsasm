@@ -76,6 +76,7 @@
     (sr.elementOfCommandList "!" (` @tf.addressOfCmdNot) 1)
     (sr.elementOfCommandList "<" (` @tf.addressOfCmdShl) 2)
     (sr.elementOfCommandList ">" (` @tf.addressOfCmdShr) 2)
+    (sr.elementOfCommandList "," (` @tf.addressOfCmdGtr) 3)
     (sr.elementOfCommandList "#" (` @tf.addressOfCmdGts) 1)
     (sr.elementOfCommandList "@" (` @tf.addressOfCmdLbl) 1)
     (sr.elementOfCommandList "`" (` @tf.addressOfCmdAdr) 1)
@@ -138,7 +139,7 @@
 {hm.addressOfCountOfLabelValue; ; $0028} [4:Current, 4:Previous]
 {hm.addressOfBaseOfStack; ; $0030}
 {hm.addressOfStartOfResultFunc; ; $0038}
-{hm.addressOfEndOfEmptyValueList; ; $0040} [2*14]
+{hm.addressOfEndOfEmptyValueList; ; $0040} [2*11+9]
 {hm.addressOfStepCount; ; $0060}
 {hm.addressOfFuncData; ; $0200} [4:Address, 2:NumberOfArgument, 2:NumberOfLocalLabel, 8:AddressOfFuncToken, 2:Line, 2:File]
 {hm.addressOfArgumentList; ; $0220} [2:Token]
@@ -177,25 +178,25 @@
 {hm.sizeOfDef; ; $100000}
 {hm.sizeOfFuncHeader; ; $48} [2:File, 2:NumberOfArgument, 2:NumberOfLocalLabel, 2:Blank, 4*16:Size]
 {hm.sizeOfElementOfDef; ; $6} [2:Token, 2:NumberOfArgument, 2:Line]
-{hm.addressOfValueIndex; ; (+ (hm.addressOfDef) (hm.sizeOfDef))}
-{hm.sizeOfValueIndex; ; $80000}
-{hm.sizeOfElementOfValueIndex; ; $8} [4:Size{-1:LocalLabel, -2:GlobalLabel}, 2:Count, 2:LabelList{FFFF:None}]
-{hm.addressOfValue; ; (+ (hm.addressOfValueIndex) (hm.sizeOfValueIndex))}
-{hm.logOfElementOfValue; ; 18}
-{hm.sizeOfValue; ; (< 14 (hm.logOfElementOfValue))}
-{hm.addressOfEmptyValueList; ; (+ (hm.addressOfValue) (hm.sizeOfValue))}
-{hm.sizeOfEmptyValueList; ; $20000}
-{hm.sizeOfElementOfEmptyValueList; ; $2}
-{hm.addressOfValueStack; ; (+ (hm.addressOfEmptyValueList) (hm.sizeOfEmptyValueList))}
-{hm.sizeOfValueStack; ; $20000}
-{hm.sizeOfElementOfValueStack; ; $2}
-{hm.addressOfLabelList; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
+{hm.addressOfLabelList; ; (+ (hm.addressOfDef) (hm.sizeOfDef))}
 {hm.sizeOfLabelList; ; $80000}
 {hm.sizeOfElementOfLabelList; ; $8} [2:Next{FFFE:Empty, FFFF:End}, 2:Token, 4:Position{31:Position, 1:Global/Local}]
 {hm.addressOfTempString; ; (+ (hm.addressOfLabelList) (hm.sizeOfLabelList))}
 {hm.sizeOfTempString; ; $40000}
 {hm.sizeOfElementOfTempString; ; $20000}
-{h.sizeOfHeap; ; (+ (hm.addressOfTempString) (hm.sizeOfTempString))}
+{hm.addressOfValue; ; (+ (hm.addressOfTempString) (hm.sizeOfTempString))}
+{hm.sizeOfValue; ; $19EE000}
+{hm.sizeOfValueSmall; ; $8FE000}
+{hm.addressOfValueIndex; ; (+ (hm.addressOfDef) (hm.sizeOfDef))}
+{hm.sizeOfValueIndex; ; $16120}
+{hm.sizeOfElementOfValueIndex; ; $8} [4:Size{-1:LocalLabel, -2:GlobalLabel}, 2:Count, 2:LabelList{FFFF:None}]
+{hm.addressOfEmptyValueList; ; (+ (hm.addressOfValueIndex) (hm.sizeOfValueIndex))}
+{hm.sizeOfEmptyValueList; ; $5848}
+{hm.sizeOfElementOfEmptyValueList; ; $2}
+{hm.addressOfValueStack; ; (+ (hm.addressOfEmptyValueList) (hm.sizeOfEmptyValueList))}
+{hm.sizeOfValueStack; ; $6698}
+{hm.sizeOfElementOfValueStack; ; $2}
+{h.sizeOfHeap; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
 
 [Text]
 
@@ -234,8 +235,8 @@
     (tf.contentOfGetTokenName)
     (tf.contentOfAllocValue)
     (tf.contentOfFreeValue)
-    (tf.contentOfGetLogOfValue)
     (tf.contentOfGetValueAddress)
+    (tf.contentOfLogSize)
     (tf.contentOfConvertKS)
     (tf.contentOfPushValue)
     (tf.contentOfPopValue)
@@ -258,6 +259,7 @@
     (tf.contentOfCmdLbl)
     (tf.contentOfCmdAdr)
     (tf.contentOfCmdErr)
+    (tf.contentOfCmdGtr)
   )
 }
 

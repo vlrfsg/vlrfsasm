@@ -11,37 +11,30 @@
 .mVI:D ,$4:D
 
 .JNZB
-'lFV_1
+'lFV_3
 
 .JSB
-'lFV_2
+'lFV_4
+
+.XORMD
+/ECX:ECX:R
+
+.EXCFF
+/INC:ECX:R
 
 .MORMD
-/ECX:EAX:R
+/EDX:EAX:R
 
-.CD
-'fGLV:D
+.CAMIB
+/CMP:AH:R
+.$2C
 
-.MORMB
-/CL:DL:R
+.JEB
+'lFV_0
 
-.PM
-.MORID ,R8D
-.$00000002:D
-
-.PM
-.SHMCD
-/SHL:R8D:R
-
-.EXCF6
-/NOT:DL:R
-
-.CAMI8
-/AND:DL:R
-.$0F
-
-.MORIB ,CL
-.$01
+.SHMID
+/SHR:EDX:R
+.$0A
 
 .PW
 .PM
@@ -50,9 +43,47 @@
 +R13:RDX:W
 .eEVL
 
-.PQ ,PM
-.SURMD
-/RCX:R8:R
+.MORIB ,DH
+.$3C
+
+.ANRMB
+/DH:AH:R
+
+.ORRMB
+/CH:DH:R
+
+.JB
+'lFV_1
+
+*lFV_0
+
+.SHMIB
+/SHR:DL:R
+.$02
+
+.CAMI8
+/AND:EDX:R
+.$0F
+
+.PM
+.XAMRB:W
+/CL:SIB:B
++R13:RDX:B
+.eEVL ,$16
+
+.MORIB ,CH
+.$2C
+
+.MORIB ,DL
+.$3C
+
+.ANRMB
+/DL:AL:R
+
+.ORRMB
+/CL:DL:R
+
+*lFV_1
 
 .PW
 .PM
@@ -67,7 +98,7 @@
 +R13:RAX:Q
 .mVI:D ,$6:D
 
-*lFV_0
+*lFV_2
 
 .MORID ,ECX
 .$0000FFFF:D
@@ -76,7 +107,7 @@
 /ECX:EDX:R
 
 .JEB
-'lFV_1
+'lFV_3
 
 .XCRMD
 /ECX:EDX:R
@@ -92,16 +123,16 @@
 .mLL:D
 
 .JB
-'lFV_0
+'lFV_2
 
-*lFV_1
+*lFV_3
 
 .CD
 'fGVA:D
 
 .RET
 
-*lFV_2
+*lFV_4
 
 .CD
 'fCKS:D

@@ -13,7 +13,7 @@
 {- A B; ; (+ A (c.negate (: B (# A))))}
 
 [get]
-{c.getRange A B C; ; (: (> A B) C)}
+{c.getRange A B C; ; (, A B C)}
 {c.getBit A B; ; (c.getRange A B 1)}
 {c.getSign A; ;
   (?

@@ -1,0 +1,1 @@
+vlrfsasm qq.bin qqq.log qqqq.vlra ../def/common.vlra

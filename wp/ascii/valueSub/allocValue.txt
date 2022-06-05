@@ -1,64 +1,35 @@
 #wp/ascii/valueSub/allocValue.txt
 #Copyright 2021 vlrfsg
 
+*fAV
+
 .PR
 .MORMD
 /R8D:ECX:R
 
-.XORMD
-/EDX:EDX:R
-
-.JCZB
-'lAV_0
-
-.EXCFF
-/DEC:ECX:R
-
-.JZB
-'lAV_0
-
-.BRRMD:W
-/EDX:ECX:R
+.CD
+'fLS:D
 
 .CAMIB
 /CMP:DL:R
-.$12
+.$18
 
 .JAB
 'lAV_LV
 
+.MORMD
+/EAX:EDX:R
+
+.SHMID
+/SHL:EAX:R
+.$02
+
 .CAMIB
 /CMP:DL:R
-.$04
+.$0B
 
-.JAB
-'lAV_1
-
-*lAV_0
-
-.MORIB ,DL
-.$05
-
-*lAV_1
-
-.CAMIB
-/SUB:DL:R
-.$05
-
-.MORIB ,CL
-.$10
-
-.SURMB
-/CL:DL:R
-
-.XORMD
-/EAX:EAX:R
-
-.EXCFF
-/INC:EAX:R
-
-.SHMCD
-/SHL:EAX:R
+.JAEB
+'lAV_2
 
 .PQ ,PM
 .LERMD
@@ -70,25 +41,51 @@
 .EXCFF
 /DEC:RDX:M
 
+.JSB
+'lAV_SO
+
 .MSRMW:W
 /ECX:RDX:M
 
-.CAMI8
-/CMP:ECX:R
-.$FF
+.ADRMB
+/CH:AL:R
 
-.JEB
+.JB
+'lAV_3
+
+*lAV_2
+
+.PQ ,PM
+.LERMD
+/RDX:SIB:B
++R13:RDX:B
+.eEVL ,$B
+
+.EXCFE
+/DEC:RDX:M
+
+.JSB
 'lAV_SO
 
-.PQ
-.SURMD
-/RCX:RAX:R
+.MORMB
+/CL:RDX:M
+
+.MORIB ,CH
+.$2C
+
+.SURMB
+/AL:CH:R
+
+.ADRMD
+/ECX:EAX:R
+
+*lAV_3
 
 .PM
 .MZRMW:W
 /EAX:SIB:D
 +R13:RCX:W
-.mEVL:D ,zEVL:D
+.mEVL:D
 
 .PQ ,PM
 .LERMD
@@ -116,14 +113,14 @@
 .$0A
 
 .JB
-'lAV_2
+'lAV_4
 
 *lAV_SO
 
 .MORIB ,BL
 .$0B
 
-*lAV_2
+*lAV_4
 
 .CD
 'fCKS:D

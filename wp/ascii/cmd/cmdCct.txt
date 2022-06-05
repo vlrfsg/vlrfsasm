@@ -3,6 +3,24 @@
 
 *fQCC
 
+.JCZB
+'lQCC_Z
+
+.JB
+'lQCC_M
+
+*lQCC_Z
+
+.CD
+'fAV:D
+
+.CD
+'fPhV:D
+
+.RET
+
+*lQCC_M
+
 .PR
 .MORMD
 /R9D:ECX:R
@@ -24,15 +42,18 @@
 /SUB:R10:R
 .sVS
 
-.PM
+.PR ,PM
 .MZRMW:W
-/EDX:R10:M
+/R11D:R10:M
 
-.PM
-.ADRMD
-/EAX:SIB:D
-+R13:RDX:Q
+.PQ ,PM ,PI
+.LERMD
+/RDX:SIB:D
++R13:R11:Q
 .mVI:D
+
+.ADRMD
+/EAX:RDX:M
 
 .EXCFF
 /DEC:ECX:R
@@ -44,6 +65,122 @@
 
 .PM
 .PURQ ,R10
+
+.PQ ,PR
+.MORMD
+/R10:RDX:R
+
+.PW
+.CAMI8
+/CMP:RDX:B
+.$04
+.$01
+
+.JNEB
+'lQCC_1A
+
+.MORMD
+/ECX:RDX:M
+
+.CD
+'fLS:D
+
+.PR
+.MORMD
+/R12D:EDX:R
+
+.MORMD
+/ECX:EAX:R
+
+.CD
+'fLS:D
+
+.PM
+.CMRMD
+/EDX:R12D:R
+
+.JNEB
+'lQCC_1A
+
+.PM
+.PURQ ,R11
+
+.PM
+.EXCFF
+/DEC:R9D:R
+
+.PM
+.PURQ ,R9
+
+.PM
+.XCRMD
+/EAX:R10:M
+
+.PR
+.MORMD
+/R9D:EAX:R
+
+.ANAIB
+.$07
+
+.MORIB ,BL
+.$08
+
+.SURMB
+/BL:AL:R
+
+.PM
+.MORMD
+/EAX:R11D:R
+
+.CD
+'fGVA:D
+
+.PM
+.MORMD
+/EDX:R9D:R
+
+.SHMID
+/SHR:EDX:R
+.$03
+
+.PQ
+.ADRMD
+/RCX:RDX:R
+
+.PR
+.MORMB
+/R11B:RCX:M
+
+.PQ ,PR
+.MORMD
+/R10:RCX:R
+
+.MORMB
+/CL:BL:R
+
+.MORIB ,DL
+.$01
+
+.SHMCD
+/SHL:EDX:R
+
+.EXCF6
+/NEG:DL:R
+
+.PR
+.ANRMB
+/R11B:DL:R
+
+.PM
+.SHMID
+/SHL:R11D:R
+.$08
+
+.JB
+'lQCC_1B
+
+*lQCC_1A
 
 .MORMD
 /ECX:EAX:R
@@ -70,6 +207,8 @@
 .PR ,PM
 .XORMD
 /R9D:R9D:R
+
+*lQCC_1B
 
 .PQ ,PR ,PM
 .LERMD
@@ -328,12 +467,14 @@
 .JEB
 'lQCC_11
 
-.MORMB
-/AL:AH:R
-
 .PM
+.SHMID
+/SHR:R11D:R
+.$08
+
+.PR ,PM
 .MOMRB
-/AL:R10:M
+/R11B:R10:M
 
 *lQCC_11
 
