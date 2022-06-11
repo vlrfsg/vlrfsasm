@@ -587,8 +587,8 @@
 
 *lR_17
 
-.MORMB
-/AL:RSI:B
+.MZRMB:W
+/EAX:RSI:B
 .$01
 
 .CMAIB
@@ -650,8 +650,9 @@
 .MOMRD
 /EDX:RBX:M
 
-.MOMRB
-/AL:RBX:B
+.PQ
+.MOMRD
+/RAX:RBX:B
 .$0C
 
 .PW
