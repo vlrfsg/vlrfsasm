@@ -441,37 +441,37 @@
   )
 }
 {c.getNumberOfSx A B; ; (> (# (c.searchSx A B)) 6)}
-{c.getIndexSx A B C; ;
+{c.getIndexSx A B C; ; (c.getIndexSx.cut A B C (c.searchSx A B))}
+{c.getIndexSx.cut A B C D; ;
   (?
     C
     (+
       (?
-        (== (+ (c.getNumberOfSx A B) 1) C)
+        (== (+ (> (# D) 6) 1) C)
         (c.getLengthSx A)
-        (c.getRange (c.searchSx A B) (< (- (c.getNumberOfSx A B) C) 6) 64)
+        (c.getRange D (< (- (> (# D) 6) C) 6) 64)
       )
       (c.getLengthSx B)
     )
     0
   )
 }
-{c.splitSx A B C; ;
+{c.splitSx A B C; ; (c.splitSx.cut A B C (c.searchSx A B))}
+{c.splitSx.cut A B C D; ;
   (?
-    (>= (c.getNumberOfSx A B) C)
+    (>= (> (# D) 6) C)
     (c.getRangeSx
       A
-      (c.getIndexSx A B C)
+      (c.getIndexSx.cut A B C D)
       (c.max
-        (-
-          (c.getIndexSx A B (+ C 1))
-          (+ (c.getIndexSx A B C) (c.getLengthSx B))
-        )
+        (- (c.getIndexSx.cut A B (+ C 1) D) (+ (c.getIndexSx.cut A B C D) (c.getLengthSx B)))
         0
       )
     )
     (c.empty)
   )
 }
+
 
 [Error]
 {c.errorSb A; ; (~ (c.changeEndianSx A))}

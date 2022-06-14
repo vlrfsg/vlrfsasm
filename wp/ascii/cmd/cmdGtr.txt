@@ -11,7 +11,7 @@
 
 .PR
 .MORMD
-/R9D:EBX:R
+/R12D:EBX:R
 
 .MORMD
 /ECX:EBX:R
@@ -38,7 +38,9 @@
 
 .PM
 .MORMD
-/ESI:R9D:R
+/ESI:R12D:R
+
+*lQGR_A
 
 .PQ
 .XCRMD
@@ -205,8 +207,7 @@
 'lQGR_5
 
 .MOMRB
-/AL:RBX:B
-.$01
+/AL:RDI:M
 
 *lQGR_5
 

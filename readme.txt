@@ -47,37 +47,55 @@ About vlrfsasm
 6. Built-in functions
   Function name: size of result
   Arguments shorter than result are extended automatically with 0 on left.
+
   Concatenate: sum of size of arguments
   >  (' A B ...)
+
   Add: size of argument A
   >  (+ A B ...)
+
   Not: same with argument
   >  (! A)
+
   And: size of argument A
   >  (& A B ...)
+
   Inclusive or: size of argument A
   >  (| A B ...)
+
   Exclusive or: size of argument A
   >  (^ A B ...)
+
   Shift left: (size of argument A) + argument B
   >  (< A B)
+
   Shift right: max of 0 and ((size of argument A) - argument B)
   >  (> A B)
+
   If: same with chosen argument
-  If A contains no bit set to 1, C is chosen.
-  Otherwise B is chosen.
+    If A contains no bit set to 1, C is chosen.
+    Otherwise B is chosen.
   >  (? A B C)
+
   Resize: argument B
   >  (: A B)
+
   Get size: 64 bits
   >  (# A)
+
   Label: 0 bit
   >  (@ @A)
+
   Address: 64 bits
   >  (` @A)
+
   Error: No result
   If this function gets executed, argument A is printed out and vlrfsasm stops. A must be encoded in utf16LE.
   >  (~ A)
+
+  Get range: argument C
+    Calculate (: (> A B) C) but faster.
+  >  (, A B C)
 
 7. Label
   Labels embedded in (.) are evaluated after each step.
@@ -103,9 +121,11 @@ About vlrfsasm
   limitations under the License.
 
 10. History
-  2022/5/29 v1.2
+  2022/6/14 v1.2
     [New] Increased value size limit to 4MB
-    [New] Mask first three directories in path if its second character is colon (:) . 
+    [New] Mask first three directories in path if its second character is colon (:)
+    [New] Function (,)
+    [Fix] Complexity of a loop from O(N**2) to O(N) for search and to O(NlogN) for conversion
 
   2022/3/23 v1.1
     [Fix] Unintended actions around functions (:), (<) and (>)

@@ -18,66 +18,25 @@
 +R13:RAX:B
 .mD:D
 
+.MZRMW:W
+/EBX:RDI:B
+.$02
+
 .CAMI8
 /CMP:RDI:B
 .$08
 .$00
 
-.JEB
-'lQRE_1
-
-.CAMIB
-/CMP:RSI:M
-.$02
-
-.JEB
-'lQRE_0
-
-.XORMD
-/ECX:ECX:R
-
-.MORIB ,CL
-.$02
-
-.CD
-'fQCC:D
-
-.CAMIB
-/CMP:RSI:M
-.$01
-
-.JEB
-'lQRE_5
+.JNEB
+'lQRE_2
 
 *lQRE_0
-
-.MZRMW:W
-/EAX:RSI:B
-.$16
-
-.PM
-.CAMI8
-/CMP:SIB:D
-+R13:RAX:Q
-.mVI:D
-.$00
-
-.JNEB
-'lQRE_7
-
-*lQRE_1
-
-.MZRMW:W
-/EBX:RSI:B
-.$02
-
-*lQRE_2
 
 .EXCFF
 /DEC:EBX:R
 
 .JSB
-'lQRE_3
+'lQRE_1
 
 .MZRMW:W
 /EAX:SIB:B
@@ -94,7 +53,7 @@
 .$00
 
 .JEB
-'lQRE_2
+'lQRE_0
 
 .MZRMW:W
 /EAX:SIB:B
@@ -105,24 +64,9 @@
 'fFV:D
 
 .JB
-'lQRE_2
+'lQRE_0
 
-*lQRE_3
-
-.CAMIB
-/CMP:RSI:M
-.$02
-
-.JNEB
-'lQRE_4
-
-.CD
-'fPpV:D
-
-.CD
-'fFV:D
-
-*lQRE_4
+*lQRE_1
 
 .PQ ,PM
 .CAMI8
@@ -131,115 +75,239 @@
 
 .RET
 
-*lQRE_5
+*lQRE_2
+
+.PR
+.MORMD
+/R12D:EBX:R
+
+.CAMIB
+/CMP:RSI:M
+.$01
+
+.JAB
+'lQRE_4
+
+.JBB
+'lQRE_3
 
 .EXCFE
 /INC:RSI:M
 
-.RET
+*lQRE_3
 
-*lQRE_7
+.PURQ ,RSI
 
-.MZRMW:W
-/EBX:RDI:B
-.$02
-
-*lQRE_8
-
-.EXCFF
-/DEC:EBX:R
-
-.JSB
-'lQRE_10
-
-.PR
-.MORMD
-/R9D:SIB:B
-+RDI:RBX:D
-.$08
+.PURQ ,RDI
 
 .PM
-.CAMI8
-/CMP:R9D:R
-.$00
+.PURQ ,R12
 
-.JEB
-'lQRE_9
+.XORMD
+/ECX:ECX:R
 
-.MZRMW:W
-/EAX:SIB:B
-+RSI:RBX:D
-.$14
+.MORIB ,CL
+.$02
 
 .CD
-'fFV:D
+'fQCC:D
 
-.MZRMW:W
-/EAX:SIB:B
-+RSI:RBX:D
-.$16
+.PM
+.PORQ ,R12
 
-.CD
-'fSV:D
+.PORQ ,RDI
 
-.MOMRD
-/EAX:SIB:B
-+RSI:RBX:D
-.$14
-
-.JB
-'lQRE_8
-
-*lQRE_9
+.PORQ ,RSI
 
 .CAMIB
 /CMP:RSI:M
-.$02
+.$00
 
-.JNEB
-'lQRE_8
+.JEB
+'lQRE_5
+
+.RET
+
+*lQRE_4
 
 .EXCFE
 /DEC:RSI:M
+
+.MZRMW:W
+/EAX:SIB:B
++RSI:RBX:D
+.$10
+
+.CD
+'fFV:D
 
 .CD
 'fPpV:D
 
 .PW
-.XCRMD
+.MOMRD
 /AX:SIB:B
 +RSI:RBX:D
-.$14
+.$10
+
+*lQRE_5
+
+.MORMD
+/EAX:RDI:B
+.$08
+
+.EXCFF
+/INC:RSI:B
+.$04
+
+.EXCF7
+/IMUL:RSI:B
+.$04
+
+.MZRMW:W
+/EDX:RSI:B
+.$16
+
+.PM
+.CMRMD
+/EAX:SIB:D
++R13:RDX:Q
+.mVI:D
+
+.JAEB
+'lQRE_0
+
+.PQ ,PR
+.MORMD
+/R10:RDI:R
+
+*lQRE_6
+
+.PM
+.EXCFF
+/DEC:R12D:R
+
+.JSB
+'lQRE_8
+
+.PM ,PI
+.MORMD
+/ESI:SIB:B
++R10:R12:D
+.$08
+
+.CAMI8
+/CMP:ESI:R
+.$00
+
+.JEB
+'lQRE_6
+
+.PM ,PI
+.MZRMW:W
+/EAX:SIB:B
++R14:R12:D
+.$20
 
 .CD
 'fFV:D
 
-.JB
-'lQRE_8
-
-*lQRE_10
-
-.CAMIB
-/CMP:RSI:M
-.$02
-
-.JNEB
-'lQRE_11
+.PM ,PI
+.MZRMW:W
+/EAX:SIB:B
++R14:R12:D
+.$22
 
 .CD
-'fCKS:D
+'fGVA:D
 
-.MORIB ,DL
-.$0C
+.PQ ,PR
+.MORMD
+/R11:RCX:R
 
-.JD
-'fPE:D
-
-*lQRE_11
+.PM
+.MORMD
+/EDI:SIB:D
++R13:RAX:Q
+.mVI:D
 
 .MORMD
-/EAX:RSI:B
-.$FC
+/EBX:EDI:R
+
+.PM
+.MORMD
+/EDX:R14:B
+.$10
+
+.EXCFF
+/INC:EDX:R
+
+.IMRMD:W
+/EDX:ESI:R
+
+.SURMD
+/EBX:EDX:R
+
+.JNSB
+'lQRE_7
+
+.ADRMD
+/ESI:EBX:R
+
+.JNSB
+'lQRE_6A
+
+.XORMD
+/ESI:ESI:R
+
+*lQRE_6A
+
+.XORMD
+/EBX:EBX:R
+
+*lQRE_7
+
+.MORMD
+/ECX:ESI:R
+
+.CD
+'fAV:D
+
+.PW
+.PM ,PI
+.MOMRD
+/AX:SIB:B
++R14:R12:D
+.$20
+
+.MORMD
+/EAX:EDI:R
+
+.PQ
+.MORMD
+/RDI:RCX:R
+
+.PQ ,PM
+.MORMD
+/RCX:R11:R
+
+.CD
+'lQGR_A:D
+
+.PQ
+.CAMI8
+/SUB:RBP:R
+.sVS
+
+.JB
+'lQRE_6
+
+*lQRE_8
+
+.PM
+.MORMD
+/EAX:R14:B
+.$08
 
 .CAMI8
 /ADD:EAX:R
