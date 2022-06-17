@@ -639,7 +639,7 @@
     (CMP (mdb (RCX) 2) (i 1))
     (JE @tl.run_3)
     (@ @tl.run_1)
-    (MOV (BL) (i $10))
+    (MOV (BL) (i $11))
     (JMP @tf.addressOfPrintError)
     (@ @tl.run_2)
     (ADD (RCX) (hm.sizeOfElementOfToken))
