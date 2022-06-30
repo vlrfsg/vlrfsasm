@@ -77,10 +77,6 @@
 
 *lQRE_2
 
-.PR
-.MORMD
-/R12D:EBX:R
-
 .CAMIB
 /CMP:RSI:M
 .$01
@@ -100,8 +96,7 @@
 
 .PURQ ,RDI
 
-.PM
-.PURQ ,R12
+.PURQ ,RBX
 
 .XORMD
 /ECX:ECX:R
@@ -112,8 +107,7 @@
 .CD
 'fQCC:D
 
-.PM
-.PORQ ,R12
+.PORQ ,RBX
 
 .PORQ ,RDI
 
@@ -180,6 +174,10 @@
 .PQ ,PR
 .MORMD
 /R10:RDI:R
+
+.PR
+.MORMD
+/R12D:EBX:R
 
 *lQRE_6
 

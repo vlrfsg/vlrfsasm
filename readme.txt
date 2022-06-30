@@ -121,6 +121,9 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2022/7/1 v1.3
+    [Fix] An internal bug
+
   2022/6/14 v1.2
     [New] Increased value size limit to 4MB
     [New] Mask first three directories in path if its second character is colon (:)
