@@ -260,6 +260,28 @@
   )
 }
 
+[Convert string to integer]
+{c.convertSbI A B; ; (c.convertSbI.loop A B (' 0 (c.getLengthSx A)))}
+{c.convertSbI.loop A 16 B C; ; 
+  (?
+    (!= (: C 64) 1)
+    (c.empty)
+    (? (c.convertSbI.number A) (+ (* B (> C 64)) (c.convertSbI.value A)) (> C 64))
+  );
+  ('
+    (? (c.convertSbI.number A) (+ (* B (> C 64)) (c.convertSbI.value A)) (> C 64))
+    (- (: C 64) 1)
+  )
+}
+{c.convertSbI.number A; ; (| (& (>= A "0") (<= A "9")) (& (>= A "A") (<= A "F")) (& (>= A "a") (<= A "f")))}
+{c.convertSbI.value A; ;
+  (?
+    (& (>= A "0") (<= A "9"))
+    (- A "0")
+    (+ (? (& (>= A "A") (<= A "F")) (- A "A") (- A "a")) 10)
+  )
+}
+
 [Convert utf-16BE to utf-8]
 {c.convertCS8 A; ;
   (?

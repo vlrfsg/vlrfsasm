@@ -3,7 +3,7 @@
 
 [Version]
 {h.majorImageVersion; ; 1}
-{h.minorImageVersion; ; 2}
+{h.minorImageVersion; ; 4}
 
 [Subsystem]
 {h.subsystem; ; 3} [IMAGE_SUBSYSTEM_WINDOWS_CUI]
@@ -185,9 +185,9 @@
 {hm.sizeOfTempString; ; $40000}
 {hm.sizeOfElementOfTempString; ; $20000}
 {hm.addressOfValue; ; (+ (hm.addressOfTempString) (hm.sizeOfTempString))}
-{hm.sizeOfValue; ; $19EE000}
-{hm.sizeOfValueSmall; ; $8FE000}
-{hm.addressOfValueIndex; ; (+ (hm.addressOfDef) (hm.sizeOfDef))}
+{hm.sizeOfValue; ; $20EE000}
+{hm.sizeOfValueSmall; ; $FFE000}
+{hm.addressOfValueIndex; ; (+ (hm.addressOfValue) (hm.sizeOfValue))}
 {hm.sizeOfValueIndex; ; $16120}
 {hm.sizeOfElementOfValueIndex; ; $8} [4:Size{-1:LocalLabel, -2:GlobalLabel}, 2:Count, 2:LabelList{FFFF:None}]
 {hm.addressOfEmptyValueList; ; (+ (hm.addressOfValueIndex) (hm.sizeOfValueIndex))}
