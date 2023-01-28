@@ -121,6 +121,12 @@ About vlrfsasm
   limitations under the License.
 
 10. History
+  2023/1/29 v1.6
+    [Fix] Overflow
+
+  2022/12/? v1.5 (Not released)
+    [New] Increased size limit of raw input files from 64KB to 256KB
+
   2022/10/6 v1.4
     [Fix] Overflow
     [New] (c.convertSbI) in common.vlra

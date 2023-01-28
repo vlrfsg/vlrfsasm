@@ -11,14 +11,14 @@
  is.funcList]
 {is.dll A; ;
   ('
-    (: (| (< 1 15) (> (# (c.cnvSxS8 A)) 3)) 16)
-    (: (c.cnvSxS8 A) (- (is.sizeOfElement) 16))
+    (: (| (< 1 15) (> (# (c.convertSxS8 A)) 3)) 16)
+    (: (c.convertSxS8 A) (- (is.sizeOfElement) 16))
   )
 }
 {is.func A; ;
   ('
-    (: (> (# (c.cnvSxS8 A)) 3) 16)
-    (: (c.cnvSxS8 A) (- (is.sizeOfElement) 16))
+    (: (> (# (c.convertSxS8 A)) 3) 16)
+    (: (c.convertSxS8 A) (- (is.sizeOfElement) 16))
   )
 }
 
@@ -59,7 +59,7 @@
         (id (+ (` @is.addressOfImportAddressTable) (< A 2)))
         (is.contentOfImportDescR
           (+ A 1)
-          (+ B (c.align (+ (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
+          (+ B (c.align (+ (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
         )
       )
     )
@@ -78,7 +78,7 @@
         (id (+ (` @is.addressOfFuncNameTable) B))
         (is.contentOfFuncAddressTableR
           (+ A 1)
-          (+ B (c.align (+ (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
+          (+ B (c.align (+ (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
         )
       )
       ('
@@ -103,7 +103,7 @@
             (c.getRan
               (is.funcList)
               (- (is.topOfElement) (is.sizeOfElement))
-              (< (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 3)
+              (< (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3)
             )
             (ib 0)
           )
@@ -131,7 +131,7 @@
             (c.getRan
               (is.funcList)
               (- (is.topOfElement) (is.sizeOfElement))
-              (< (c.getRan (is.funcList) (- (is.topOfElement A) 16) 15) 3)
+              (< (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3)
             )
             (ib 0)
           )

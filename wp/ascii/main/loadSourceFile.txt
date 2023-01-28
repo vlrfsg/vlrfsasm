@@ -230,15 +230,14 @@
 /EMP:RAX:M
 .$0302:W
 
-.PW
 .PR
 .MOMRD
-/R11W:RAX:B
+/R11D:RAX:B
 .$02
 
 .MOMRD
 /ECX:RAX:B
-.$04
+.$05
 
 .PW
 .PR

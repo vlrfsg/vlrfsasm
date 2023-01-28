@@ -3,7 +3,7 @@
 
 [Version]
 {h.majorImageVersion; ; 1}
-{h.minorImageVersion; ; 4}
+{h.minorImageVersion; ; 6}
 
 [Subsystem]
 {h.subsystem; ; 3} [IMAGE_SUBSYSTEM_WINDOWS_CUI]
@@ -165,13 +165,11 @@
 {hm.sizeOfElementOfStack; ; $A} [2:Line, 2:Func, 2:NumberOfArgument, 4:AddressOfThen/AddressOfElse]
 {hm.sizeOfElementOfStackRun; ; $80} [4:Address, 2:Blank, 2:File, 4:AddressToReturnAt, 1:Condition, 3:Blank, 4:Count, 12:Blank, 4{2:Value, 2:Remain}*16:Argument, 2*16:LocalLabel]
 {hm.addressOfInputFile; ; (+ (hm.addressOfStack) (hm.sizeOfStack))}
-{hm.sizeOfInputFile; ; $10000}
-{hm.addressOfLiteral; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
-{hm.sizeOfLiteral; ; $60000}
-{hm.addressOfToken; ; (+ (hm.addressOfDestFile) (hm.sizeOfDestFile))}
+{hm.sizeOfInputFile; ; $70000}
+{hm.addressOfToken; ; (+ (hm.addressOfInputFile) (hm.sizeOfInputFile))}
 {hm.sizeOfToken; ; $80000}
 {hm.logOfElementOfToken; ; 4}
-{hm.sizeOfElementOfToken; ; (< 1 (hm.logOfElementOfToken))} [1:Type{0:Number, 1:String, 2:Function/SideEffectFunction/BuiltinFunction/RawBinary, 3:Argument&LocalLabel, 4:GlobalLabel, 5:InternalFunction}, 1:TypeExtension, 2:LengthOfDefinition, 4:Definition, 2:Length, 2:Hash, 4:Str]
+{hm.sizeOfElementOfToken; ; (< 1 (hm.logOfElementOfToken))} [1:Type{0:Number, 1:String, 2:Function/SideEffectFunction/BuiltinFunction/RawBinary, 3:Argument&LocalLabel, 4:GlobalLabel, 5:InternalFunction}, 1:TypeExtension, {(2:LengthOfDefinition, 4:Definition):other, (3:Length, 3:Def):Raw}, 2:Length, 2:Hash, 4:Str]
 {hm.addressOfInputText; ; (+ (hm.addressOfToken) (hm.sizeOfToken))}
 {hm.sizeOfInputText; ; $100000}
 {hm.addressOfDef; ; (+ (hm.addressOfInputText) (hm.sizeOfInputText))}
@@ -196,7 +194,9 @@
 {hm.addressOfValueStack; ; (+ (hm.addressOfEmptyValueList) (hm.sizeOfEmptyValueList))}
 {hm.sizeOfValueStack; ; $6698}
 {hm.sizeOfElementOfValueStack; ; $2}
-{h.sizeOfHeap; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
+{hm.addressOfLiteral; ; (+ (hm.addressOfValueStack) (hm.sizeOfValueStack))}
+{hm.sizeOfLiteral; ; $1E0000}
+{h.sizeOfHeap; ; (+ (hm.addressOfLiteral) (hm.sizeOfLiteral))}
 
 [Text]
 

@@ -882,7 +882,10 @@
 
 *lR_22
 
-.MZRMW:W
+.MORID ,ECX
+.$00FFFFFF:D
+
+.ANRMD
 /ECX:RSI:B
 .$02
 
@@ -899,9 +902,12 @@
 .CD
 'fPhV:D
 
-.MORMD
+.MORID ,EDX
+.$00FFFFFF:D
+
+.ANRMD
 /EDX:RSI:B
-.$04
+.$05
 
 .PQ ,PM
 .LERMD
