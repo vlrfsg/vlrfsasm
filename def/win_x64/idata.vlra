@@ -11,14 +11,14 @@
  is.funcList]
 {is.dll A; ;
   ('
-    (: (| (< 1 15) (> (# (c.convertSxS8 A)) 3)) 16)
-    (: (c.convertSxS8 A) (- (is.sizeOfElement) 16))
+    (: (| (< 1 15) (> (# (c.convertSbS8 A)) 3)) 16)
+    (: (c.convertSbS8 A) (- (is.sizeOfElement) 16))
   )
 }
 {is.func A; ;
   ('
-    (: (> (# (c.convertSxS8 A)) 3) 16)
-    (: (c.convertSxS8 A) (- (is.sizeOfElement) 16))
+    (: (> (# (c.convertSbS8 A)) 3) 16)
+    (: (c.convertSbS8 A) (- (is.sizeOfElement) 16))
   )
 }
 
@@ -39,8 +39,35 @@
   )
 }
 {is.size; ; (c.align (> (# (is.content)) 3) (h.alignBase))}
-{is.sizeOfImportAddressTable; ; (> (# (is.funcList)) (+ (is.logOfSizeOfElement) 1))}
-{is.searchFunc A; ; ()}
+{is.sizeOfImportAddressTable; ; (> (# (is.funcList)) (- (is.logOfSizeOfElement) 3))}
+{is.searchFunc A; ; (is.searchFuncR 0 0 A)}
+{is.searchFuncR A B C; ;
+  (?
+    (== (> (# (is.funcList)) (is.logOfSizeOfElement)) A)
+    (c.error (' "Function not imported:" C))
+    (?
+      (c.getBit (is.funcList) (- (is.topOfElement A) 1))
+      (is.contentOfImportDescR (+ A 1) B)
+      (?
+        (c.compareStrict
+          (c.convertS8Sb
+            (c.getRange
+              (is.funcList)
+              (- (is.topOfElement) (is.sizeOfElement))
+              (< (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3)
+            )
+          )
+          C
+        )
+        (id (+ (` @is.addressOfImportAddressTable) B))
+        (is.contentOfImportDescR
+          (+ A 1)
+          (+ B (c.align (+ (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3) $2))
+        )
+      )
+    )
+  )
+}
 
 [importDesc]
 {is.contentOfImportDesc; ; (is.contentOfImportDescR 0 0)}
@@ -50,7 +77,6 @@
     (: 0 160)
     (?
       (c.getBit (is.funcList) (- (is.topOfElement A) 1))
-      (is.contentOfImportDescR (+ A 1) B)
       ('
         (id (+ (` @is.addressOfLookUpTable) (< A 2)))
         (id 0)
@@ -59,9 +85,10 @@
         (id (+ (` @is.addressOfImportAddressTable) (< A 2)))
         (is.contentOfImportDescR
           (+ A 1)
-          (+ B (c.align (+ (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
+          (+ B (c.align (+ (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3) $2))
         )
       )
+      (is.contentOfImportDescR (+ A 1) B)
     )
   )
 }
@@ -75,22 +102,22 @@
     (?
       (c.getBit (is.funcList) (- (is.topOfElement A) 1))
       ('
+        (? A (id 0) (c.empty))
+        (is.contentOfFuncAddressTableR (+ A 1) B)
+      )
+      ('
         (id (+ (` @is.addressOfFuncNameTable) B))
         (is.contentOfFuncAddressTableR
           (+ A 1)
-          (+ B (c.align (+ (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 1) $2))
+          (+ B (c.align (+ (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3) $2))
         )
-      )
-      ('
-        (? A (id 0) (c.empty))
-        (is.contentOfFuncAddressTableR (+ A 1) B)
       )
     )
   )
 }
 
 [dllNameTable]
-{is.contentOfDllNameTable; ; (is.contentOfDllNameR 0)}
+{is.contentOfDllNameTable; ; (is.contentOfDllNameTableR 0)}
 {is.contentOfDllNameTableR A; ;
   (?
     (== (> (# (is.funcList)) (is.logOfSizeOfElement)) A)
@@ -100,44 +127,45 @@
       ('
         (c.alignS
           ('
-            (c.getRan
+            (c.getRange
               (is.funcList)
-              (- (is.topOfElement) (is.sizeOfElement))
+              (- (is.topOfElement A) (is.sizeOfElement))
               (< (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3)
             )
             (ib 0)
           )
-          $2
+          $10
         )
-        (c.contentOfDllNameR (+ A 1))
+        (is.contentOfDllNameTableR (+ A 1))
       )
-      (c.contentOfDllNameR (+ A 1))
+      (is.contentOfDllNameTableR (+ A 1))
     )
   )
 }
 
 [funcNameTable]
-{is.contentOfFuncNameTable; ; (is.contentOfFuncNameR 0)}
+{is.contentOfFuncNameTable; ; (is.contentOfFuncNameTableR 0)}
 {is.contentOfFuncNameTableR A; ;
   (?
     (== (> (# (is.funcList)) (is.logOfSizeOfElement)) A)
     (c.empty)
     (?
       (c.getBit (is.funcList) (- (is.topOfElement A) 1))
-      (c.contentOfFuncNameR (+ A 1))
+      (is.contentOfFuncNameTableR (+ A 1))
       ('
         (c.alignS
           ('
-            (c.getRan
+            (iw 0)
+            (c.getRange
               (is.funcList)
-              (- (is.topOfElement) (is.sizeOfElement))
+              (- (is.topOfElement A) (is.sizeOfElement))
               (< (c.getRange (is.funcList) (- (is.topOfElement A) 16) 15) 3)
             )
             (ib 0)
           )
-          $2
+          $10
         )
-        (c.contentOfFuncNameR (+ A 1))
+        (is.contentOfFuncNameTableR (+ A 1))
       )
     )
   )

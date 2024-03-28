@@ -4,12 +4,13 @@
 [input
  h.majorImageVersion
  h.minorImageVersion
+ h.subsystem
  h.sizeOfStack
  h.sizeOfHeap]
 
 [Linker version]
-{h.majorLinkerVersion; ; (c.getRan (c.verI) 16 8)}
-{h.minorLinkerVersion; ; (c.getRan (c.verI) 8 8)}
+{h.majorLinkerVersion; ; (c.getRange (c.versionNumber) 16 8)}
+{h.minorLinkerVersion; ; (c.getRange (c.versionNumber) 8 8)}
 
 [Windows version
  Windows XP 64bit edition]
@@ -37,13 +38,13 @@
     (iw $F0)                   [SizeofOptionalHeader]
     (iw $2F)                   [Characteristics]
     (iw $020B)                 [Magic]
-    (ib (h.majorLinkerVer))    [MajorLinkerVersion]
-    (ib (h.minorLinkerVer))    [MinorLinkerVersion]
+    (ib (h.majorLinkerVersion))[MajorLinkerVersion]
+    (ib (h.minorLinkerVersion))[MinorLinkerVersion]
     (id (ts.sizeOfText))       [SizeOfCode]
     (id (is.size))             [SizeofInitializedData]
     (id 0)                     [SizeofUnInitializedData]
     (id (` @ts.entryPoint))    [AddressofEntryPoint]
-    (id (ts.size))             [BaseOfCode]
+    (id (` @ts.address))       [BaseOfCode]
     (iq $400000)               [BaseOfImage]
     (id (h.alignBase))         [SectionAlignment]
     (id (h.alignBase))         [FileAlignment]
@@ -54,10 +55,10 @@
     (iw (h.majorSystemVersion))[MajorSubSystemVersion]
     (iw (h.minorSystemVersion))[MinorSubSystemVersion]
     (id 0)                     [Win32VersionValue]
-    (id (h.sizeOfimage))       [SizeOfImage]
+    (id (h.sizeOfImage))       [SizeOfImage]
     (id (h.sizeOfHeader))      [SizeOfHeaders]
     (id 0)                     [Checksum]
-    (iw h.subsystem)           [SubSystem]
+    (iw (h.subsystem))         [SubSystem]
     (iw 0)                     [DllCharacteristics]
     (iq (h.sizeOfStack))       [SizeofStackReserve]
     (iq (h.sizeOfStack))       [SizeofStackCommit]
@@ -80,7 +81,7 @@
     (id (` @is.addressOfImportAddressTable))[lpimporttable]
     (id (is.sizeOfImportAddressTable))[sizeofimporttable]
     (: 0 $C0)
-    (: (c.cnvSxS8 ".idata") 64)
+    (c.alignS (c.convertSbS8 ".idata") 64)
     (id (is.size))             [VirtualSize]
     (id (` @is.address))       [VirtualAddress]
     (id (is.size))             [SizeofRawData]
@@ -90,7 +91,7 @@
     (iw 0)                     [NumberOfRelocations]
     (iw 0)                     [NumberOfLinenumbers]
     (id $40000040)             [Characteristics]
-    (: (c.cnvSxS8 ".text") 64)
+    (c.alignS (c.convertSbS8 ".text") 64)
     (id (ts.size))             [VirtualSize]
     (id (` @ts.address))       [VirtualAddress]
     (id (ts.size))             [SizeofRawData]
@@ -103,7 +104,7 @@
     (?
       (rs.exist)
       ('
-        (: (c.cnvSxS8 ".rsrc") 64)
+        (c.alignS (c.convertSbS8 ".rsrc") 64)
         (id (rs.size))           [VirtualSize]
         (id (` @rs.address))     [VirtualAddress]
         (id (rs.size))           [SizeofRawData]
@@ -121,10 +122,10 @@
 
 {.; ;
   ('
-    (c.alignS (h.content) (h.alignBase))
-    (c.alignS (is.content) (h.alignBase))
-    (c.alignS (ts.content) (h.alignBase))
-    (? (rs.exist) (c.alignS (is.content) (h.alignBase)) (c.empty))
+    (c.alignS (h.content) (< (h.alignBase) 3))
+    (c.alignS (is.content) (< (h.alignBase) 3))
+    (c.alignS (ts.content) (< (h.alignBase) 3))
+    (? (rs.exist) (c.alignS (rs.content) (< (h.alignBase) 3)) (c.empty))
   )
 }
 

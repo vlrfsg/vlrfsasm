@@ -61,7 +61,7 @@
 }
 {sr.sizeOfElementOfCommandList; ; $5}
 {sr.contentOfCommandList; ;
-  (`
+  ('
     (@ @sr.addressOfCommandList)
     (sr.elementOfInternalCommandList (` @tf.addressOfCmdRet))
     (sr.elementOfInternalCommandList (` @tf.addressOfCmdThn))
@@ -84,8 +84,10 @@
     (iw 0)
   )
 }
-{sr.contentOfErrorFileName; ; (c.chgEdnSx "error.txt")}
-{sr.elementOfNumberList A B; (' (ib A) (ib B))}
+{sr.contentOfErrorFileName; ;
+  (' (@ @sr.addressOfErrorFileName) (c.changeEndianSx "error.txt"))
+}
+{sr.elementOfNumberList A B; ; (' (ib A) (ib B))}
 {sr.sizeOfElementOfNumberList; ; $2}
 {sr.contentOfNumberList; ;
   (@ @sr.addressOfNumberList)
@@ -116,12 +118,12 @@
 {sr.contentOfAppName; ;
   ('
     (@ @sr.addressOfAppName)
-    (c.chgEdnSx
+    (c.changeEndianSx
       ('
         "Vlrfsasm v"
-        (c.cnvIS (h.majorImageVersion))
+        (c.convertISb (h.majorImageVersion) 10)
         "."
-        (c.cnvIS (h.minorImageVersion))
+        (c.convertISb (h.minorImageVersion) 10)
         " "
       )
     )
@@ -150,7 +152,7 @@
 {hm.addressOfErrorMessage; ; $2000}
 {hm.sizeOfErrorMessage; ; $2000}
 {hm.logOfElementOfErrorMessage; ; 7}
-{hm.sizeOfElementOfErrorMessage; ; (< 1 hm.logOfElementOfErrorMessage)}
+{hm.sizeOfElementOfErrorMessage; ; (< 1 (hm.logOfElementOfErrorMessage))}
 {hm.addressOfCommandLine; ; (+ (hm.addressOfErrorMessage) (hm.sizeOfErrorMessage))}
 {hm.sizeOfCommandLine; ; $4000}
 {hm.sizeOfElementOfCommandLine; ; $200}
@@ -262,4 +264,7 @@
   )
 }
 
+[Resource]
+
+{rs.exist; ; 0}
 

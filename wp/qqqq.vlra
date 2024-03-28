@@ -1,6 +1,0 @@
-{.; ; (u.conjugation.search "a	b	c\rh	l	p\r" "a" (c.empty))}
-
-{u.conjugation.search A 16 B C; ;
-  (? (== A "\r") (? (c.compareStrict (c.splitSx C (: 9 16) 0) B) C (c.empty)) (c.empty));
-  (? (== A "\r") (c.empty) (' C A))
-}

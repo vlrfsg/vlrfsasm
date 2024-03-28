@@ -216,7 +216,7 @@
 
 [align]
 {c.align A B; ; (? (& A (- B 1)) (+ (^ A (& A (- B 1))) B) A)}
-{c.alignS A B; ; (< A (- (c.align (# A) B) (# A)))}
+{c.alignS A B; ; (' A (: 0 (- (c.align (# A) B) (# A))))}
 
 [string length]
 {c.getLengthS8 A; ; (: (> (# A) 3) 64)}
@@ -499,7 +499,7 @@
 {c.errorSb A; ; (~ (c.changeEndianSx A))}
 
 [about vlrfsasm]
-{c.versionNumber; ; $000200}
+{c.versionNumber; ; $010700}
 {c.versionString; ;
   ('
     (c.convertISb (c.getRange (c.versionNumber) 16 8))

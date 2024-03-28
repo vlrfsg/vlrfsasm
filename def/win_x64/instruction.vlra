@@ -1,6 +1,619 @@
 [def/win_x64/instruction.vlra
  Copyright 2021 vlrfsg]
 
-{INC A; ; (b.om $FE 0 A)}
-{DEC A; ; (b.om $FE 1 A)}
+[tool]
+{b.inB A; ; (== (> (+ A $80) 8) 0)}
+{b.awdq A; ; (| (== A (AX)) (== A (EAX)) (== A (RAX)))}
+
+[immediate]
+{i A; ; (< (:- A 64) 2)}
+
+[register]
+{b.defReg A B C; ; (' (: B 1) (: A 5) (: C 2) (: 1 2))}
+
+{AL; ; (b.defReg $00 0 0)}
+{CL; ; (b.defReg $01 0 0)}
+{DL; ; (b.defReg $02 0 0)}
+{BL; ; (b.defReg $03 0 0)}
+{AH; ; (b.defReg $04 0 0)}
+{CH; ; (b.defReg $05 0 0)}
+{DH; ; (b.defReg $06 0 0)}
+{BH; ; (b.defReg $07 0 0)}
+{SPL; ; (b.defReg $14 0 0)}
+{BPL; ; (b.defReg $15 0 0)}
+{SIL; ; (b.defReg $16 0 0)}
+{DIL; ; (b.defReg $17 0 0)}
+{R8B; ; (b.defReg $08 0 0)}
+{R9B; ; (b.defReg $09 0 0)}
+{R10B; ; (b.defReg $0A 0 0)}
+{R11B; ; (b.defReg $0B 0 0)}
+{R12B; ; (b.defReg $0C 0 0)}
+{R13B; ; (b.defReg $0D 0 0)}
+{R14B; ; (b.defReg $0E 0 0)}
+{R15B; ; (b.defReg $0F 0 0)}
+
+{AX; ; (b.defReg $00 0 1)}
+{CX; ; (b.defReg $01 0 1)}
+{DX; ; (b.defReg $02 0 1)}
+{BX; ; (b.defReg $03 0 1)}
+{SP; ; (b.defReg $04 0 1)}
+{BP; ; (b.defReg $05 0 1)}
+{SI; ; (b.defReg $06 0 1)}
+{DI; ; (b.defReg $07 0 1)}
+{R8W; ; (b.defReg $08 0 1)}
+{R9W; ; (b.defReg $09 0 1)}
+{R10W; ; (b.defReg $0A 0 1)}
+{R11W; ; (b.defReg $0B 0 1)}
+{R12W; ; (b.defReg $0C 0 1)}
+{R13W; ; (b.defReg $0D 0 1)}
+{R14W; ; (b.defReg $0E 0 1)}
+{R15W; ; (b.defReg $0F 0 1)}
+
+{EAX; ; (b.defReg $00 0 2)}
+{ECX; ; (b.defReg $01 0 2)}
+{EDX; ; (b.defReg $02 0 2)}
+{EBX; ; (b.defReg $03 0 2)}
+{ESP; ; (b.defReg $04 0 2)}
+{EBP; ; (b.defReg $05 0 2)}
+{ESI; ; (b.defReg $06 0 2)}
+{EDI; ; (b.defReg $07 0 2)}
+{R8D; ; (b.defReg $08 0 2)}
+{R9D; ; (b.defReg $09 0 2)}
+{R10D; ; (b.defReg $0A 0 2)}
+{R11D; ; (b.defReg $0B 0 2)}
+{R12D; ; (b.defReg $0C 0 2)}
+{R13D; ; (b.defReg $0D 0 2)}
+{R14D; ; (b.defReg $0E 0 2)}
+{R15D; ; (b.defReg $0F 0 2)}
+
+{RAX; ; (b.defReg $00 0 3)}
+{RCX; ; (b.defReg $01 0 3)}
+{RDX; ; (b.defReg $02 0 3)}
+{RBX; ; (b.defReg $03 0 3)}
+{RSP; ; (b.defReg $04 0 3)}
+{RBP; ; (b.defReg $05 0 3)}
+{RSI; ; (b.defReg $06 0 3)}
+{RDI; ; (b.defReg $07 0 3)}
+{R8; ; (b.defReg $08 0 3)}
+{R9; ; (b.defReg $09 0 3)}
+{R10; ; (b.defReg $0A 0 3)}
+{R11; ; (b.defReg $0B 0 3)}
+{R12; ; (b.defReg $0C 0 3)}
+{R13; ; (b.defReg $0D 0 3)}
+{R14; ; (b.defReg $0E 0 3)}
+{R15; ; (b.defReg $0F 0 3)}
+
+{RIP; ; (b.defReg $10 0 3)}
+
+[memory]
+{b.defMem Reg Size Displace; ;
+  ('
+    (: Displace 32)
+    (: 0 7)
+    (c.getRange Reg 4 5)
+    (: Size 2)
+    (: 2 2)
+  )
+}
+{b.defSib BaseReg Size IndexReg Coeff Displace; ;
+  ('
+    (: Displace 32)
+    (c.getRange IndexReg 4 5)
+    (: Coeff 2)
+    (c.getRange BaseReg 4 5)
+    (: Size 2)
+    (: 3 2)
+  )
+}
+
+{mb A; ; (b.defMem A 0 0)}
+{mw A; ; (b.defMem A 1 0)}
+{md A; ; (b.defMem A 2 0)}
+{mq A; ; (b.defMem A 3 0)}
+{mdb A B; ; (b.defMem A 0 B)}
+{mdw A B; ; (b.defMem A 1 B)}
+{mdd A B; ; (b.defMem A 2 B)}
+{mdq A B; ; (b.defMem A 3 B)}
+{midb A B C; ; (b.defSib A 0 B 0 C)}
+{midw A B C; ; (b.defSib A 1 B 0 C)}
+{midd A B C; ; (b.defSib A 2 B 0 C)}
+{midq A B C; ; (b.defSib A 3 B 0 C)}
+{m2db A B C; ; (b.defSib A 0 B 1 C)}
+{m2dw A B C; ; (b.defSib A 1 B 1 C)}
+{m2dd A B C; ; (b.defSib A 2 B 1 C)}
+{m2dq A B C; ; (b.defSib A 3 B 1 C)}
+{m4db A B C; ; (b.defSib A 0 B 2 C)}
+{m4dw A B C; ; (b.defSib A 1 B 2 C)}
+{m4dd A B C; ; (b.defSib A 2 B 2 C)}
+{m4dq A B C; ; (b.defSib A 3 B 2 C)}
+{m8db A B C; ; (b.defSib A 0 B 3 C)}
+{m8dw A B C; ; (b.defSib A 1 B 3 C)}
+{m8dd A B C; ; (b.defSib A 2 B 3 C)}
+{m8dq A B C; ; (b.defSib A 3 B 3 C)}
+{mib A B; ; (midb A B 0)}
+{miw A B; ; (midw A B 0)}
+{mid A B; ; (midd A B 0)}
+{miq A B; ; (midq A B 0)}
+{m2b A B; ; (m2db A B 0)}
+{m2w A B; ; (m2dw A B 0)}
+{m2d A B; ; (m2dd A B 0)}
+{m2q A B; ; (m2dq A B 0)}
+{m4b A B; ; (m4db A B 0)}
+{m4w A B; ; (m4dw A B 0)}
+{m4d A B; ; (m4dd A B 0)}
+{m4q A B; ; (m4dq A B 0)}
+{m8b A B; ; (m8db A B 0)}
+{m8w A B; ; (m8dw A B 0)}
+{m8d A B; ; (m8dd A B 0)}
+{m8q A B; ; (m8dq A B 0)}
+
+{mmdb A; ; (mdb (R13) A)}
+{mmdw A; ; (mdw (R13) A)}
+{mmdd A; ; (mdd (R13) A)}
+{mmdq A; ; (mdq (R13) A)}
+
+{mmidb A B; ; (midb (R13) A B)}
+{mmidw A B; ; (midw (R13) A B)}
+{mmidd A B; ; (midd (R13) A B)}
+{mmidq A B; ; (midq (R13) A B)}
+{mm2db A B; ; (m2db (R13) A B)}
+{mm2dw A B; ; (m2dw (R13) A B)}
+{mm2dd A B; ; (m2dd (R13) A B)}
+{mm2dq A B; ; (m2dq (R13) A B)}
+{mm4db A B; ; (m4db (R13) A B)}
+{mm4dw A B; ; (m4dw (R13) A B)}
+{mm4dd A B; ; (m4dd (R13) A B)}
+{mm4dq A B; ; (m4dq (R13) A B)}
+{mm8db A B; ; (m8db (R13) A B)}
+{mm8dw A B; ; (m8dw (R13) A B)}
+{mm8dd A B; ; (m8dd (R13) A B)}
+{mm8dq A B; ; (m8dq (R13) A B)}
+
+{mli A B C D; ; (b.defSib B (c.getRange A 2 2) C 0 D)}
+{ml2 A B C D; ; (b.defSib B (c.getRange A 2 2) C 1 D)}
+{ml4 A B C D; ; (b.defSib B (c.getRange A 2 2) C 2 D)}
+{ml8 A B C D; ; (b.defSib B (c.getRange A 2 2) C 3 D)}
+
+[R/M Byte]
+
+{b.om O M; ;
+  (?
+    (| (== (: M 2) 0) (& (== (c.getRange M 4 3) %100) (!= (: M 2) 1)))
+    (c.errorSb "Wrong Operand")
+    (?
+      (== (: M 2) 1)
+      (' (: 3 2) (: O 3) (c.getRange M 4 3))
+      (?
+        (== (c.getRange M 4 5) $10)
+        (' (: 0 2) (: O 3) (b.om.sib M %100) (c.getRange M 16 32))
+        (?
+          (| (> M 16) (== (: O 3) %101))
+          (?
+            (& (b.inB (> M 16)) (!= (c.getRange M 4 3) %101))
+            (' (: 1 2) (: O 3) (b.om.sib M (c.getRange M 4 3)) (c.getRange M 16 8))
+            (' (: 2 2) (: O 3) (b.om.sib M (c.getRange M 4 3)) (id (c.getRange M 16 32)))
+          )
+          (' (: 0 2) (: O 3) (b.om.sib M (c.getRange M 4 3)))
+        )
+      )
+    )
+  )
+}
+{b.om.sib M Mr; ;
+  (?
+    (== (: M 2) 3)
+    (: Mr 3)
+    (' (: %100 3) (c.getRange M 9 2) (c.getRange M 11 3) (: Mr 3))
+  )
+}
+{b.rm R M; ;
+  (?
+    (| (!= (: R 2) 1) (!= (c.getRange R 2 2) (c.getRange M 2 2)))
+    (c.errorSb "Wrong Operand")
+    (b.om (c.getRange R 4 3) M)
+  )
+}
+
+[Prefix]
+{b.prm R M; ; (' (b.p66 R) (b.p40rm R M))}
+{b.pr R; ; (' (b.p66 R) (b.p40r R))}
+{b.pm M; ; (' (b.p66 M) (b.p40m M))}
+
+{b.p40rm R M; ;
+  (?
+    (&
+      (| (== (AH) (& R %1111001111)) (== (AH) (& M %1111001111)))
+      (!= (+ (# (b.p40r R)) (# (b.p40m M))) 0)
+    )
+    (c.errorSb "Unpermitted Pair")
+    (b.or (b.p40r R) (b.p40m M))
+  )
+}
+{b.p40r R; ;
+  (b.or
+    (b.p40qe R)
+    (? (c.getBit R 7) (ib $44) (c.empty))
+  )
+}
+{b.p40m M; ;
+  (b.or
+    (b.p40qe M)
+    (b.or
+      (? (c.getBit M 7) (ib $41) (c.empty))
+      (? (c.getBit M 14) (ib $42) (c.empty))
+    )
+  )
+}
+{b.p40p M; ;
+  ('
+    (b.p66 M)
+    (b.or
+      (? (c.getBit M 7) (ib $41) (c.empty))
+      (? (c.getBit M 14) (ib $42) (c.empty))
+    )
+  )
+}
+
+{b.p40qe A; ;
+  (b.or
+    (? (== (& A %1111001111) (SPL)) (ib $40) (c.empty))
+    (? (== (c.getRange A 2 2) 3) (ib $48) (c.empty))
+  )
+}
+{b.or A B; ; (? (# A) (| A B) B)}
+
+{b.p66 R; ; (? (== (c.getRange R 2 2) %01) (ib $66) (c.empty))}
+
+
+[instruction]
+
+{b.irm I R M; ;
+  (' (b.prm R M) (ib (| I (!= (c.getRange R 2 2) 0))) (b.rm R M))
+}
+{b.i2rm I0 I1 R M; ; (' (b.prm R M) (ib I0) (ib I1) (b.rm R M))}
+{b.i2om I0 I1 O M; ; (' (b.pm M) (ib I0) (ib I1) (b.om O M))}
+{b.iom I O M; ;
+  (' (b.pm M) (ib (| I (!= (c.getRange M 2 2) 0))) (b.om O M))
+}
+
+[Typical Instruction]
+
+{b.it A B C; ;
+  (?
+    (== (: C 2) 0)
+    (?
+      (== B (AL))
+      (' (ib (| (< A 3) 4)) (ib (> C 2)))
+      (?
+        (& (b.awdq B) (! (b.inB (> C 2))))
+        ('
+          (b.pr B)
+          (ib (| (< A 3) 5))
+          (? (== B (AX)) (iw (> C 2)) (id (> C 2)))
+        )
+        (?
+          (== (c.getRange B 2 2) 0)
+          (' (b.iom $80 A B) (ib (> C 2)))
+          (?
+            (b.inB (> C 2))
+            (' (b.iom $83 A B) (ib (> C 2)))
+            ('
+              (b.iom $81 A B)
+              (? (== (c.getRange B 2 2) 1) (iw (> C 2)) (id (> C 2)))
+            )
+          )
+        )
+      )
+    )
+    (? (c.getBit B 1) (b.irm (< A 3) C B) (b.irm (| (< A 3) 2) B C))
+  )
+}
+
+{ADD A B; ; (b.it 0 A B)}
+{OR A B; ; (b.it 1 A B)}
+{ADC A B; ; (b.it 2 A B)}
+{SBB A B; ; (b.it 3 A B)}
+{AND A B; ; (b.it 4 A B)}
+{SUB A B; ; (b.it 5 A B)}
+{XOR A B; ; (b.it 6 A B)}
+{CMP A B; ; (b.it 7 A B)}
+
+
+[MOV]
+
+{MOV A B; ;
+  (?
+    (== (: B 2) 0)
+    (?
+      (c.getBit A 1)
+      ('
+        (b.iom $C6 0 A)
+        (?
+          (== (c.getRange A 2 2) 0)
+          (ib (> B 2))
+          (? (== (c.getRange A 2 2) 0) (iw (> B 2)) (id (> B 2)))
+        )
+      )
+      (?
+        (== (c.getRange A 2 2) 0)
+        (' (b.pm A) (ib (| $B0 (c.getRange A 4 3))) (ib (> B 2)))
+        ('
+          (b.pm A)
+          (ib (| $B8 (c.getRange A 4 3)))
+          (?
+            (== (c.getRange A 2 2) 1)
+            (iw (> B 2))
+            (? (== (c.getRange A 2 2) 2) (id (> B 2)) (iq (> B 2)))
+          )
+        )
+      )
+    )
+    (? (c.getBit A 1) (b.irm $88 B A) (b.irm $8A A B))
+  )
+}
+
+
+[SET]
+
+{SC M; ; (b.i2om $0F $92 0 M)}
+{SB M; ; (b.i2om $0F $92 0 M)}
+{SNC M; ; (b.i2om $0F $93 0 M)}
+{SAE M; ; (b.i2om $0F $93 0 M)}
+{SZ M; ; (b.i2om $0F $94 0 M)}
+{SE M; ; (b.i2om $0F $94 0 M)}
+{SNZ M; ; (b.i2om $0F $95 0 M)}
+{SNE M; ; (b.i2om $0F $95 0 M)}
+
+[extension]
+{MOZ A B; ;
+  (?
+    (!= (: A 2) 1)
+    (c.errorSb "Wrong Operand")
+    (?
+      (== (c.getRange B 2 2) 0)
+      (b.i2rm $0F $B6 A (| B (& A %1100)))
+      (b.i2rm $0F $B7 A (^ B %1000 (& (! A) %0100)))
+    )
+  )
+}
+{MOS A B; ;
+  (?
+    (!= (: A 2) 1)
+    (c.errorSb "Wrong Operand")
+    (?
+      (== (c.getRange B 2 2) 0)
+      (b.i2rm $0F $BE A (| B (& A %1100)))
+      (?
+        (== (c.getRange B 2 2) 1)
+        (b.i2rm $0F $BF A (^ B %1000 (& (! A) %0100)))
+        (b.irm $63 A (| B %0100))
+      )
+    )
+  )
+}
+
+[bit scan]
+{BSF R M; ;
+  (?
+    (== (c.getRange R 2 2) 0)
+    (c.errorSb "Wrong Operand")
+    (b.i2rm $0F $BC R M)
+  )
+}
+{BSR R M; ;
+  (?
+    (== (c.getRange R 2 2) 0)
+    (c.errorSb "Wrong Operand")
+    (b.i2rm $0F $BD R M)
+  )
+}
+
+[XADD]
+
+{XADD A B; ; (b.i2rm $0F (| $C0 (!= (c.getRange A 2 2) 0)) B A)}
+
+
+[BSWAP]
+
+{BSWAP A; ;
+  (?
+    (!= (: A 2) 1)
+    (c.errorSb "Wrong Operand")
+    (' (b.pm A) (ib $0F) (ib (| $C8 (c.getRange A 4 3))))
+  )
+}
+
+[PUSH/POP]
+
+{PUSH A; ;
+  (?
+    (== (: A 2) 0)
+    (?
+      (b.inB (> A 2))
+      (' (ib $6A) (ib (> A 2)))
+      (' (ib $68) (id (> A 2)))
+    )
+    (?
+      (== (: A 4) %1101)
+      (' (b.p40p A) (ib (| $50 (c.getRange A 4 3))))
+      (?
+        (c.getBit A 2)
+        (' (b.p40p A) (ib $FF) (b.om 6 A))
+        (c.errorSb "Wrong Operand Size")
+      )
+    )
+  )
+}
+{POP A; ;
+  (?
+    (== (: A 4) %1101)
+    (' (b.p40p A) (ib (| $58 (c.getRange A 4 3))))
+    (?
+      (c.getBit A 2)
+      (' (b.p40p A) (ib $8F) (b.om 0 A))
+      (c.errorSb "Wrong Operand Size")
+    )
+  )
+}
+
+[TEST]
+
+{TEST A B; ;
+  (?
+    (== (: B 2) 0)
+    (?
+      (== A (AL))
+      (' (ib $A8) (ib (> B 2)))
+      (?
+        (b.awdq A)
+        ('
+          (b.pr A)
+          (ib $A9)
+          (? (== A (AX)) (iw (> B 2)) (id (> B 2)))
+        )
+        (' (b.iom $F6 0 A) (? (== (c.getRange A 2 2) 1) (iw (> B 2)) (id (> B 2))))
+      )
+    )
+    (? (c.getBit A 1) (b.irm $84 B A) (b.irm $84 A B))
+  )
+}
+
+
+[XCHG]
+
+{XCHG A B; ;
+  (?
+    (b.awdq A)
+    (' (b.pm B) (ib (| $90 (c.getRange B 4 3))))
+    (?
+      (b.awdq B)
+      (' (b.pm A) (ib (| $90 (c.getRange A 4 3))))
+      (? (c.getBit A 1) (b.irm $86 B A) (b.irm $86 A B))
+    )
+  )
+}
+
+[LEA]
+
+{LEA A B; ; (b.irm $8D A B)}
+{LEAd A B C; ; (LEA A (b.defMem B (c.getRange A 2 2) C))}
+{LEAs A B; T;
+  ('
+    (LEA A (mdq (RIP) (- B (` T))))
+    (@ T)
+  )
+}
+{LEAi A B C; ; (LEA A (mli A B C 0))}
+{LEA2 A B C; ; (LEA A (ml2 A B C 0))}
+{LEA4 A B C; ; (LEA A (ml4 A B C 0))}
+{LEA8 A B C; ; (LEA A (ml8 A B C 0))}
+{LEAid A B C D; ; (LEA A (mli A B C D))}
+{LEA2d A B C D; ; (LEA A (ml2 A B C D))}
+{LEA4d A B C D; ; (LEA A (ml4 A B C D))}
+{LEA8d A B C D; ; (LEA A (ml8 A B C D))}
+{LEAmd A B; ; (LEA A (mmdq B))}
+{LEAmid A B C; ; (LEA A (mmidq B C))}
+{LEAm2d A B C; ; (LEA A (mm2dq B C))}
+{LEAm4d A B C; ; (LEA A (mm4dq B C))}
+{LEAm8d A B C; ; (LEA A (mm8dq B C))}
+
+[shift]
+
+{b.ishift A B C; ;
+  (?
+    (== (CL) C)
+    (b.iom $D2 A B)
+    (? (== (i 1) C) (b.iom $D0 A B) (' (b.iom $C0 A B) (ib (> C 2))))
+  )
+}
+
+{RCL A B; ; (b.ishift 0 A B)}
+{RCR A B; ; (b.ishift 1 A B)}
+{ROL A B; ; (b.ishift 2 A B)}
+{ROR A B; ; (b.ishift 3 A B)}
+{SHL A B; ; (b.ishift 4 A B)}
+{SHR A B; ; (b.ishift 5 A B)}
+{SAR A B; ; (b.ishift 7 A B)}
+
+[jump]
+
+{b.ijcc A B; T;
+  ('
+    (?
+      (b.inB (- B (` T)))
+      (' (ib (| $70 A)) (ib (- B (` T))))
+      (' (ib $0F) (ib (| $80 A)) (id (- B (` T))))
+    )
+    (@ T)
+  )
+}
+
+{CAL A; T; (' (ib $E8) (id (- A (` T))) (@ T))}
+{CALdll A; T;
+  (' (b.iom $FF 2 (mdd (RIP) (- (is.searchFunc A) (` T)))) (@ T))
+}
+{JMPdll A; T;
+  (' (b.iom $FF 4 (mdd (RIP) (- (is.searchFunc A) (` T)))) (@ T))
+}
+
+{JC A; ; (b.ijcc 2 A)}
+{JB A; ; (b.ijcc 2 A)}
+{JNC A; ; (b.ijcc 3 A)}
+{JAE A; ; (b.ijcc 3 A)}
+{JZ A; ; (b.ijcc 4 A)}
+{JE A; ; (b.ijcc 4 A)}
+{JNZ A; ; (b.ijcc 5 A)}
+{JNE A; ; (b.ijcc 5 A)}
+{JBE A; ; (b.ijcc 6 A)}
+{JA A; ; (b.ijcc 7 A)}
+{JS A; ; (b.ijcc 8 A)}
+{JNS A; ; (b.ijcc 9 A)}
+{JL A; ; (b.ijcc $C A)}
+{JGE A; ; (b.ijcc $D A)}
+{JLE A; ; (b.ijcc $E A)}
+{JG A; ; (b.ijcc $F A)}
+
+{JRCXZ A; T;
+  (' (? (b.inB (- A (` T))) (' (ib $E3) (ib (- A (` T)))) (JMP A)) (@ T))
+}
+
+{JMP A; T;
+  ('
+    (?
+      (b.inB (- A (` T)))
+      (' (ib $EB) (ib (- A (` T))))
+      (' (ib $E9) (id (- A (` T))))
+    )
+    (@ T)
+  )
+}
+
+{RET; ; (ib $C3)}
+
+[mul/div]
+
+{MUL A; ; (b.iom $F6 4 A)}
+{IMUL A; ; (b.iom $F6 5 A)}
+{DIV A; ; (b.iom $F6 6 A)}
+{IDIV A; ; (b.iom $F6 7 A)}
+
+{IMUL2 R M; ; (b.i2rm $0F $AF R M)}
+{IMUL3 R M I; ;
+  (?
+    (b.inB I)
+    (' (b.irm $6B R M) (ib I))
+    (?
+      (== (c.getRange R 2 2) %01)
+      (' (b.irm $69 R M) (iw I))
+      (' (b.irm $69 R M) (id I))
+    )
+  )
+}
+
+[F6/F7/FE/FF misc]
+
+{NOT A; ; (b.iom $F6 2 A)}
+{NEG A; ; (b.iom $F6 3 A)}
+{INC A; ; (b.iom $FE 0 A)}
+{DEC A; ; (b.iom $FE 1 A)}
 

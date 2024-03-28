@@ -1,0 +1,1 @@
+vlrfsasm 00.exe 00.log vv.vlra vtf.vlra ../def/common.vlra ../def/win_x64/base.vlra ../def/win_x64/header.vlra ../def/win_x64/idata.vlra ../def/win_x64/instruction.vlra ../def/win_x64/rsrc.vlra ../def/win_x64/text.vlra

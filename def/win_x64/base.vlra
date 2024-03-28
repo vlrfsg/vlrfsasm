@@ -1,121 +1,31 @@
 [def/win_x64/base.vlra
  Copyright 2021 vlrfsg]
 
-[00:imm, 01:reg, 02:mem
- 00:b, 01:w, 10:d/f, 11:q/v
- 0:I, 1:F
- (reg) 0:s, 1:v]
-
 [frequently used immediate size, little endian]
 {ib A; ; (: A 8)}
 {iw A; ;
   ('
-    (c.getRan A 0 8)
-    (c.getRan A 8 8)
+    (c.getRange A 0 8)
+    (c.getRange A 8 8)
   )
 }
 {id A; ;
   ('
-    (c.getRan A 0 8)
-    (c.getRan A 8 8)
-    (c.getRan A 16 8)
-    (c.getRan A 24 8)
+    (c.getRange A 0 8)
+    (c.getRange A 8 8)
+    (c.getRange A 16 8)
+    (c.getRange A 24 8)
   )
 }
 {iq A; ;
   ('
-    (c.getRan A 0 8)
-    (c.getRan A 8 8)
-    (c.getRan A 16 8)
-    (c.getRan A 24 8)
-    (c.getRan A 32 8)
-    (c.getRan A 40 8)
-    (c.getRan A 48 8)
-    (c.getRan A 56 8)
+    (c.getRange A 0 8)
+    (c.getRange A 8 8)
+    (c.getRange A 16 8)
+    (c.getRange A 24 8)
+    (c.getRange A 32 8)
+    (c.getRange A 40 8)
+    (c.getRange A 48 8)
+    (c.getRange A 56 8)
   )
 }
-
-[immediate]
-{i A; ; (< (: A 64) 5)}
-
-[register]
-{b.defReg A B C; ;
-  (' (: A 8) (: B 1) (: C 3) (: %01 2))
-}
-
-{AL; ; (b.defReg $00 0 0)}
-{CL; ; (b.defReg $01 0 0)}
-{DL; ; (b.defReg $02 0 0)}
-{BL; ; (b.defReg $03 0 0)}
-{AH; ; (b.defReg $04 0 0)}
-{CH; ; (b.defReg $05 0 0)}
-{DH; ; (b.defReg $06 0 0)}
-{BH; ; (b.defReg $07 0 0)}
-{SPL; ; (b.defReg $14 0 0)}
-{BPL; ; (b.defReg $15 0 0)}
-{SIL; ; (b.defReg $16 0 0)}
-{DIL; ; (b.defReg $17 0 0)}
-{R8B; ; (b.defReg $08 0 0)}
-{R9B; ; (b.defReg $09 0 0)}
-{R10B; ; (b.defReg $0A 0 0)}
-{R11B; ; (b.defReg $0B 0 0)}
-{R12B; ; (b.defReg $0C 0 0)}
-{R13B; ; (b.defReg $0D 0 0)}
-{R14B; ; (b.defReg $0E 0 0)}
-{R15B; ; (b.defReg $0F 0 0)}
-
-{AX; ; (b.defReg $00 0 1)}
-{CX; ; (b.defReg $01 0 1)}
-{DX; ; (b.defReg $02 0 1)}
-{BX; ; (b.defReg $03 0 1)}
-{SP; ; (b.defReg $04 0 1)}
-{BP; ; (b.defReg $05 0 1)}
-{SI; ; (b.defReg $06 0 1)}
-{DI; ; (b.defReg $07 0 1)}
-{R8W; ; (b.defReg $08 0 1)}
-{R9W; ; (b.defReg $09 0 1)}
-{R10W; ; (b.defReg $0A 0 1)}
-{R11W; ; (b.defReg $0B 0 1)}
-{R12W; ; (b.defReg $0C 0 1)}
-{R13W; ; (b.defReg $0D 0 1)}
-{R14W; ; (b.defReg $0E 0 1)}
-{R15W; ; (b.defReg $0F 0 1)}
-
-{EAX; ; (b.defReg $00 0 2)}
-{ECX; ; (b.defReg $01 0 2)}
-{EDX; ; (b.defReg $02 0 2)}
-{EBX; ; (b.defReg $03 0 2)}
-{ESP; ; (b.defReg $04 0 2)}
-{EBP; ; (b.defReg $05 0 2)}
-{ESI; ; (b.defReg $06 0 2)}
-{EDI; ; (b.defReg $07 0 2)}
-{R8D; ; (b.defReg $08 0 2)}
-{R9D; ; (b.defReg $09 0 2)}
-{R10D; ; (b.defReg $0A 0 2)}
-{R11D; ; (b.defReg $0B 0 2)}
-{R12D; ; (b.defReg $0C 0 2)}
-{R13D; ; (b.defReg $0D 0 2)}
-{R14D; ; (b.defReg $0E 0 2)}
-{R15D; ; (b.defReg $0F 0 2)}
-
-{RAX; ; (b.defReg $00 0 3)}
-{RCX; ; (b.defReg $01 0 3)}
-{RDX; ; (b.defReg $02 0 3)}
-{RBX; ; (b.defReg $03 0 3)}
-{RSP; ; (b.defReg $04 0 3)}
-{RBP; ; (b.defReg $05 0 3)}
-{RSI; ; (b.defReg $06 0 3)}
-{RDI; ; (b.defReg $07 0 3)}
-{R8; ; (b.defReg $08 0 3)}
-{R9; ; (b.defReg $09 0 3)}
-{R10; ; (b.defReg $0A 0 3)}
-{R11; ; (b.defReg $0B 0 3)}
-{R12; ; (b.defReg $0C 0 3)}
-{R13; ; (b.defReg $0D 0 3)}
-{R14; ; (b.defReg $0E 0 3)}
-{R15; ; (b.defReg $0F 0 3)}
-
-
-
-
-

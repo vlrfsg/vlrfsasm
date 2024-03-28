@@ -7,5 +7,5 @@
 
 [output]
 {ts.sizeOfText; ; (> (# (ts.contentOfText)) 3)}
-{ts.content; ; (' (@ts.address) (ts.contentOfText))}
+{ts.content; ; (' (@ @ts.address) (ts.contentOfText))}
 {ts.size; ; (c.align (ts.sizeOfText) (h.alignBase))}
